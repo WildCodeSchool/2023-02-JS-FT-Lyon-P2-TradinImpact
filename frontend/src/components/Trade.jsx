@@ -1,3 +1,10 @@
+import { Routes, Route } from "react-router-dom";
+import PresentationTrade from "./PresentationTrade";
+
 export default function Trade() {
-  return <h1>Trade</h1>;
+  return (
+    <Routes>
+      <Route path="/" element={<PresentationTrade />} />
+    </Routes>
+  );
 }
