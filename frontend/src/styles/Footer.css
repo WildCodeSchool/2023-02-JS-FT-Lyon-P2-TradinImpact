@@ -1,0 +1,38 @@
+.gamepickcontainer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #FFEA9E;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    width: 100vw;
+}
+.icon {
+    background-color: #F97700;
+    padding: 1em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#collect-icon {
+ padding-top: 1.2em;
+}
+
+#trade-icon {
+    transform: rotate(45deg);
+    position: relative;
+    border: 5px solid white;
+   }
+
+#test {
+    transform: rotate(-45deg);
+}
+#fight-icon {
+padding-top: 1.2em;
+}
+
+img {
+    width:2rem;
+    height:2rem;
+}
