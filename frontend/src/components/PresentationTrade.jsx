@@ -9,7 +9,11 @@ export default function PresentationTrade(props) {
         <p>What would you like to do ?</p>
       </div>
       <div>
-        <button type="button" className="button-trade">
+        <button
+          type="button"
+          className="button-trade"
+          onClick={() => setTradeScreen("buy")}
+        >
           Buy
         </button>
         <button
