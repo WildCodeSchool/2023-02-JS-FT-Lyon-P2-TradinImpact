@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,9 +15,41 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --trade-first-color: #ffc700;
+  /* color variables */
+  --nav-dark: #F97700;
+  --nav-light: #FFB039;
+  --trade-first-color: #FFC700;
   --trade-second-color: #fbaf4c;
   --trade-third-color: #ffea9e;
+  /* font variables */
+  --text-font: "Indie Flower", sans-serif;
+  --button-font: "Patrick Hand", sans-serif;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--trade-third-color);
+}
+
+.button-trade {
+  font-family: var(--button-font);
+  font-size: 1.5em;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  margin-inline: 20px;
+  padding: 10px 30px;
+}
+
+.info-trade {
+  width: 60%;
+  font-family: var(--text-font);
+  font-size: 1.5em;
+  background-color: var(--trade-second-color);
+  border-radius: 50px;
+  padding: 20px 30px;
 }
 
 code {

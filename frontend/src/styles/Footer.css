@@ -1,38 +1,32 @@
 .gamepickcontainer {
   display: flex;
   justify-content: space-evenly;
-  background-color: #ffea9e;
   padding-top: 3em;
   padding-bottom: 3em;
-  width: 100vw;
+  width: 100%;
 }
+
 .icon {
-  background-color: #f97700;
-  padding: 1em;
-  border-radius: 1em;
+  width: 75px;
+  height: 75px;
+  background-color: var(--nav-dark);
+  padding: 25px;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-#collect-icon {
-  padding-top: 1.2em;
+.icon > img {
+  width: 40px;
+  height: 40px;
 }
 
-#trade-icon {
+.active {
   transform: rotate(45deg);
-  position: relative;
   border: 5px solid white;
 }
 
-#test {
+.active-img {
   transform: rotate(-45deg);
-}
-#fight-icon {
-  padding-top: 1.2em;
-}
-
-img {
-  width: 2rem;
-  height: 2rem;
 }
