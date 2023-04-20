@@ -1,10 +1,17 @@
-import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import PresentationTrade from "./PresentationTrade";
+import Sell from "./Sell";
 
 export default function Trade() {
-  return (
-    <Routes>
-      <Route path="/" element={<PresentationTrade />} />
-    </Routes>
-  );
+  const [tradeScreen, setTradeScreen] = useState("presentation");
+
+  if (tradeScreen === "presentation") {
+    return (
+      <PresentationTrade
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+      />
+    );
+  }
+  return <Sell />;
 }

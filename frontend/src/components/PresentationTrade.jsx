@@ -1,6 +1,8 @@
 import "../styles/PresentationTrade.css";
+import PropTypes from "prop-types";
 
-export default function PresentationTrade() {
+export default function PresentationTrade(props) {
+  const { setTradeScreen } = props;
   return (
     <div className="presTrade">
       <div className="info-trade">
@@ -10,10 +12,18 @@ export default function PresentationTrade() {
         <button type="button" className="button-trade">
           Buy
         </button>
-        <button type="button" className="button-trade">
+        <button
+          type="button"
+          className="button-trade"
+          onClick={() => setTradeScreen("sell")}
+        >
           Sell
         </button>
       </div>
     </div>
   );
 }
+
+PresentationTrade.propTypes = {
+  setTradeScreen: PropTypes.func.isRequired,
+};
