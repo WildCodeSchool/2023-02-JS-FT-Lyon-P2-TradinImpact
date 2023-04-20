@@ -1,4 +1,4 @@
-import "../styles/header.css";
+import "../styles/Header.css";
 import PropTypes from "prop-types";
 
 export default function Header({ moraCount }) {
