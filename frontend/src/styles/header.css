@@ -10,31 +10,32 @@
     align-items: center;
 }
 
-#avatar, #avatar > img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
+#avatar,
+#avatar > img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
 }
 
-#avatar{
-    background-color: beige;
-    margin-left: -5px;
+#avatar {
+  background-color: beige;
+  margin-left: -5px;
 }
 
 #mora-count {
-    width: 120px;
-    height: 60px;
-    border-radius: 50px;
-    background-color: var(--nav-light);
-    font-family: "Indie Flower", sans-serif;
-    font-size: 1.6em;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 20px;
+  width: 120px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: var(--nav-light);
+  font-family: "Indie Flower", sans-serif;
+  font-size: 1.6em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
 }
 
 #mora-count > img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
