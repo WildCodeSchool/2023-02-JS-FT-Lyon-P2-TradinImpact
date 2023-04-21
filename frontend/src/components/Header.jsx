@@ -1,4 +1,3 @@
-// import "../styles/header.css";
 import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 

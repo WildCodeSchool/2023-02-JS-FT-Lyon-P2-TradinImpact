@@ -5,6 +5,7 @@ import Buy from "./Buy";
 
 export default function Trade() {
   const [tradeScreen, setTradeScreen] = useState("presentation");
+  const [showModal, setShowModal] = useState(false);
 
   if (tradeScreen === "presentation") {
     return (
@@ -15,9 +16,23 @@ export default function Trade() {
     );
   }
   if (tradeScreen === "sell") {
-    return <Sell tradeScreen={tradeScreen} setTradeScreen={setTradeScreen} />;
+    return (
+      <Sell
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+    );
   }
   if (tradeScreen === "buy") {
-    return <Buy tradeScreen={tradeScreen} setTradeScreen={setTradeScreen} />;
+    return (
+      <Buy
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+    );
   }
 }

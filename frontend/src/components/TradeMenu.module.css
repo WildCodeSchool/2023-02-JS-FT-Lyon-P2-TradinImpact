@@ -12,6 +12,7 @@
     width: 20%;
     height: 70%;
     font-family: var(--button-font);
+    font-size: 1.3em;
     background-color: var(--trade-third-color);
     border-radius: 50px;
     display: flex;
