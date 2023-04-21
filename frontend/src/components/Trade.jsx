@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PresentationTrade from "./PresentationTrade";
 import Sell from "./Sell";
+import Buy from "./Buy";
 
 export default function Trade() {
   const [tradeScreen, setTradeScreen] = useState("presentation");
@@ -25,22 +26,21 @@ export default function Trade() {
     "sausage",
   ];
 
-  function random(min, max) {
+  /*   function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  } */
 
   if (tradeScreen === "presentation") {
     return (
       <PresentationTrade
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
-        processedItems={processedItems}
-        random={random}
       />
     );
-  } else if (tradeScreen === "buy") {
+  }
+  if (tradeScreen === "buy") {
     return <Buy processedItems={processedItems} />;
   }
   return <Sell />;

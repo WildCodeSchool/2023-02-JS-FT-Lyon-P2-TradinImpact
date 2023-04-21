@@ -1,14 +1,14 @@
 #header {
-    width: 90%;
-    height: 75px;
-    background-color: var(--nav-dark);
-    border-radius: 50px;
-    margin: 25px;
-    margin-inline: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 50px;
+  width: 90%;
+  height: 75px;
+  background-color: var(--nav-dark);
+  border-radius: 50px;
+  margin: 25px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 #avatar,

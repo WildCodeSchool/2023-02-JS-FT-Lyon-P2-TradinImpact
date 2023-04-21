@@ -1,7 +1,7 @@
-import React, { useState } from "react;";
+/* import React, { useState } from "react"; */
 
 export default function Buy() {
-  const processedItems = [
+  /* const processedItems = [
     "chilled-meat",
     "flour",
     "milk",
@@ -19,14 +19,13 @@ export default function Buy() {
     "crab-roe",
     "jam",
     "sausage",
-  ];
-
-  function random(min, max) {
+  ]; */
+  /*   function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  let randomIndex = random(0, processedItems.length - 1);
+  } */
+  /*   let randomIndex = random(0, processedItems.length - 1);
   const [objectName, setObjectName] = useState(processedItems[randomIndex]);
 
   const handleClick = () => {
@@ -55,5 +54,5 @@ export default function Buy() {
         </button>
       </div>
     </div>
-  );
+  ); */
 }
