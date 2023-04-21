@@ -1,18 +1,23 @@
+import PropTypes from "prop-types";
 import TradeMenu from "./TradeMenu";
 import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
+import styles from "./Buy.module.css";
 
-function Buy() {
+function Buy({ setTradeScreen }) {
   return (
-    <div>
-      <h1>Buy</h1>
+    <div className={styles.display}>
       <TradeMerchantText />
       <TradeItemDisplay />
       <Merchant />
-      <TradeMenu />
+      <TradeMenu setTradeScreen={setTradeScreen} />
     </div>
   );
 }
 
 export default Buy;
+
+Buy.propTypes = {
+  setTradeScreen: PropTypes.func.isRequired,
+};

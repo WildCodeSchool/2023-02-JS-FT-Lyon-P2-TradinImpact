@@ -1,18 +1,23 @@
+import PropTypes from "prop-types";
 import TradeMenu from "./TradeMenu";
 import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
+import styles from "./Sell.module.css";
 
-function Sell() {
+function Sell({ setTradeScreen }) {
   return (
-    <div>
-      <h1>Sell</h1>
+    <div className={styles.display}>
       <TradeMerchantText />
       <TradeItemDisplay />
       <Merchant />
-      <TradeMenu />
+      <TradeMenu setTradeScreen={setTradeScreen} />
     </div>
   );
 }
 
 export default Sell;
+
+Sell.propTypes = {
+  setTradeScreen: PropTypes.func.isRequired,
+};

@@ -1,10 +1,9 @@
-import "../styles/PresentationTrade.css";
 import PropTypes from "prop-types";
+import styles from "./PresentationTrade.module.css";
 
-export default function PresentationTrade(props) {
-  const { setTradeScreen } = props;
+export default function PresentationTrade({ setTradeScreen }) {
   return (
-    <div className="presTrade">
+    <div className={styles.presTrade}>
       <div className="info-trade">
         <p>What would you like to do ?</p>
       </div>
