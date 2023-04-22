@@ -11,7 +11,7 @@ function TradeMerchantText({ tradeScreen }) {
   }
 }
 TradeMerchantText.propTypes = {
-  tradeScreen: PropTypes.func.isRequired,
+  tradeScreen: PropTypes.string.isRequired,
 };
 
 export default TradeMerchantText;

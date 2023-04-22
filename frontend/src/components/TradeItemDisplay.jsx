@@ -17,13 +17,12 @@ function TradeItemDisplay({ tradeScreen, objectName }) {
             : 22 Moras
           </h2>
         </div>
-        ;
       </div>
     );
   }
 }
 TradeItemDisplay.propTypes = {
-  tradeScreen: PropTypes.func.isRequired,
+  tradeScreen: PropTypes.string.isRequired,
   objectName: PropTypes.string.isRequired,
 };
 export default TradeItemDisplay;
