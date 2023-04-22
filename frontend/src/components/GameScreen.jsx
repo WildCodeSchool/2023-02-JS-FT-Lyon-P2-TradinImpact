@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 import Trade from "./Trade";
+import styles from "./GameScreen.module.css";
 
-export default function GameScreen(props) {
-  const { gameMode } = props;
-
+export default function GameScreen({ gameMode }) {
   return (
-    <>
-      <h1>GameScreen</h1>
+    <div className={styles.gamescreenTrade}>
       {gameMode === "trade" ? <Trade /> : null}
-    </>
+    </div>
   );
 }
 

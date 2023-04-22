@@ -11,6 +11,7 @@ export default function Trade() {
     const maxi = Math.floor(max);
     return Math.floor(Math.random() * (maxi - mini + 1)) + min;
   };
+  const [showModal, setShowModal] = useState(false);
 
   if (tradeScreen === "presentation") {
     return (
@@ -21,7 +22,14 @@ export default function Trade() {
     );
   }
   if (tradeScreen === "sell") {
-    return <Sell tradeScreen={tradeScreen} setTradeScreen={setTradeScreen} />;
+    return (
+      <Sell
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+    );
   }
   if (tradeScreen === "buy") {
     return (
@@ -29,6 +37,8 @@ export default function Trade() {
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         random={random}
+        showModal={showModal}
+        setShowModal={setShowModal}
       />
     );
   }
