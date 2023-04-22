@@ -15,7 +15,6 @@
     "vite": "^4.0.4"
   },
   "devDependencies": {
-    
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
@@ -27,6 +26,5 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.3"
-    
   }
 }

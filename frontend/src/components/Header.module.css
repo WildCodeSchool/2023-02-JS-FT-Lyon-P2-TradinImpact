@@ -1,0 +1,39 @@
+.header {
+    width: 90%;
+    height: 75px;
+    background-color: var(--nav-dark);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avatar,
+.avatar > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.avatar {
+  background-color: beige;
+  margin-left: -5px;
+}
+
+.moraCount {
+  width: 110px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: var(--nav-light);
+  font-family: var(--button-font);
+  font-size: 1.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.moraCount > img {
+  width: 40px;
+  height: 40px;
+}

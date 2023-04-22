@@ -1,10 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import PropTypes from "prop-types";
 import Trade from "./Trade";
+import styles from "./GameScreen.module.css";
 
-export default function GameScreen() {
+export default function GameScreen({ gameMode }) {
   return (
-    <Routes>
-      <Route path="/" element={<Trade />} />
-    </Routes>
+    <div className={styles.gamescreenTrade}>
+      {gameMode === "trade" ? <Trade /> : null}
+    </div>
   );
 }
+
+GameScreen.propTypes = {
+  gameMode: PropTypes.string.isRequired,
+};
