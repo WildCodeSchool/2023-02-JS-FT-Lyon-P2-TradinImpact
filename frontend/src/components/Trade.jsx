@@ -5,6 +5,12 @@ import Buy from "./Buy";
 
 export default function Trade() {
   const [tradeScreen, setTradeScreen] = useState("presentation");
+
+  const random = (min, max) => {
+    const mini = Math.ceil(min);
+    const maxi = Math.floor(max);
+    return Math.floor(Math.random() * (maxi - mini + 1)) + min;
+  };
   const [showModal, setShowModal] = useState(false);
 
   if (tradeScreen === "presentation") {
@@ -30,6 +36,7 @@ export default function Trade() {
       <Buy
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
+        random={random}
         showModal={showModal}
         setShowModal={setShowModal}
       />

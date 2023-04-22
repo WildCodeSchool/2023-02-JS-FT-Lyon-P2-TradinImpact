@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "./TradeMenu.module.css";
 
-function TradeMenu({ tradeScreen, setTradeScreen, setShowModal }) {
+function TradeMenu({ tradeScreen, setTradeScreen, setShowModal, handleClick }) {
   return (
     <div className={styles.background}>
       <button type="button" className={styles.button}>
@@ -15,7 +15,7 @@ function TradeMenu({ tradeScreen, setTradeScreen, setShowModal }) {
         {tradeScreen === "buy" ? "Buy" : "Sell"}
       </button>
       {tradeScreen === "buy" ? (
-        <button type="button" className={styles.button}>
+        <button onClick={handleClick} type="button" className={styles.button}>
           Next
         </button>
       ) : null}
@@ -29,11 +29,10 @@ function TradeMenu({ tradeScreen, setTradeScreen, setShowModal }) {
     </div>
   );
 }
-
-export default TradeMenu;
-
 TradeMenu.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
+export default TradeMenu;
