@@ -6,31 +6,11 @@ import Buy from "./Buy";
 export default function Trade() {
   const [tradeScreen, setTradeScreen] = useState("presentation");
 
-  const processedItems = [
-    "chilled-meat",
-    "flour",
-    "milk",
-    "pepper",
-    "rice",
-    "salt",
-    "shrimp-meat",
-    "butter",
-    "cream",
-    "ham",
-    "smoked-fowl",
-    "sugar",
-    "bacon",
-    "cheese",
-    "crab-roe",
-    "jam",
-    "sausage",
-  ];
-
-  /*   function random(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  } */
+  const random = (min, max) => {
+    const mini = Math.ceil(min);
+    const maxi = Math.floor(max);
+    return Math.floor(Math.random() * (maxi - mini + 1)) + min;
+  };
 
   if (tradeScreen === "presentation") {
     return (
@@ -40,8 +20,16 @@ export default function Trade() {
       />
     );
   }
-  if (tradeScreen === "buy") {
-    return <Buy processedItems={processedItems} />;
+  if (tradeScreen === "sell") {
+    return <Sell tradeScreen={tradeScreen} setTradeScreen={setTradeScreen} />;
   }
-  return <Sell />;
+  if (tradeScreen === "buy") {
+    return (
+      <Buy
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        random={random}
+      />
+    );
+  }
 }
