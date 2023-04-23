@@ -1,9 +1,8 @@
 .gamepickcontainer {
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  width: 100%;
+  align-items: center;
 }
 
 .icon {
@@ -27,6 +26,6 @@
   border: 5px solid white;
 }
 
-.active-img {
+.activeImg {
   transform: rotate(-45deg);
 }

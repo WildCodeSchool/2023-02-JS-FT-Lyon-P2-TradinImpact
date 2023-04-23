@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
+import styles from "./Home.module.css";
 
 export default function Home() {
   const almond = {
@@ -26,7 +27,7 @@ export default function Home() {
   const [inventory, setInventory] = useState([almond, bacon]);
 
   return (
-    <>
+    <div className={styles.layout}>
       <Header moraCount={moraCount} setMoraCount={setMoraCount} />
       <GameScreen
         gameMode={gameMode}
@@ -35,6 +36,6 @@ export default function Home() {
         setInventory={setInventory}
       />
       <Footer gameMode={gameMode} setGameMode={setGameMode} />
-    </>
+    </div>
   );
 }

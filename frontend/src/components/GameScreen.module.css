@@ -1,9 +1,8 @@
-.presTrade {
+.gamescreenTrade {
+  width: 100%;
+  height: 65%;
   background-color: var(--trade-first-color);
-  height: 70%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 15%;
+  align-items: center;
 }

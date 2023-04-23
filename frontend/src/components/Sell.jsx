@@ -1,21 +1,39 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import ConfirmationModal from "./ConfirmationModal";
 import TradeMenu from "./TradeMenu";
 import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
+import styles from "./Sell.module.css";
 
-function Sell({ inventory, setInventory, setTradeScreen }) {
+function Sell({
+  inventory,
+  setInventory,
+  tradeScreen,
+  setTradeScreen,
+  showModal,
+  setShowModal,
+}) {
   const [isItemSelected, setIsItemSelected] = useState(false);
 
   return isItemSelected ? (
-    <div>
-      <h1>Sell</h1>
+    <div className={styles.display}>
+      {showModal ? (
+        <ConfirmationModal
+          tradeScreen={tradeScreen}
+          setShowModal={setShowModal}
+        />
+      ) : null}
       <TradeMerchantText />
       <TradeItemDisplay />
       <Merchant />
-      <TradeMenu />
+      <TradeMenu
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        setShowModal={setShowModal}
+      />
     </div>
   ) : (
     <TradeInventory
@@ -34,3 +52,10 @@ Sell.propTypes = {
 };
 
 export default Sell;
+
+Sell.propTypes = {
+  tradeScreen: PropTypes.string.isRequired,
+  setTradeScreen: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired,
+};

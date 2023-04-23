@@ -1,18 +1,78 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
+import ConfirmationModal from "./ConfirmationModal";
 import TradeMenu from "./TradeMenu";
 import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
+import styles from "./Buy.module.css";
 
-function Buy() {
+export default function Buy({
+  random,
+  tradeScreen,
+  setTradeScreen,
+  setShowModal,
+  showModal,
+}) {
+  const merchantItems = [
+    "flour",
+    "almond",
+    "cabbage",
+    "fish",
+    "crab",
+    "milk",
+    "pepper",
+    "rice",
+    "salt",
+    "shrimp-meat",
+    "butter",
+    "cream",
+    "ham",
+    "fowl",
+    "smoked-fowl",
+    "sugar",
+    "bacon",
+    "cheese",
+    "crab-roe",
+    "tofu",
+    "jam",
+    "sausage",
+  ];
+
+  let randomIndex = random(0, merchantItems.length - 1);
+  const [objectName, setObjectName] = useState(merchantItems[randomIndex]);
+  const handleClick = () => {
+    randomIndex = random(0, merchantItems.length - 1);
+    setObjectName(merchantItems[randomIndex]);
+  };
+  /* Ici viendra la fonction permettant de calculer le prix de l'item 
+ généré aléatoirement en fonction de sa rareté, prix que l'on passera à TradeMerchantText
+TradeItemDisplay via les props */
+
   return (
-    <div>
-      <h1>Buy</h1>
-      <TradeMerchantText />
-      <TradeItemDisplay />
+    <div className={styles.display}>
+      {showModal ? (
+        <ConfirmationModal
+          tradeScreen={tradeScreen}
+          setShowModal={setShowModal}
+        />
+      ) : null}
+      <TradeMerchantText tradeScreen={tradeScreen} />
+      <TradeItemDisplay tradeScreen={tradeScreen} objectName={objectName} />
       <Merchant />
-      <TradeMenu />
+      <TradeMenu
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        setShowModal={setShowModal}
+        handleClick={handleClick}
+      />
     </div>
   );
 }
-
-export default Buy;
+Buy.propTypes = {
+  tradeScreen: PropTypes.string.isRequired,
+  setTradeScreen: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired,
+  random: PropTypes.func.isRequired,
+};
