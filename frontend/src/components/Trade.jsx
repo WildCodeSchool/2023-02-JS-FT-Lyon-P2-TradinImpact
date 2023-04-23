@@ -39,6 +39,7 @@ export default function Trade({ inventory, setInventory }) {
       <Buy
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
+        inventory={inventory}
         setInventory={setInventory}
         random={random}
         showModal={showModal}
