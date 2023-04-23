@@ -10,6 +10,7 @@ export default function ConfirmationModal({
   selectedItem,
   setSelectedItem,
 }) {
+  /* la modale est alimentée par le state itemSelected */
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
@@ -25,8 +26,11 @@ export default function ConfirmationModal({
               const selection = selectedItem;
               const inventoryToModify = inventory;
               if (tradeScreen === "sell") {
+                /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                 selection.possessed -= 1;
               } else if (tradeScreen === "buy") {
+                /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
+                /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
                 if (inventory.includes(selection)) {
                   inventoryToModify.selection.possessed += 1;
                 } else {
@@ -34,12 +38,14 @@ export default function ConfirmationModal({
                   inventoryToModify.selection.possessed = 1;
                 }
               }
+              /* On remet à null le state selectedItem */
               if (selectedItem) {
                 setSelectedItem(null);
               }
+              /* On fait disparaître la modale et on retourne au menu Présentation */
               setShowModal(false);
               setTradeScreen("presentation");
-              /* Ajouter ici les effets financiers de la transaction (ajout des moras au state) */
+              /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
             }}
           >
             Confirm
@@ -47,6 +53,7 @@ export default function ConfirmationModal({
           <button
             type="button"
             onClick={() => {
+              /* On fait disparaître la modale et on retourne au menu Vente */
               setShowModal(false);
             }}
             className="button-cancel"

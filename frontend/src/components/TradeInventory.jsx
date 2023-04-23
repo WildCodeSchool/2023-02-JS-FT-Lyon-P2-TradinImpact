@@ -9,6 +9,7 @@ export default function TradeInventory({
   selectedItem,
   setSelectedItem,
 }) {
+  /* la fonction mapInventory crée un item dans le menu uniquement si l'item est présent dans l'inventaire du joueur en au moins un exemplaire */
   const mapInventory = (inv) => {
     return inv.map((item) => {
       if (item.possessed === 0) {
@@ -25,7 +26,7 @@ export default function TradeInventory({
       );
     });
   };
-
+  /* Le joueur ne peut cliquer sur Select que si un élément a été sélectionné (state selectedItem) */
   return (
     <div className={styles.tradeInventory}>
       <div className={styles.tradeInventoryText}>Select an item to sell</div>

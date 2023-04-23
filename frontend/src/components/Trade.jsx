@@ -7,14 +7,16 @@ import Buy from "./Buy";
 export default function Trade({ inventory, setInventory }) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
-
+  /* simple fonction random réutilisable */
   const random = (min, max) => {
     const mini = Math.ceil(min);
     const maxi = Math.floor(max);
     return Math.floor(Math.random() * (maxi - mini + 1)) + min;
   };
+
   const [showModal, setShowModal] = useState(false);
 
+  /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
     return (
       <PresentationTrade

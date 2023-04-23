@@ -3,6 +3,7 @@ import Trade from "./Trade";
 import styles from "./GameScreen.module.css";
 
 export default function GameScreen({ gameMode, inventory, setInventory }) {
+  /* Selon le gameMode sélectionné dans le footer, le gamescreen change entre Trade, Gather et Fight */
   return (
     <div className={styles.gamescreenTrade}>
       {gameMode === "trade" ? (

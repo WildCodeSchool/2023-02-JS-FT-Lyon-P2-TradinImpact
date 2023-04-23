@@ -19,7 +19,8 @@ function Sell({
   setSelectedItem,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
-
+  /* Le composant Sell affiche par défaut l'écran d'inventaire. Si un item est sélectionné dans l'inventaire, le state "isItemSelected" passe à true  et l'écran Sell affiche le menu de vente */
+  /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
     <div className={styles.display}>
       {showModal ? (
