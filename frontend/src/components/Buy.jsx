@@ -48,6 +48,9 @@ export default function Buy({
     randomIndex = random(0, merchantItems.length - 1);
     setObjectName(merchantItems[randomIndex]);
   };
+
+  /* Il va falloir créer une requête pour récupérer l'objet aléatoire, et l'enregistrer sous le state selectedItem */
+
   /* Ici viendra la fonction permettant de calculer le prix de l'item 
  généré aléatoirement en fonction de sa rareté, prix que l'on passera à TradeMerchantText
 TradeItemDisplay via les props */
