@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import styles from "./ConfirmationModal.module.css";
 
 export default function ConfirmationModal({
-  inventory,
-  setInventory,
+  // inventory,
+  // setInventory,
   tradeScreen,
-  setTradeScreen,
   setShowModal,
+  setShowRecap,
   selectedItem,
   setSelectedItem,
 }) {
@@ -24,19 +24,19 @@ export default function ConfirmationModal({
             className="button-confirm"
             onClick={() => {
               const selection = selectedItem;
-              const inventoryToModify = inventory;
+              // const inventoryToModify = inventory;
               if (tradeScreen === "sell") {
                 /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                 selection.possessed -= 1;
               } else if (tradeScreen === "buy") {
                 /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
                 /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
-                if (inventory.includes(selection)) {
-                  inventoryToModify.selection.possessed += 1;
-                } else {
-                  setInventory(inventoryToModify.push(selectedItem));
-                  inventoryToModify.selection.possessed = 1;
-                }
+                // if (inventory.includes(selection)) {
+                //   inventoryToModify.selection.possessed += 1;
+                // } else {
+                //   setInventory(inventoryToModify.push(selectedItem));
+                //   inventoryToModify.selection.possessed = 1;
+                // }
               }
               /* On remet à null le state selectedItem */
               if (selectedItem) {
@@ -44,7 +44,7 @@ export default function ConfirmationModal({
               }
               /* On fait disparaître la modale et on retourne au menu Présentation */
               setShowModal(false);
-              setTradeScreen("presentation");
+              setShowRecap(true);
               /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
             }}
           >
@@ -68,10 +68,10 @@ export default function ConfirmationModal({
 
 ConfirmationModal.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
-  setTradeScreen: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  setShowRecap: PropTypes.func.isRequired,
   selectedItem: PropTypes.string.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
-  inventory: PropTypes.string.isRequired,
-  setInventory: PropTypes.func.isRequired,
+  // inventory: PropTypes.string.isRequired,
+  // setInventory: PropTypes.func.isRequired,
 };

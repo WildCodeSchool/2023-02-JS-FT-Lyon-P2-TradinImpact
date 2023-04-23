@@ -2,3 +2,7 @@
   position: absolute;
   right: 0;
 }
+
+.merchant img {
+  width: 175px;
+}

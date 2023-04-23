@@ -1,0 +1,16 @@
+.merchantText {
+    width: 90%;
+    background-color: var(--nav-light);
+    padding: 25px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    margin-right: -10%;
+}
+
+.merchantText h1 {
+    margin-left: 25px;
+    text-align: left;
+    font-family: var(--text-font);
+    font-size: 1.6em;
+    max-width: 20ch;
+}
