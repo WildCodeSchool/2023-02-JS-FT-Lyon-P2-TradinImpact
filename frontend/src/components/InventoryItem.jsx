@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styles from "./TradeInventory.module.css";
 
 export default function InventoryItem({ item, selectedItem, setSelectedItem }) {
   // function handleSelectItem(buttonItem) {
@@ -10,18 +11,22 @@ export default function InventoryItem({ item, selectedItem, setSelectedItem }) {
   // }
 
   return (
-    <div className="inventoryElement">
-      <div className="inventoryItem">
+    <div>
+      <div className={styles.inventoryItem}>
         {/* <button type="button" onClick={() => handleSelectItem(item)}> */}
-        <button type="button" onClick={() => setSelectedItem(item)}>
+        <button
+          className={styles.tradeInventoryButton}
+          type="button"
+          onClick={() => setSelectedItem(item)}
+        >
           <img
             src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name.toLowerCase()}`}
             alt={`${item.name}`}
           />
         </button>
       </div>
-      <div className="inventoryItemStock">
-        {selectedItem === item ? "&#2714" : item.possessed}
+      <div className={styles.inventoryItemStock}>
+        {selectedItem === item ? "✔" : item.possessed}
       </div>
     </div>
   );

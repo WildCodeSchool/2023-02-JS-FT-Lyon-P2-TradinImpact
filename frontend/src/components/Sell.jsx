@@ -15,6 +15,8 @@ function Sell({
   setTradeScreen,
   showModal,
   setShowModal,
+  selectedItem,
+  setSelectedItem,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
 
@@ -22,14 +24,20 @@ function Sell({
     <div className={styles.display}>
       {showModal ? (
         <ConfirmationModal
+          inventory={inventory}
+          setInventory={setInventory}
           tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
           setShowModal={setShowModal}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
         />
       ) : null}
       <TradeMerchantText />
       <TradeItemDisplay />
       <Merchant />
       <TradeMenu
+        setSelectedItem={setSelectedItem}
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
@@ -41,6 +49,8 @@ function Sell({
       inventory={inventory}
       setInventory={setInventory}
       setTradeScreen={setTradeScreen}
+      selectedItem={selectedItem}
+      setSelectedItem={setSelectedItem}
     />
   );
 }
@@ -58,4 +68,6 @@ Sell.propTypes = {
   setTradeScreen: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  selectedItem: PropTypes.bool.isRequired,
+  setSelectedItem: PropTypes.func.isRequired,
 };
