@@ -1,17 +1,18 @@
 import PropTypes from "prop-types";
+import styles from "./TradeMerchantText.module.css";
 
-function TradeMerchantText({ tradeScreen }) {
-  if (tradeScreen === "buy") {
-    return (
-      <div>
-        {" "}
-        <h1>I'll sell you this item</h1>
-      </div>
-    );
-  }
+export default function TradeMerchantText({ tradeScreen }) {
+  return (
+    <div className={styles.merchantText}>
+      {tradeScreen === "buy" ? (
+        <h1>I'll sell you this item for /Many/ moras</h1>
+      ) : (
+        <h1>I'll buy this item for /Many/ moras</h1>
+      )}
+    </div>
+  );
 }
+
 TradeMerchantText.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
 };
-
-export default TradeMerchantText;

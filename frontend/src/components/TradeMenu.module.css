@@ -1,11 +1,12 @@
 .background {
-  width: 80%;
+  width: 90%;
   height: 70px;
   background-color: var(--nav-dark);
   border-radius: 50px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  z-index: 2;
 }
 
 .button {

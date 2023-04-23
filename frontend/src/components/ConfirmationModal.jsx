@@ -1,7 +1,16 @@
 import PropTypes from "prop-types";
 import styles from "./ConfirmationModal.module.css";
 
-export default function ConfirmationModal({ tradeScreen, setShowModal }) {
+export default function ConfirmationModal({
+  tradeScreen,
+  setShowModal,
+  setShowRecap,
+}) {
+  const handleConfirm = () => {
+    setShowModal(false);
+    setShowRecap(true);
+  };
+
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
@@ -9,7 +18,11 @@ export default function ConfirmationModal({ tradeScreen, setShowModal }) {
           {tradeScreen === "buy" ? "Buy" : "Sell"} /Item/ for /Many/ moras ?
         </h3>
         <div>
-          <button type="button" className="button-confirm">
+          <button
+            type="button"
+            onClick={handleConfirm}
+            className="button-confirm"
+          >
             Confirm
           </button>
           <button
@@ -28,4 +41,5 @@ export default function ConfirmationModal({ tradeScreen, setShowModal }) {
 ConfirmationModal.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  setShowRecap: PropTypes.func.isRequired,
 };

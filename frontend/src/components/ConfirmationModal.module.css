@@ -21,7 +21,8 @@
   align-items: center;
 }
 
-.modal > h3 {
+.modal h3 {
   max-width: 20ch;
   font-family: var(--text-font);
+  font-size: 1.6em;
 }

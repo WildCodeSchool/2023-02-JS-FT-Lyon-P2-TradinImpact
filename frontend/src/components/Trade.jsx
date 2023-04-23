@@ -5,13 +5,14 @@ import Buy from "./Buy";
 
 export default function Trade() {
   const [tradeScreen, setTradeScreen] = useState("presentation");
+  const [showModal, setShowModal] = useState(false);
+  const [showRecap, setShowRecap] = useState(false);
 
   const random = (min, max) => {
     const mini = Math.ceil(min);
     const maxi = Math.floor(max);
     return Math.floor(Math.random() * (maxi - mini + 1)) + min;
   };
-  const [showModal, setShowModal] = useState(false);
 
   if (tradeScreen === "presentation") {
     return (
@@ -28,6 +29,8 @@ export default function Trade() {
         setTradeScreen={setTradeScreen}
         showModal={showModal}
         setShowModal={setShowModal}
+        showRecap={showRecap}
+        setShowRecap={setShowRecap}
       />
     );
   }
@@ -39,6 +42,8 @@ export default function Trade() {
         random={random}
         showModal={showModal}
         setShowModal={setShowModal}
+        showRecap={showRecap}
+        setShowRecap={setShowRecap}
       />
     );
   }
