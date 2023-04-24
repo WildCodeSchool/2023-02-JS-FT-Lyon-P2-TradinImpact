@@ -8,14 +8,15 @@ export default function ConfirmationModal({
   setShowModal,
   setShowRecap,
   selectedItem,
+  itemPrice,
 }) {
   /* la modale est alimentée par le state itemSelected */
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
         <h3>
-          {tradeScreen === "buy" ? "Buy" : "Sell"}
-          {selectedItem ? selectedItem.name : " item"} for /Many/ moras ?
+          {tradeScreen === "buy" ? "Buy" : "Sell"}{" "}
+          {selectedItem ? selectedItem.name : " item"} for {itemPrice} moras ?
         </h3>
         <div>
           <button
@@ -66,6 +67,7 @@ ConfirmationModal.propTypes = {
   selectedItem: PropTypes.string.isRequired,
   setShowModal: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
+  itemPrice: PropTypes.number.isRequired,
   // inventory: PropTypes.string.isRequired,
   // setInventory: PropTypes.func.isRequired,
 };

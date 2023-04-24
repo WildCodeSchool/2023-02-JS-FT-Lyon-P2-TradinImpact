@@ -10,7 +10,7 @@ export default function TradeMerchantText({ tradeScreen, itemPrice }) {
           I'll sell you this item for {itemPrice !== 0 ? itemPrice : "?"} moras
         </h1>
       ) : (
-        <h1>I'll buy this item for /Many/ moras</h1>
+        <h1>I'll buy this item for {itemPrice} moras</h1>
       )}
     </div>
   );
