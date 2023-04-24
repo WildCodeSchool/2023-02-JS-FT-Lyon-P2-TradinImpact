@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function TradeItemDisplay({ tradeScreen, objectName }) {
+function TradeItemDisplay({ tradeScreen, objectName, selectedItem }) {
   if (tradeScreen === "buy") {
     return (
       <div>
@@ -14,7 +14,28 @@ function TradeItemDisplay({ tradeScreen, objectName }) {
           <h2>
             {objectName.charAt(0).toUpperCase() +
               objectName.slice(1).replaceAll("-", " ")}{" "}
-            : 22 Moras
+          </h2>
+        </div>
+      </div>
+    );
+  }
+  if (tradeScreen === "sell") {
+    return (
+      <div>
+        <div>
+          <img
+            src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
+              .toLowerCase()
+              .replaceAll(" ", "-")}`}
+            alt={selectedItem.name}
+          />
+        </div>
+        <div>
+          <h2>
+            {
+              selectedItem.name /* objectName.charAt(0).toUpperCase() +
+              objectName.slice(1).replaceAll("-", " ") */
+            }{" "}
           </h2>
         </div>
       </div>
@@ -24,5 +45,10 @@ function TradeItemDisplay({ tradeScreen, objectName }) {
 TradeItemDisplay.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   objectName: PropTypes.string.isRequired,
+  selectedItem: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    sources: PropTypes.arrayOf.isRequired,
+  }).isRequired,
 };
 export default TradeItemDisplay;

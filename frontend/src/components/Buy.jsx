@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
 import TradeMenu from "./TradeMenu";
@@ -13,6 +13,8 @@ export default function Buy({
   setTradeScreen,
   setShowModal,
   showModal,
+  selectedItem,
+  setSelectedItem,
 }) {
   const merchantItems = [
     "flour",
@@ -41,13 +43,36 @@ export default function Buy({
 
   let randomIndex = random(0, merchantItems.length - 1);
   const [objectName, setObjectName] = useState(merchantItems[randomIndex]);
+  /* const [objectInfo, setObjectInfo] = useState(null); */
+
   const handleClick = () => {
     randomIndex = random(0, merchantItems.length - 1);
     setObjectName(merchantItems[randomIndex]);
   };
-  /* Ici viendra la fonction permettant de calculer le prix de l'item 
- généré aléatoirement en fonction de sa rareté, prix que l'on passera à TradeMerchantText
-TradeItemDisplay via les props */
+  useEffect(() => {
+    fetch("https://api.genshin.dev/materials/cooking-ingredients/")
+      .then((response) => response.json())
+
+      .then((data) => setSelectedItem(data[objectName]));
+  }, [objectName]);
+
+  let itemPrice = 0;
+
+  if (selectedItem != null) {
+    const itemRarity = selectedItem.rarity;
+
+    const getPrice = (rarity) => {
+      if (rarity === undefined) {
+        itemPrice = random(15, 25);
+      } else if (rarity === 2) {
+        itemPrice = random(25, 35);
+      } else if (rarity === 3) {
+        itemPrice = random(35, 45);
+      }
+    };
+
+    getPrice(itemRarity);
+  }
 
   return (
     <div className={styles.display}>
@@ -55,9 +80,11 @@ TradeItemDisplay via les props */
         <ConfirmationModal
           tradeScreen={tradeScreen}
           setShowModal={setShowModal}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
         />
       ) : null}
-      <TradeMerchantText tradeScreen={tradeScreen} />
+      <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
       <TradeItemDisplay tradeScreen={tradeScreen} objectName={objectName} />
       <Merchant />
       <TradeMenu
@@ -65,6 +92,7 @@ TradeItemDisplay via les props */
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
         handleClick={handleClick}
+        selectedItem={selectedItem}
       />
     </div>
   );
@@ -74,5 +102,7 @@ Buy.propTypes = {
   setTradeScreen: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  selectedItem: PropTypes.bool.isRequired,
+  setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
 };

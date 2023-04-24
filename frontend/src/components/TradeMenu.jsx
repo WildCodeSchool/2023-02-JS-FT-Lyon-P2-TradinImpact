@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import styles from "./TradeMenu.module.css";
 
-function TradeMenu({ tradeScreen, setTradeScreen, setShowModal, handleClick }) {
+function TradeMenu({
+  tradeScreen,
+  setTradeScreen,
+  setSelectedItem,
+  setShowModal,
+  handleClick,
+}) {
   return (
     <div className={styles.background}>
       <button type="button" className={styles.button}>
@@ -21,7 +27,11 @@ function TradeMenu({ tradeScreen, setTradeScreen, setShowModal, handleClick }) {
       ) : null}
       <button
         type="button"
-        onClick={() => setTradeScreen("presentation")}
+        onClick={() => {
+          /*  Le bouton Cancel retourne au menu présentation et remet à null le state selectedItem */
+          setTradeScreen("presentation");
+          setSelectedItem(null);
+        }}
         className={styles.button}
       >
         Cancel
@@ -30,6 +40,7 @@ function TradeMenu({ tradeScreen, setTradeScreen, setShowModal, handleClick }) {
   );
 }
 TradeMenu.propTypes = {
+  setSelectedItem: PropTypes.func.isRequired,
   tradeScreen: PropTypes.string.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
