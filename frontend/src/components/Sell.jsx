@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
 import Recap from "./Recap";
@@ -9,7 +9,7 @@ import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
 import styles from "./Sell.module.css";
 
-function Sell({
+export default function Sell({
   inventory,
   setInventory,
   tradeScreen,
@@ -22,6 +22,23 @@ function Sell({
   showRecap,
   setShowRecap,
 }) {
+  const [isItemSelected, setIsItemSelected] = useState(false);
+
+  /* Randomisation du marchand au montage du composant */
+  const [portrait, setPortrait] = useState("aloy");
+  const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
+  let randomMerchant = null;
+  const randomizeMerchant = () => {
+    const randomMerchantIndex = random(0, merchants.length - 1);
+    randomMerchant = merchants[randomMerchantIndex];
+    setPortrait(
+      `https://api.genshin.dev/characters/${randomMerchant}/portrait`
+    );
+  };
+  useEffect(() => {
+    randomizeMerchant();
+  }, []);
+
   let itemPrice = 0;
 
   if (selectedItem != null) {
@@ -39,8 +56,6 @@ function Sell({
 
     getPrice(itemRarity);
   }
-
-  const [isItemSelected, setIsItemSelected] = useState(false);
   /* Le composant Sell affiche par défaut l'écran d'inventaire. Si un item est sélectionné dans l'inventaire, le state "isItemSelected" passe à true  et l'écran Sell affiche le menu de vente */
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
@@ -55,6 +70,7 @@ function Sell({
           setShowRecap={setShowRecap}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
+          itemPrice={itemPrice}
         />
       ) : null}
       {showRecap ? (
@@ -66,9 +82,13 @@ function Sell({
           setShowRecap={setShowRecap}
         />
       ) : null}
-      <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
+      <TradeMerchantText
+        tradeScreen={tradeScreen}
+        itemPrice={itemPrice}
+        selectedItem={selectedItem}
+      />
       <TradeItemDisplay tradeScreen={tradeScreen} selectedItem={selectedItem} />
-      <Merchant />
+      <Merchant portrait={portrait} />
       <TradeMenu
         setSelectedItem={setSelectedItem}
         tradeScreen={tradeScreen}
@@ -92,13 +112,7 @@ Sell.propTypes = {
   inventory: PropTypes.arrayOf.isRequired,
   setInventory: PropTypes.func.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
-};
-
-export default Sell;
-
-Sell.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
-  setTradeScreen: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,

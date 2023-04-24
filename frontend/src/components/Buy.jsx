@@ -44,22 +44,36 @@ export default function Buy({
     "sausage",
   ];
 
-  let randomIndex = random(0, merchantItems.length - 1);
-  const [objectName, setObjectName] = useState(merchantItems[randomIndex]);
-  /* const [objectInfo, setObjectInfo] = useState(null); */
-
-  const handleClick = () => {
-    randomIndex = random(0, merchantItems.length - 1);
-    setObjectName(merchantItems[randomIndex]);
+  const [portrait, setPortrait] = useState("aloy");
+  const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
+  let randomMerchant = null;
+  const randomizeMerchant = () => {
+    const randomMerchantIndex = random(0, merchants.length - 1);
+    randomMerchant = merchants[randomMerchantIndex];
+    setPortrait(
+      `https://api.genshin.dev/characters/${randomMerchant}/portrait`
+    );
   };
-  useEffect(() => {
+  let itemPrice = 0;
+  const randomizeItem = () => {
+    const randomItemIndex = random(0, merchantItems.length - 1);
     fetch("https://api.genshin.dev/materials/cooking-ingredients/")
       .then((response) => response.json())
+      .then((data) => setSelectedItem(data[merchantItems[randomItemIndex]]));
+  };
 
-      .then((data) => setSelectedItem(data[objectName]));
-  }, [objectName]);
+  /* Randomisation du marchand et de l'item qu'il vend au montage du composant */
+  useEffect(() => {
+    randomizeMerchant();
+    randomizeItem();
+  }, []);
 
-  let itemPrice = 0;
+  /* Randomisation de l'item et du marchand au clic sur le bouton Next */
+
+  const handleClick = () => {
+    randomizeMerchant();
+    randomizeItem();
+  };
 
   if (selectedItem != null) {
     const itemRarity = selectedItem.rarity;
@@ -86,6 +100,7 @@ export default function Buy({
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
+          itemPrice={itemPrice}
         />
       ) : null}
       {showRecap ? (
@@ -95,9 +110,19 @@ export default function Buy({
           setShowRecap={setShowRecap}
         />
       ) : null}
-      <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
-      <TradeItemDisplay tradeScreen={tradeScreen} objectName={objectName} />
-      <Merchant />
+      <TradeMerchantText
+        tradeScreen={tradeScreen}
+        itemPrice={itemPrice}
+        selectedItem={selectedItem}
+      />
+      {selectedItem && (
+        <TradeItemDisplay
+          tradeScreen={tradeScreen}
+          selectedItem={selectedItem}
+          // objectName={objectName}
+        />
+      )}
+      <Merchant portrait={portrait} />
       <TradeMenu
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
