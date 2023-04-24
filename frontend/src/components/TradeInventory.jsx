@@ -45,6 +45,7 @@ export default function TradeInventory({
           onClick={() => {
             setTradeScreen("presentation");
             setIsItemSelected(null);
+            setSelectedItem(null);
           }}
         >
           Cancel

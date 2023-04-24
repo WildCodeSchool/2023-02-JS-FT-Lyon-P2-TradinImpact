@@ -2,15 +2,18 @@ import PropTypes from "prop-types";
 import styles from "./ConfirmationModal.module.css";
 
 export default function ConfirmationModal({
-  // inventory,
-  // setInventory,
+  inventory,
+  setInventory,
   tradeScreen,
   setShowModal,
   setShowRecap,
   selectedItem,
   itemPrice,
+  moraCount,
+  setMoraCount,
 }) {
   /* la modale est alimentée par le state itemSelected */
+  let itemGot = false;
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
@@ -24,19 +27,24 @@ export default function ConfirmationModal({
             className="button-confirm"
             onClick={() => {
               const selection = selectedItem;
-              // const inventoryToModify = inventory;
               if (tradeScreen === "sell") {
                 /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                 selection.possessed -= 1;
+                setMoraCount(moraCount + itemPrice);
               } else if (tradeScreen === "buy") {
                 /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
                 /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
-                // if (inventory.includes(selection)) {
-                //   inventoryToModify.selection.possessed += 1;
-                // } else {
-                //   setInventory(inventoryToModify.push(selectedItem));
-                //   inventoryToModify.selection.possessed = 1;
-                // }
+                for (const item of inventory) {
+                  if (item.name === selectedItem.name) {
+                    item.possessed += 1;
+                    itemGot = true;
+                  }
+                }
+                if (itemGot === false) {
+                  selection.possessed = 1;
+                  setInventory([...inventory, selection]);
+                }
+                setMoraCount(moraCount - itemPrice);
               }
               /* On fait disparaître la modale et on retourne au menu Présentation */
               setShowModal(false);
@@ -68,6 +76,8 @@ ConfirmationModal.propTypes = {
   setShowModal: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
-  // inventory: PropTypes.string.isRequired,
-  // setInventory: PropTypes.func.isRequired,
+  inventory: PropTypes.string.isRequired,
+  setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
 };
