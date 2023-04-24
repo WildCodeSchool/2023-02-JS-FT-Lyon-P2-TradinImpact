@@ -21,9 +21,10 @@ export default function Sell({
   setSelectedItem,
   showRecap,
   setShowRecap,
+  moraCount,
+  setMoraCount,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
-
   /* Randomisation du marchand au montage du composant */
   const [portrait, setPortrait] = useState("aloy");
   const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
@@ -71,6 +72,8 @@ export default function Sell({
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           itemPrice={itemPrice}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
         />
       ) : null}
       {showRecap ? (
@@ -120,4 +123,6 @@ Sell.propTypes = {
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
 };

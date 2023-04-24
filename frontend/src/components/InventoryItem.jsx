@@ -11,7 +11,9 @@ export default function InventoryItem({ item, selectedItem, setSelectedItem }) {
           onClick={() => setSelectedItem(item)}
         >
           <img
-            src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name.toLowerCase()}`}
+            src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name
+              .toLowerCase()
+              .replaceAll(" ", "-")}`}
             alt={`${item.name}`}
           />
         </button>

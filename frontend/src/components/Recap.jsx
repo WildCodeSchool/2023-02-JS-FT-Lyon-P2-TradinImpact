@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import styles from "./Recap.module.css";
 
 export default function Recap({
-  selectedItem,
   setSelectedItem,
   tradeScreen,
   setTradeScreen,
@@ -12,9 +11,7 @@ export default function Recap({
     setShowRecap(false);
     setTradeScreen("presentation");
     /* On remet à null le state selectedItem */
-    if (selectedItem) {
-      setSelectedItem(null);
-    }
+    setSelectedItem(null);
   };
 
   return (
@@ -40,7 +37,7 @@ export default function Recap({
             <h4>- Objet vendu</h4>
           </div>
         )}
-        <button type="button" onClick={handleClick}>
+        <button type="button" onClick={() => handleClick()}>
           Close
         </button>
       </div>
@@ -52,6 +49,5 @@ Recap.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
-  selectedItem: PropTypes.string.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
 };

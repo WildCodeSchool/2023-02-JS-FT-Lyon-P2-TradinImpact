@@ -33,6 +33,8 @@ export default function Home() {
         setGameMode={setGameMode}
         inventory={inventory}
         setInventory={setInventory}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
       />
       <Footer gameMode={gameMode} setGameMode={setGameMode} />
     </div>

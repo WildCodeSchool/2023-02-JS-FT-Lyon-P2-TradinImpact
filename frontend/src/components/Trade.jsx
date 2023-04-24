@@ -4,7 +4,12 @@ import PresentationTrade from "./PresentationTrade";
 import Sell from "./Sell";
 import Buy from "./Buy";
 
-export default function Trade({ inventory, setInventory }) {
+export default function Trade({
+  inventory,
+  setInventory,
+  moraCount,
+  setMoraCount,
+}) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -40,6 +45,8 @@ export default function Trade({ inventory, setInventory }) {
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         random={random}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
       />
     );
   }
@@ -57,6 +64,8 @@ export default function Trade({ inventory, setInventory }) {
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
       />
     );
   }
@@ -65,4 +74,6 @@ export default function Trade({ inventory, setInventory }) {
 Trade.propTypes = {
   inventory: PropTypes.arrayOf.isRequired,
   setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
 };
