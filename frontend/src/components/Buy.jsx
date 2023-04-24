@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
+import Recap from "./Recap";
 import TradeMenu from "./TradeMenu";
 import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
@@ -15,6 +16,8 @@ export default function Buy({
   showModal,
   selectedItem,
   setSelectedItem,
+  showRecap,
+  setShowRecap,
 }) {
   const merchantItems = [
     "flour",
@@ -82,6 +85,14 @@ export default function Buy({
           setShowModal={setShowModal}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
+          setShowRecap={setShowRecap}
+        />
+      ) : null}
+      {showRecap ? (
+        <Recap
+          tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
+          setShowRecap={setShowRecap}
         />
       ) : null}
       <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
@@ -105,4 +116,6 @@ Buy.propTypes = {
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  showRecap: PropTypes.bool.isRequired,
+  setShowRecap: PropTypes.func.isRequired,
 };

@@ -18,9 +18,13 @@ function TradeMenu({
         onClick={() => setShowModal(true)}
         className={styles.button}
       >
-        {tradeScreen === "buy" ? "Buy" : "Sell"}
+        {
+          /* Le bouton Buy / Sell est généré en fonction du state tradeScreen */
+          tradeScreen === "buy" ? "Buy" : "Sell"
+        }
       </button>
       {tradeScreen === "buy" ? (
+        /*  Le bouton Next est généré en fonction uniquement si le state tradeScreen est à "buy" */
         <button onClick={handleClick} type="button" className={styles.button}>
           Next
         </button>

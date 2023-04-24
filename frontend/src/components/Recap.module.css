@@ -1,4 +1,4 @@
-.background {
+.recapBackground {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -9,7 +9,7 @@
   z-index: 5;
 }
 
-.modal {
+.recapModal {
   width: 60%;
   height: 35%;
   background-color: var(--nav-light);
@@ -21,8 +21,30 @@
   align-items: center;
 }
 
-.modal h3 {
+.recapModal button {
+  font-family: var(--button-font);
+  font-size: 1.3em;
+  padding: 10px 20px;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recapModal h3,
+h4 {
   max-width: 20ch;
   font-family: var(--text-font);
   font-size: 1.6em;
+}
+
+.moraBalance {
+  display: flex;
+  align-items: center;
+}
+
+.moraBalance img {
+  width: 50px;
+  height: 50px;
 }
