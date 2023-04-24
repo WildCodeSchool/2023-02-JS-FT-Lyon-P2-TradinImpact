@@ -1,24 +1,24 @@
 .recapBackground {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 5;
 }
 
 .recapModal {
-    width: 60%;
-    height: 35%;
-    background-color: var(--nav-light);
-    border: 1px solid black;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 60%;
+  height: 35%;
+  background-color: var(--nav-light);
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .recapModal button {
@@ -32,18 +32,19 @@
   align-items: center;
 }
 
-.recapModal h3, h4 {
-    max-width: 20ch;
-    font-family: var(--text-font);
-    font-size: 1.6em;
+.recapModal h3,
+h4 {
+  max-width: 20ch;
+  font-family: var(--text-font);
+  font-size: 1.6em;
 }
 
 .moraBalance {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .moraBalance img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }

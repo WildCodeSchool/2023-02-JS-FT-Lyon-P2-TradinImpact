@@ -1,16 +1,26 @@
 import PropTypes from "prop-types";
 import styles from "./Recap.module.css";
 
-export default function Recap({ tradeScreen, setTradeScreen, setShowRecap }) {
+export default function Recap({
+  selectedItem,
+  setSelectedItem,
+  tradeScreen,
+  setTradeScreen,
+  setShowRecap,
+}) {
   const handleClick = () => {
     setShowRecap(false);
     setTradeScreen("presentation");
+    /* On remet à null le state selectedItem */
+    if (selectedItem) {
+      setSelectedItem(null);
+    }
   };
 
   return (
     <div className={styles.recapBackground}>
       <div className={styles.recapModal}>
-        <h3>Succesful Transaction !</h3>
+        <h3>Successful Transaction !</h3>
         {tradeScreen === "buy" ? (
           <div>
             <h4>+ Objet acheté</h4>
@@ -42,4 +52,6 @@ Recap.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
+  selectedItem: PropTypes.string.isRequired,
+  setSelectedItem: PropTypes.func.isRequired,
 };

@@ -8,7 +8,6 @@ export default function ConfirmationModal({
   setShowModal,
   setShowRecap,
   selectedItem,
-  setSelectedItem,
 }) {
   /* la modale est alimentée par le state itemSelected */
   return (
@@ -38,10 +37,6 @@ export default function ConfirmationModal({
                 //   inventoryToModify.selection.possessed = 1;
                 // }
               }
-              /* On remet à null le state selectedItem */
-              if (selectedItem) {
-                setSelectedItem(null);
-              }
               /* On fait disparaître la modale et on retourne au menu Présentation */
               setShowModal(false);
               setShowRecap(true);
@@ -68,10 +63,9 @@ export default function ConfirmationModal({
 
 ConfirmationModal.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
+  selectedItem: PropTypes.string.isRequired,
   setShowModal: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
-  selectedItem: PropTypes.string.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
   // inventory: PropTypes.string.isRequired,
   // setInventory: PropTypes.func.isRequired,
 };

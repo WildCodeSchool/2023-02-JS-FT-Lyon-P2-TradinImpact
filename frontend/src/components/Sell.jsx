@@ -16,11 +16,30 @@ function Sell({
   setTradeScreen,
   showModal,
   setShowModal,
-  showRecap,
-  setShowRecap,
+  random,
   selectedItem,
   setSelectedItem,
+  showRecap,
+  setShowRecap,
 }) {
+  let itemPrice = 0;
+
+  if (selectedItem != null) {
+    const itemRarity = selectedItem.rarity;
+
+    const getPrice = (rarity) => {
+      if (rarity === undefined) {
+        itemPrice = random(15, 25);
+      } else if (rarity === 2) {
+        itemPrice = random(25, 35);
+      } else if (rarity === 3) {
+        itemPrice = random(35, 45);
+      }
+    };
+
+    getPrice(itemRarity);
+  }
+
   const [isItemSelected, setIsItemSelected] = useState(false);
   /* Le composant Sell affiche par défaut l'écran d'inventaire. Si un item est sélectionné dans l'inventaire, le state "isItemSelected" passe à true  et l'écran Sell affiche le menu de vente */
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
@@ -30,8 +49,8 @@ function Sell({
         <ConfirmationModal
           inventory={inventory}
           setInventory={setInventory}
-          tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
+          tradeScreen={tradeScreen}
           setShowModal={setShowModal}
           setShowRecap={setShowRecap}
           selectedItem={selectedItem}
@@ -40,13 +59,15 @@ function Sell({
       ) : null}
       {showRecap ? (
         <Recap
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
         />
       ) : null}
-      <TradeMerchantText tradeScreen={tradeScreen} />
-      <TradeItemDisplay tradeScreen={tradeScreen} />
+      <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
+      <TradeItemDisplay tradeScreen={tradeScreen} selectedItem={selectedItem} />
       <Merchant />
       <TradeMenu
         setSelectedItem={setSelectedItem}
@@ -84,4 +105,5 @@ Sell.propTypes = {
   setShowRecap: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
+  random: PropTypes.func.isRequired,
 };
