@@ -22,6 +22,8 @@ export default function Buy({
   setShowRecap,
   moraCount,
   setMoraCount,
+  itemPrice,
+  setItemPrice,
 }) {
   const merchantItems = [
     "flour",
@@ -58,7 +60,6 @@ export default function Buy({
       `https://api.genshin.dev/characters/${randomMerchant}/portrait`
     );
   };
-  let itemPrice = 0;
   const randomizeItem = () => {
     const randomItemIndex = random(0, merchantItems.length - 1);
     fetch("https://api.genshin.dev/materials/cooking-ingredients/")
@@ -79,21 +80,23 @@ export default function Buy({
     randomizeItem();
   };
 
-  if (selectedItem != null) {
-    const itemRarity = selectedItem.rarity;
+  useEffect(() => {
+    if (selectedItem != null) {
+      const itemRarity = selectedItem.rarity;
 
-    const getPrice = (rarity) => {
-      if (rarity === undefined) {
-        itemPrice = random(15, 25);
-      } else if (rarity === 2) {
-        itemPrice = random(25, 35);
-      } else if (rarity === 3) {
-        itemPrice = random(35, 45);
-      }
-    };
+      const getPrice = (rarity) => {
+        if (rarity === undefined) {
+          setItemPrice(random(15, 25));
+        } else if (rarity === 2) {
+          setItemPrice(random(25, 35));
+        } else if (rarity === 3) {
+          setItemPrice(random(35, 45));
+        }
+      };
 
-    getPrice(itemRarity);
-  }
+      getPrice(itemRarity);
+    }
+  }, [selectedItem]);
 
   return (
     <div className={styles.display}>
@@ -159,4 +162,6 @@ Buy.propTypes = {
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
+  itemPrice: PropTypes.number.isRequired,
+  setItemPrice: PropTypes.func.isRequired,
 };

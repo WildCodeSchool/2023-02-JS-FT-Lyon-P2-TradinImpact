@@ -23,8 +23,11 @@ export default function Sell({
   setShowRecap,
   moraCount,
   setMoraCount,
+  itemPrice,
+  setItemPrice,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
+
   /* Randomisation du marchand au montage du composant */
   const [portrait, setPortrait] = useState("aloy");
   const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
@@ -40,23 +43,24 @@ export default function Sell({
     randomizeMerchant();
   }, []);
 
-  let itemPrice = 0;
+  useEffect(() => {
+    if (selectedItem != null) {
+      const itemRarity = selectedItem.rarity;
 
-  if (selectedItem != null) {
-    const itemRarity = selectedItem.rarity;
+      const getPrice = (rarity) => {
+        if (rarity === undefined) {
+          setItemPrice(random(15, 25));
+        } else if (rarity === 2) {
+          setItemPrice(random(25, 35));
+        } else if (rarity === 3) {
+          setItemPrice(random(35, 45));
+        }
+      };
 
-    const getPrice = (rarity) => {
-      if (rarity === undefined) {
-        itemPrice = random(15, 25);
-      } else if (rarity === 2) {
-        itemPrice = random(25, 35);
-      } else if (rarity === 3) {
-        itemPrice = random(35, 45);
-      }
-    };
+      getPrice(itemRarity);
+    }
+  }, [selectedItem]);
 
-    getPrice(itemRarity);
-  }
   /* Le composant Sell affiche par défaut l'écran d'inventaire. Si un item est sélectionné dans l'inventaire, le state "isItemSelected" passe à true  et l'écran Sell affiche le menu de vente */
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
@@ -125,4 +129,6 @@ Sell.propTypes = {
   random: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
+  itemPrice: PropTypes.number.isRequired,
+  setItemPrice: PropTypes.func.isRequired,
 };
