@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import PresentationGather from "./PresentationGather";
+import GatherGame from "./GatherGame";
 
 export default function Gather({ random }) {
   const [gatherScreen, setGatherScreen] = useState("presentation");
@@ -38,13 +39,15 @@ export default function Gather({ random }) {
     fetch(`https://api.genshin.dev/materials/cooking-ingredients/`)
       .then((response) => response.json())
       .then((data) => {
-        for (let i = 1; i < 4; i += 1) {
+        for (let i = 1; randomItems.length < 3; i += 1) {
           const randomItemName = itemsToGather[
             random(0, itemsToGather.length - 1)
           ]
             .toLowerCase()
             .replaceAll(" ", "-");
-          randomItems.push(data[randomItemName]);
+          if (!randomItems.includes(data[randomItemName])) {
+            randomItems.push(data[randomItemName]);
+          }
         }
         setItemsForSession(randomItems);
       });
@@ -57,6 +60,15 @@ export default function Gather({ random }) {
   if (gatherScreen === "presentation") {
     return (
       <PresentationGather
+        setGatherScreen={setGatherScreen}
+        itemsForSession={itemsForSession}
+      />
+    );
+  }
+  if (gatherScreen === "game") {
+    return (
+      <GatherGame
+        random={random}
         setGatherScreen={setGatherScreen}
         itemsForSession={itemsForSession}
       />

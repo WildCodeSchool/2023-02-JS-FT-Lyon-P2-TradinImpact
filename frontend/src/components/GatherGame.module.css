@@ -1,0 +1,21 @@
+.gatherGameWindow {
+  width: 100%;
+  height: 100%;
+}
+
+.counters {
+  height: 10%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.popWindow {
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5, 20%);
+}
+
+.popImage {
+  height: 100%;
+}
