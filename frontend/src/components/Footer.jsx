@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className={styles.gamepickcontainer}>
       <div className={styles.icon} id="collect-icon">
-        <img src="./src/assets/panier-en-osier.png" alt="collect icon" />
+        <img src="./src/assets/basket.png" alt="collect icon" />
       </div>
       <div className={`${styles.icon} ${styles.active}`} id="trade-icon">
         <img

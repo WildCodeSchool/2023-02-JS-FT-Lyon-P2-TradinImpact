@@ -25,7 +25,7 @@ export default function TradeItemDisplay({
         </div>
       ) : (
         <div>
-          <div>
+          <div className={styles.randomItemImg}>
             <img
               src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
                 .toLowerCase()
@@ -33,7 +33,7 @@ export default function TradeItemDisplay({
               alt={selectedItem.name}
             />
           </div>
-          <div>
+          <div className={styles.randomItemName}>
             <h2>
               {
                 selectedItem.name /* objectName.charAt(0).toUpperCase() +
