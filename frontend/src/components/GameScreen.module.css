@@ -1,0 +1,17 @@
+.gamescreenTrade {
+  width: 100%;
+  height: 65%;
+  background-color: var(--trade-first-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamescreenGather {
+  width: 100%;
+  height: 65%;
+  background-color: var(--gather-first-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

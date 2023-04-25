@@ -1,0 +1,27 @@
+.presTrade {
+  position: relative;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15%;
+}
+
+.presTradeBtn {
+  font-family: var(--button-font);
+  font-size: 1.5em;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  margin-inline: 20px;
+  padding: 10px 30px;
+}
+
+.presTradeInfo {
+  width: 80%;
+  font-family: var(--text-font);
+  font-size: 1.5em;
+  background-color: var(--nav-light);
+  border-radius: 50px;
+  padding: 20px 30px;
+}

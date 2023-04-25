@@ -1,36 +1,42 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import { useState } from "react";
+import Header from "../components/Header";
+import GameScreen from "../components/GameScreen";
+import Footer from "../components/Footer";
+import styles from "./Home.module.css";
 
 export default function Home() {
+  const [moraCount, setMoraCount] = useState(20);
+  const [gameMode, setGameMode] = useState("trade");
+  const [inventory, setInventory] = useState([
+    {
+      name: "Almond",
+      description:
+        "A seed with a peculiar fragrance that gives food a refreshing taste.",
+      sources: ["Sold by Second Life", "Sold by Ms. Bai"],
+      possessed: 1,
+    },
+    {
+      name: "Bacon",
+      description:
+        "Smoked strips of pork. With just enough fat, but not too greasy.Mmmmm... Bacon.Meat must be processed first to be made into Bacon.",
+      rarity: 3,
+      sources: ["Sold by Good Hunter", "Processing"],
+      possessed: 2,
+    },
+  ]);
+
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <div className={styles.layout}>
+      <Header moraCount={moraCount} setMoraCount={setMoraCount} />
+      <GameScreen
+        gameMode={gameMode}
+        setGameMode={setGameMode}
+        inventory={inventory}
+        setInventory={setInventory}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
+      />
+      <Footer gameMode={gameMode} setGameMode={setGameMode} />
+    </div>
   );
 }
