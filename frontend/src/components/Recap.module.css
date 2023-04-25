@@ -39,12 +39,13 @@ h4 {
   font-size: 1.6em;
 }
 
-.moraBalance {
-  display: flex;
-  align-items: center;
-}
-
-.moraBalance img {
+.recapModal img {
   width: 50px;
   height: 50px;
+}
+
+.moraBalance, .itemTransaction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -15,14 +15,6 @@ export default function Home() {
       sources: ["Sold by Second Life", "Sold by Ms. Bai"],
       possessed: 1,
     },
-    {
-      name: "Bacon",
-      description:
-        "Smoked strips of pork. With just enough fat, but not too greasy.Mmmmm... Bacon.Meat must be processed first to be made into Bacon.",
-      rarity: 3,
-      sources: ["Sold by Good Hunter", "Processing"],
-      possessed: 2,
-    },
   ]);
 
   return (
