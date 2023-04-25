@@ -7,6 +7,8 @@ function TradeMenu({
   setSelectedItem,
   setShowModal,
   handleClick,
+  moraCount,
+  itemPrice,
 }) {
   return (
     <div className={styles.background}>
@@ -15,6 +17,7 @@ function TradeMenu({
       </button>
       <button
         type="button"
+        disabled={moraCount < itemPrice}
         onClick={() => setShowModal(true)}
         className={styles.button}
       >
@@ -46,6 +49,8 @@ function TradeMenu({
 TradeMenu.propTypes = {
   setSelectedItem: PropTypes.func.isRequired,
   tradeScreen: PropTypes.string.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  itemPrice: PropTypes.number.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowModal: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,

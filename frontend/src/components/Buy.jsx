@@ -9,6 +9,8 @@ import TradeMerchantText from "./TradeMerchantText";
 import styles from "./Buy.module.css";
 
 export default function Buy({
+  inventory,
+  setInventory,
   random,
   tradeScreen,
   setTradeScreen,
@@ -18,6 +20,10 @@ export default function Buy({
   setSelectedItem,
   showRecap,
   setShowRecap,
+  moraCount,
+  setMoraCount,
+  itemPrice,
+  setItemPrice,
 }) {
   const merchantItems = [
     "flour",
@@ -44,66 +50,100 @@ export default function Buy({
     "sausage",
   ];
 
-  let randomIndex = random(0, merchantItems.length - 1);
-  const [objectName, setObjectName] = useState(merchantItems[randomIndex]);
-  /* const [objectInfo, setObjectInfo] = useState(null); */
-
-  const handleClick = () => {
-    randomIndex = random(0, merchantItems.length - 1);
-    setObjectName(merchantItems[randomIndex]);
+  const [portrait, setPortrait] = useState("aloy");
+  const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
+  let randomMerchant = null;
+  const randomizeMerchant = () => {
+    const randomMerchantIndex = random(0, merchants.length - 1);
+    randomMerchant = merchants[randomMerchantIndex];
+    setPortrait(
+      `https://api.genshin.dev/characters/${randomMerchant}/portrait`
+    );
   };
-  useEffect(() => {
+  const randomizeItem = () => {
+    const randomItemIndex = random(0, merchantItems.length - 1);
     fetch("https://api.genshin.dev/materials/cooking-ingredients/")
       .then((response) => response.json())
+      .then((data) => setSelectedItem(data[merchantItems[randomItemIndex]]));
+  };
 
-      .then((data) => setSelectedItem(data[objectName]));
-  }, [objectName]);
+  /* Randomisation du marchand et de l'item qu'il vend au montage du composant */
+  useEffect(() => {
+    randomizeMerchant();
+    randomizeItem();
+  }, []);
 
-  let itemPrice = 0;
+  /* Randomisation de l'item et du marchand au clic sur le bouton Next */
 
-  if (selectedItem != null) {
-    const itemRarity = selectedItem.rarity;
+  const handleClick = () => {
+    randomizeMerchant();
+    randomizeItem();
+  };
 
-    const getPrice = (rarity) => {
-      if (rarity === undefined) {
-        itemPrice = random(15, 25);
-      } else if (rarity === 2) {
-        itemPrice = random(25, 35);
-      } else if (rarity === 3) {
-        itemPrice = random(35, 45);
-      }
-    };
+  useEffect(() => {
+    if (selectedItem != null) {
+      const itemRarity = selectedItem.rarity;
 
-    getPrice(itemRarity);
-  }
+      const getPrice = (rarity) => {
+        if (rarity === undefined) {
+          setItemPrice(random(15, 25));
+        } else if (rarity === 2) {
+          setItemPrice(random(25, 35));
+        } else if (rarity === 3) {
+          setItemPrice(random(35, 45));
+        }
+      };
+
+      getPrice(itemRarity);
+    }
+  }, [selectedItem]);
 
   return (
     <div className={styles.display}>
       {showModal ? (
         <ConfirmationModal
           tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
           setShowModal={setShowModal}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
+          itemPrice={itemPrice}
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
         />
       ) : null}
       {showRecap ? (
         <Recap
+          setSelectedItem={setSelectedItem}
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
         />
       ) : null}
-      <TradeMerchantText tradeScreen={tradeScreen} itemPrice={itemPrice} />
-      <TradeItemDisplay tradeScreen={tradeScreen} objectName={objectName} />
-      <Merchant />
+      <TradeMerchantText
+        tradeScreen={tradeScreen}
+        itemPrice={itemPrice}
+        selectedItem={selectedItem}
+      />
+      {selectedItem && (
+        <TradeItemDisplay
+          tradeScreen={tradeScreen}
+          selectedItem={selectedItem}
+          // objectName={objectName}
+        />
+      )}
+      <Merchant portrait={portrait} />
       <TradeMenu
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
         handleClick={handleClick}
         selectedItem={selectedItem}
+        moraCount={moraCount}
+        itemPrice={itemPrice}
       />
     </div>
   );
@@ -118,4 +158,10 @@ Buy.propTypes = {
   random: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,
   setShowRecap: PropTypes.func.isRequired,
+  inventory: PropTypes.string.isRequired,
+  setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
+  itemPrice: PropTypes.number.isRequired,
+  setItemPrice: PropTypes.func.isRequired,
 };

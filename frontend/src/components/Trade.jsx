@@ -4,11 +4,17 @@ import PresentationTrade from "./PresentationTrade";
 import Sell from "./Sell";
 import Buy from "./Buy";
 
-export default function Trade({ inventory, setInventory }) {
+export default function Trade({
+  inventory,
+  setInventory,
+  moraCount,
+  setMoraCount,
+}) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showRecap, setShowRecap] = useState(false);
+  const [itemPrice, setItemPrice] = useState(0);
 
   /* simple fonction random réutilisable */
   const random = (min, max) => {
@@ -29,6 +35,8 @@ export default function Trade({ inventory, setInventory }) {
   if (tradeScreen === "sell") {
     return (
       <Sell
+        itemPrice={itemPrice}
+        setItemPrice={setItemPrice}
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         inventory={inventory}
@@ -40,12 +48,16 @@ export default function Trade({ inventory, setInventory }) {
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         random={random}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
       />
     );
   }
   if (tradeScreen === "buy") {
     return (
       <Buy
+        itemPrice={itemPrice}
+        setItemPrice={setItemPrice}
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         inventory={inventory}
@@ -57,6 +69,8 @@ export default function Trade({ inventory, setInventory }) {
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
       />
     );
   }
@@ -65,4 +79,6 @@ export default function Trade({ inventory, setInventory }) {
 Trade.propTypes = {
   inventory: PropTypes.arrayOf.isRequired,
   setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
 };
