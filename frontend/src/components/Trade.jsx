@@ -9,19 +9,13 @@ export default function Trade({
   setInventory,
   moraCount,
   setMoraCount,
+  random,
 }) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showRecap, setShowRecap] = useState(false);
   const [itemPrice, setItemPrice] = useState(0);
-
-  /* simple fonction random réutilisable */
-  const random = (min, max) => {
-    const mini = Math.ceil(min);
-    const maxi = Math.floor(max);
-    return Math.floor(Math.random() * (maxi - mini + 1)) + min;
-  };
 
   /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
@@ -81,4 +75,5 @@ Trade.propTypes = {
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
+  random: PropTypes.func.isRequired,
 };
