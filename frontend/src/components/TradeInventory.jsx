@@ -16,7 +16,7 @@ export default function TradeInventory({
         return null;
       }
       return (
-        <div className={styles.inventoryItemsBox} key={item.name}>
+        <div key={item.name}>
           <InventoryItem
             item={item}
             selectedItem={selectedItem}
@@ -30,10 +30,13 @@ export default function TradeInventory({
   return (
     <div className={styles.tradeInventory}>
       <div className={styles.tradeInventoryText}>Select an item to sell</div>
-      <div className={styles.inventoryItemsFlex}>{mapInventory(inventory)}</div>
+      <div className={styles.tradeInventoryItems}>
+        {mapInventory(inventory)}
+      </div>
       <div className={styles.buttonTradeContainer}>
         <button
           type="button"
+          disabled={!selectedItem}
           className={styles.buttonTrade}
           onClick={() => (selectedItem ? setIsItemSelected(true) : null)}
         >
