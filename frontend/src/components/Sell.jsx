@@ -7,6 +7,7 @@ import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
+import BargainModal from "./BargainModal";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -16,6 +17,8 @@ export default function Sell({
   setTradeScreen,
   showModal,
   setShowModal,
+  showBargainModal,
+  setShowBargainModal,
   random,
   selectedItem,
   setSelectedItem,
@@ -65,6 +68,22 @@ export default function Sell({
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
     <div className={styles.display}>
+      {showBargainModal ? (
+        <BargainModal
+          tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
+          setShowBargainModal={setShowBargainModal}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          setShowRecap={setShowRecap}
+          itemPrice={itemPrice}
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          random={random}
+        />
+      ) : null}
       {showModal ? (
         <ConfirmationModal
           inventory={inventory}
@@ -101,6 +120,8 @@ export default function Sell({
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
       />
     </div>
   ) : (
@@ -122,6 +143,8 @@ Sell.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  showBargainModal: PropTypes.bool.isRequired,
+  setShowBargainModal: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
