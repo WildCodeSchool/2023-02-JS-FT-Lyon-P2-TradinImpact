@@ -32,7 +32,7 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
               alt={selectedItem.name}
             />
           </div>
-          <div>
+          <div className={styles.randomItemName}>
             <h2>
               {
                 selectedItem.name /* objectName.charAt(0).toUpperCase() +

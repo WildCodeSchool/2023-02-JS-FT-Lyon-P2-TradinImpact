@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import PresentationGather from "./PresentationGather";
 
 export default function Gather({ random }) {
+  const [gatherScreen, setGatherScreen] = useState("presentation");
   const [itemsForSession, setItemsForSession] = useState([]);
 
   /* tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte */
@@ -30,6 +32,7 @@ export default function Gather({ random }) {
     "Violet Grass",
   ];
 
+  /* Définition des objets qui pourront être récoltés dans cette session */
   const sessionRandomItems = () => {
     const randomItems = [];
     fetch(`https://api.genshin.dev/materials/cooking-ingredients/`)
@@ -51,15 +54,14 @@ export default function Gather({ random }) {
     sessionRandomItems();
   }, []);
 
-  return (
-    itemsForSession && (
-      <div>
-        {itemsForSession.map((item) => {
-          return <p>{item.name}</p>;
-        })}
-      </div>
-    )
-  );
+  if (gatherScreen === "presentation") {
+    return (
+      <PresentationGather
+        setGatherScreen={setGatherScreen}
+        itemsForSession={itemsForSession}
+      />
+    );
+  }
 }
 
 Gather.propTypes = {

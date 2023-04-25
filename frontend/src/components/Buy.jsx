@@ -50,8 +50,18 @@ export default function Buy({
     "sausage",
   ];
 
-  const [portrait, setPortrait] = useState("aloy");
-  const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
+  const [portrait, setPortrait] = useState("albedo");
+  const merchants = [
+    "albedo",
+    "amber",
+    "barbara",
+    "diluc",
+    "bennett",
+    "jean",
+    "ningguang",
+    "ganyu",
+    "tartaglia",
+  ];
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -117,6 +127,8 @@ export default function Buy({
       ) : null}
       {showRecap ? (
         <Recap
+          itemPrice={itemPrice}
+          selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
