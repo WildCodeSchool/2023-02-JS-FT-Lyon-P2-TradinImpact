@@ -17,9 +17,11 @@ body {
   /* color variables */
   --nav-dark: #f97700;
   --nav-light: #ffb039;
+  --nav-btn: #D9D9D9;
   --trade-first-color: #ffc700;
   --trade-second-color: #fbaf4c;
   --trade-third-color: #ffea9e;
+  --gather-first-color: #2caa00;
   /* font variables */
   --text-font: "Indie Flower", sans-serif;
   --button-font: "Patrick Hand", sans-serif;

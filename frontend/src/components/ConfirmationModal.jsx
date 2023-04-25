@@ -18,8 +18,8 @@ export default function ConfirmationModal({
     <div className={styles.background}>
       <div className={styles.modal}>
         <h3>
-          {tradeScreen === "buy" ? "Buy" : "Sell"}{" "}
-          {selectedItem ? selectedItem.name : " item"} for {itemPrice} moras ?
+          {tradeScreen === "buy" ? "Buy" : "Sell"} {selectedItem.name} for{" "}
+          {itemPrice} moras ?
         </h3>
         <div>
           <button
