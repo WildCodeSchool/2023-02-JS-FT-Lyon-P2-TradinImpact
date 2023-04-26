@@ -15,6 +15,7 @@ export default function Trade({
   const [showModal, setShowModal] = useState(false);
   const [showRecap, setShowRecap] = useState(false);
   const [itemPrice, setItemPrice] = useState(0);
+  const [showBargainModal, setShowBargainModal] = useState(false);
 
   /* simple fonction random réutilisable */
   const random = (min, max) => {
@@ -29,6 +30,8 @@ export default function Trade({
       <PresentationTrade
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
       />
     );
   }
@@ -43,6 +46,8 @@ export default function Trade({
         setInventory={setInventory}
         showModal={showModal}
         setShowModal={setShowModal}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
@@ -65,6 +70,8 @@ export default function Trade({
         random={random}
         showModal={showModal}
         setShowModal={setShowModal}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
