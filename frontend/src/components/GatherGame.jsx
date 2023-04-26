@@ -6,11 +6,10 @@ export default function GatherGame({ random, itemsForSession }) {
   const [timer, setTimer] = useState(30);
   const [popTimer, setPopTimer] = useState(null);
   const [itemToPop, setItemToPop] = useState({
-    name: "Almond",
-    description:
-      "A seed with a peculiar fragrance that gives food a refreshing taste.",
-    sources: ["Sold by Second Life", "Sold by Ms. Bai"],
-    possessed: 1,
+    name: "",
+    description: "",
+    sources: [],
+    possessed: "",
   });
   const [isGameOn, setIsGameOn] = useState(true);
   const [gatherSatchel, setGatherSatchel] = useState([]);
@@ -112,7 +111,7 @@ export default function GatherGame({ random, itemsForSession }) {
         <div className={styles.popWindow}>{itemToPop.img}</div>
         <div className={styles.counters}>
           <div>{timer}s remaining</div> <div>{popTimer}</div>{" "}
-          <div>{itemToPop.timesToClick} clicks</div>
+          <div>{itemToPop.timesToClick} clicks to get the item</div>
         </div>
       </div>
     );

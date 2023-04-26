@@ -36,8 +36,8 @@ function TradeMenu({
         type="button"
         onClick={() => {
           /*  Le bouton Cancel retourne au menu présentation et remet à null le state selectedItem */
-          setTradeScreen("presentation");
           setSelectedItem(null);
+          setTradeScreen("presentation");
         }}
         className={styles.button}
       >
