@@ -83,6 +83,7 @@ export default function BargainModal({
                   selection.possessed -= 1;
                   setMoraCount(moraCount + Math.floor(playerBet));
                   setShowRecap(true);
+                  setShowBargainModal(false);
                   setItemPrice(playerBet);
                 } else {
                   setShowBargainModal(false);
