@@ -13,7 +13,7 @@ export default function GameScreen({
   /* Selon le gameMode sélectionné dans le footer, le gamescreen change entre Trade, Gather et Fight */
   if (gameMode === "trade") {
     return (
-      <div className={styles.gamescreenTrade}>
+      <div className={`${styles.gamescreen} ${styles.trade}`}>
         <Trade
           inventory={inventory}
           setInventory={setInventory}
@@ -25,7 +25,7 @@ export default function GameScreen({
   }
   if (gameMode === "gather") {
     return (
-      <div className={styles.gamescreenGather}>
+      <div className={`${styles.gamescreen} ${styles.gather}`}>
         <Gather inventory={inventory} setInventory={setInventory} />
       </div>
     );
