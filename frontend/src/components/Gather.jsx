@@ -5,9 +5,10 @@ import PresentationGather from "./PresentationGather";
 import GatherRecap from "./GatherRecap";
 import GatherGame from "./GatherGame";
 
-export default function Gather({ random }) {
+export default function Gather({ random, inventory, setInventory }) {
   const [itemsForSession, setItemsForSession] = useState([]);
   const { gatherScreen, setGatherScreen } = useGatherContext();
+  const [gatherSatchel, setGatherSatchel] = useState([]);
   /* tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte */
   const itemsToGather = [
     "Bamboo-shoot",
@@ -71,7 +72,14 @@ export default function Gather({ random }) {
     );
   }
   if (gatherScreen === "recap") {
-    return <GatherRecap />;
+    return (
+      <GatherRecap
+        inventory={inventory}
+        setInventory={setInventory}
+        gatherSatchel={gatherSatchel}
+        setGatherSatchel={setGatherSatchel}
+      />
+    );
   }
 
   if (gatherScreen === "game") {
@@ -80,6 +88,8 @@ export default function Gather({ random }) {
         random={random}
         setGatherScreen={setGatherScreen}
         itemsForSession={itemsForSession}
+        gatherSatchel={gatherSatchel}
+        setGatherSatchel={setGatherSatchel}
       />
     );
   }
@@ -87,4 +97,6 @@ export default function Gather({ random }) {
 
 Gather.propTypes = {
   random: PropTypes.func.isRequired,
+  setInventory: PropTypes.func.isRequired,
+  inventory: PropTypes.arrayOf.isRequired,
 };

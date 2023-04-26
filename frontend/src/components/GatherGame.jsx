@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./GatherGame.module.css";
 
-export default function GatherGame({ random, itemsForSession }) {
-  const [timer, setTimer] = useState(30);
+export default function GatherGame({
+  random,
+  itemsForSession,
+  gatherSatchel,
+  setGatherSatchel,
+  setGatherScreen,
+}) {
+  const [timer, setTimer] = useState(5);
   const [popTimer, setPopTimer] = useState(null);
   const [itemToPop, setItemToPop] = useState({
     name: "",
@@ -12,7 +18,6 @@ export default function GatherGame({ random, itemsForSession }) {
     possessed: "",
   });
   const [isGameOn, setIsGameOn] = useState(true);
-  const [gatherSatchel, setGatherSatchel] = useState([]);
   let timerInterval = null;
   let popTimerInterval = null;
   let clicksRemaining = null;
@@ -82,6 +87,7 @@ export default function GatherGame({ random, itemsForSession }) {
   }
 
   useEffect(() => {
+    setGatherSatchel([]);
     randomiseItemPop();
     // console.log(itemToPop);
   }, []);
@@ -94,6 +100,7 @@ export default function GatherGame({ random, itemsForSession }) {
     if (timer === 0) {
       clearInterval(timerInterval);
       setIsGameOn(false);
+      setGatherScreen("recap");
     }
     return () => clearInterval(timerInterval);
   }, [timer]);
@@ -120,5 +127,8 @@ export default function GatherGame({ random, itemsForSession }) {
 
 GatherGame.propTypes = {
   random: PropTypes.func.isRequired,
+  setGatherSatchel: PropTypes.func.isRequired,
+  gatherSatchel: PropTypes.arrayOf.isRequired,
   itemsForSession: PropTypes.arrayOf.isRequired,
+  setGatherScreen: PropTypes.func.isRequired,
 };
