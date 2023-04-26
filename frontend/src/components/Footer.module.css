@@ -29,7 +29,22 @@
   transition: 0.5s;
 }
 
-.active img {
+.active img, .active span {
   transform: rotate(-45deg);
   transition: 0.5s;
+}
+
+.gatherCooldown {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  border-radius: inherit;
+  font-family: var(--button-font);
+  font-size: 2em;
+  color: var(--nav-btn);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
 }

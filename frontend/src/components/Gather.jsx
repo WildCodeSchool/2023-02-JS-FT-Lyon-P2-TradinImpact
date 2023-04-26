@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useGatherContext } from "../contexts/GatherContext";
 import PresentationGather from "./PresentationGather";
+import GatherRecap from "./GatherRecap";
 import GatherGame from "./GatherGame";
 
 export default function Gather({ random }) {
-  const [gatherScreen, setGatherScreen] = useState("presentation");
   const [itemsForSession, setItemsForSession] = useState([]);
-
+  const { gatherScreen, setGatherScreen } = useGatherContext();
   /* tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte */
   const itemsToGather = [
     "Bamboo-shoot",
@@ -57,7 +58,7 @@ export default function Gather({ random }) {
     sessionRandomItems();
   }, []);
 
-  if (gatherScreen === "presentation") {
+  if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
     return (
       <PresentationGather
         setGatherScreen={setGatherScreen}
@@ -65,6 +66,10 @@ export default function Gather({ random }) {
       />
     );
   }
+  if (gatherScreen === "recap") {
+    return <GatherRecap />;
+  }
+
   if (gatherScreen === "game") {
     return (
       <GatherGame

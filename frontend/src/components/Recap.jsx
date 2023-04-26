@@ -10,10 +10,10 @@ export default function Recap({
   setShowRecap,
 }) {
   const handleClick = () => {
-    setShowRecap(false);
     setTradeScreen("presentation");
     /* On remet à null le state selectedItem */
     setSelectedItem(null);
+    setShowRecap(false);
   };
 
   return (
