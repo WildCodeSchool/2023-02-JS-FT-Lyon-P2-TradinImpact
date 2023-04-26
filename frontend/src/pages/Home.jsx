@@ -7,6 +7,8 @@ import styles from "./Home.module.css";
 export default function Home() {
   const [moraCount, setMoraCount] = useState(20);
   const [gameMode, setGameMode] = useState("trade");
+  const [cooldownGather, setCooldownGather] = useState(90);
+  const [startCooldown, setStartCooldown] = useState(false);
   const [inventory, setInventory] = useState([
     {
       name: "Almond",
@@ -27,8 +29,17 @@ export default function Home() {
         setInventory={setInventory}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        cooldownGather={cooldownGather}
+        setCooldownGather={setCooldownGather}
+        startCooldown={startCooldown}
+        setStartCooldown={setStartCooldown}
       />
-      <Footer gameMode={gameMode} setGameMode={setGameMode} />
+      <Footer
+        gameMode={gameMode}
+        setGameMode={setGameMode}
+        cooldownGather={cooldownGather}
+        startCooldown={startCooldown}
+      />
     </div>
   );
 }

@@ -9,11 +9,15 @@ export default function GameScreen({
   setInventory,
   moraCount,
   setMoraCount,
+  cooldownGather,
+  setCooldownGather,
+  startCooldown,
+  setStartCooldown,
 }) {
   /* Selon le gameMode sélectionné dans le footer, le gamescreen change entre Trade, Gather et Fight */
   if (gameMode === "trade") {
     return (
-      <div className={styles.gamescreenTrade}>
+      <div className={`${styles.gamescreen} ${styles.trade}`}>
         <Trade
           inventory={inventory}
           setInventory={setInventory}
@@ -25,8 +29,15 @@ export default function GameScreen({
   }
   if (gameMode === "gather") {
     return (
-      <div className={styles.gamescreenGather}>
-        <Gather inventory={inventory} setInventory={setInventory} />
+      <div className={`${styles.gamescreen} ${styles.gather}`}>
+        <Gather
+          inventory={inventory}
+          setInventory={setInventory}
+          cooldownGather={cooldownGather}
+          setCooldownGather={setCooldownGather}
+          startCooldown={startCooldown}
+          setStartCooldown={setStartCooldown}
+        />
       </div>
     );
   }
@@ -37,5 +48,9 @@ export default function GameScreen({
     setInventory: PropTypes.func.isRequired,
     moraCount: PropTypes.number.isRequired,
     setMoraCount: PropTypes.func.isRequired,
+    cooldownGather: PropTypes.number.isRequired,
+    setCooldownGather: PropTypes.func.isRequired,
+    startCooldown: PropTypes.bool.isRequired,
+    setStartCooldown: PropTypes.func.isRequired,
   };
 }

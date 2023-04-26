@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 import styles from "./Footer.module.css";
 
-export default function Footer({ gameMode, setGameMode }) {
+export default function Footer({
+  gameMode,
+  setGameMode,
+  cooldownGather,
+  startCooldown,
+}) {
   return (
     <div className={styles.gamepickcontainer}>
       <button
@@ -14,6 +19,7 @@ export default function Footer({ gameMode, setGameMode }) {
         type="button"
         onClick={() => setGameMode("gather")}
       >
+        {startCooldown === true ? <p>{cooldownGather}</p> : null}
         <img src="./src/assets/basket.png" alt="collect icon" />
       </button>
       <button
@@ -48,4 +54,6 @@ export default function Footer({ gameMode, setGameMode }) {
 Footer.propTypes = {
   gameMode: PropTypes.string.isRequired,
   setGameMode: PropTypes.func.isRequired,
+  cooldownGather: PropTypes.number.isRequired,
+  startCooldown: PropTypes.bool.isRequired,
 };
