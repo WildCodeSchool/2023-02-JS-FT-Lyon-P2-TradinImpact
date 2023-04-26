@@ -44,7 +44,8 @@ h4 {
   height: 50px;
 }
 
-.moraBalance, .itemTransaction {
+.moraBalance,
+.itemTransaction {
   display: flex;
   align-items: center;
   justify-content: center;

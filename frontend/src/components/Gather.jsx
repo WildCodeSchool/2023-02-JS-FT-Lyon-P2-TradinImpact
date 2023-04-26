@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useGatherContext } from "../contexts/GatherContext";
 import PresentationGather from "./PresentationGather";
+import GatherRecap from "./GatherRecap";
 
 export default function Gather() {
-  const [gatherScreen, setGatherScreen] = useState("presentation");
+  const { gatherScreen } = useGatherContext();
 
-  if (gatherScreen === "presentation") {
-    return <PresentationGather setGatherScreen={setGatherScreen} />;
+  if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
+    return <PresentationGather />;
+  }
+  if (gatherScreen === "recap") {
+    return <GatherRecap />;
   }
 }
