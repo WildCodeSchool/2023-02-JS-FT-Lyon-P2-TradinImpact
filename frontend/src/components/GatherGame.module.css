@@ -12,10 +12,18 @@
 .popWindow {
   height: 90%;
   display: grid;
-  grid-template-columns: repeat(5, 20%);
-  grid-template-rows: repeat(5, 20%);
+  grid-template-columns: repeat(100, 1%);
+  grid-template-rows: repeat(100, 1%);
+}
+
+.popButton {
+  background-color: transparent;
+  border-radius: 50%;
 }
 
 .popImage {
+  border-radius: 50%;
+  margin: auto;
   height: 100%;
+  background-color: black;
 }

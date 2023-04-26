@@ -5,37 +5,82 @@ import styles from "./GatherGame.module.css";
 export default function GatherGame({ random, itemsForSession }) {
   const [timer, setTimer] = useState(30);
   const [popTimer, setPopTimer] = useState(null);
-  const [itemToPop, setItemToPop] = useState("");
+  const [itemToPop, setItemToPop] = useState({
+    name: "Almond",
+    description:
+      "A seed with a peculiar fragrance that gives food a refreshing taste.",
+    sources: ["Sold by Second Life", "Sold by Ms. Bai"],
+    possessed: 1,
+  });
   const [isGameOn, setIsGameOn] = useState(true);
+  const [gatherSatchel, setGatherSatchel] = useState([]);
   let timerInterval = null;
   let popTimerInterval = null;
+  let clicksRemaining = null;
 
   // La fonction ci-dessous génère un nouvel item et une balise image associée,
   // ainsi que des coordonnées aléatoires et le temps que l'image va rester à ces coordonnées.
   const randomiseItemPop = () => {
+    clicksRemaining = 0;
     if (isGameOn) {
-      setPopTimer(random(1, 4));
+      setPopTimer(random(1, 2));
       const randomIndex = random(0, itemsForSession.length - 1);
       const itemToSet = itemsForSession[randomIndex];
-      const x = random(1, 5);
-      const y = random(1, 5);
+      const x = random(1, 81);
+      const y = random(1, 81);
+      const timesToClick = random(3, 6);
+      itemToSet.timesToClick = timesToClick;
       itemToSet.gridArea = `${x.toString()} / ${y.toString()} / ${(
-        x + 1
-      ).toString()} / ${(y + 1).toString()}`;
+        x + 20
+      ).toString()} / ${(y + 20).toString()}`;
+      itemToSet.style = { gridArea: itemToSet.gridArea };
       itemToSet.img = (
-        <img
-          style={{ gridArea: itemToSet.gridArea }}
-          className={styles.popImage}
-          src={`https://api.genshin.dev/materials/cooking-ingredients/${itemToSet.name
-            .toLowerCase()
-            .replaceAll(" ", "-")}`}
-          alt={itemToSet.name}
-        />
+        <button
+          className={styles.popButton}
+          style={itemToSet.style}
+          type="button"
+          onClick={() => {
+            // console.log("click");
+            clicksRemaining += 1;
+            // console.log(clicksRemaining);
+            if (clicksRemaining === itemToSet.timesToClick) {
+              // console.log("ok !");
+              let itemGot = false;
+              for (const item of gatherSatchel) {
+                if (itemGot === false) {
+                  if (item.name === itemToSet.name) {
+                    item.possessed += 1;
+                    itemGot = true;
+                  }
+                }
+              }
+              if (itemGot === false) {
+                itemToSet.possessed = 1;
+                setGatherSatchel([...gatherSatchel, itemToSet]);
+              }
+            }
+          }}
+        >
+          <img
+            className={styles.popImage}
+            src={`https://api.genshin.dev/materials/cooking-ingredients/${itemToSet.name
+              .toLowerCase()
+              .replaceAll(" ", "-")}`}
+            alt={itemToSet.name}
+          />
+        </button>
       );
       setItemToPop(itemToSet);
       // console.log(itemToPop);
+      // console.log(gatherSatchel);
     }
   };
+
+  if (popTimer === 0) {
+    clearInterval(popTimerInterval);
+    // console.log("popTimer = 0");
+    randomiseItemPop();
+  }
 
   useEffect(() => {
     randomiseItemPop();
@@ -58,11 +103,6 @@ export default function GatherGame({ random, itemsForSession }) {
     popTimerInterval = setInterval(() => {
       setPopTimer(popTimer - 1);
     }, 1000);
-    if (popTimer === 0) {
-      clearInterval(popTimerInterval);
-      // console.log("popTimer = 0");
-      randomiseItemPop();
-    }
     return () => clearInterval(popTimerInterval);
   }, [popTimer]);
 
@@ -71,7 +111,8 @@ export default function GatherGame({ random, itemsForSession }) {
       <div className={styles.gatherGameWindow}>
         <div className={styles.popWindow}>{itemToPop.img}</div>
         <div className={styles.counters}>
-          <div>{timer}</div> <div>{popTimer}</div> <div>{itemToPop.name}</div>
+          <div>{timer}s remaining</div> <div>{popTimer}</div>{" "}
+          <div>{itemToPop.timesToClick} clicks</div>
         </div>
       </div>
     );
