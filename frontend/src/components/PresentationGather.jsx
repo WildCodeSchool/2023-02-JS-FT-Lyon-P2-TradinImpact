@@ -1,15 +1,19 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { useEffect } from "react";
+import { useGatherContext } from "../contexts/GatherContext";
 import styles from "./PresentationGather.module.css";
 
-export default function PresentationGather({
-  gatherScreen,
-  setGatherScreen,
-  startCooldown,
-  cooldownGather,
-  setCooldownGather,
-  setStartCooldown,
-}) {
+export default function PresentationGather() {
+  // Import du contexte
+  const {
+    gatherScreen,
+    setGatherScreen,
+    startCooldown,
+    setStartCooldown,
+    cooldownGather,
+    setCooldownGather,
+  } = useGatherContext();
+
   // Lance le cooldown une fois la modal de recap fermée
   useEffect(() => {
     if (startCooldown === true) {
@@ -17,7 +21,7 @@ export default function PresentationGather({
         () => setCooldownGather(cooldownGather - 1),
         1000
       );
-      // Reset les différents states à la fin du timer
+      // Reset les différents states à la fin du cooldown
       if (cooldownGather === 0) {
         clearTimeout(countdown);
         setStartCooldown(false);
@@ -51,12 +55,3 @@ export default function PresentationGather({
     );
   }
 }
-
-PresentationGather.propTypes = {
-  gatherScreen: PropTypes.string.isRequired,
-  setGatherScreen: PropTypes.func.isRequired,
-  startCooldown: PropTypes.bool.isRequired,
-  cooldownGather: PropTypes.number.isRequired,
-  setCooldownGather: PropTypes.func.isRequired,
-  setStartCooldown: PropTypes.func.isRequired,
-};

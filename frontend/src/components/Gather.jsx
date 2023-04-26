@@ -1,42 +1,14 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
+import { useGatherContext } from "../contexts/GatherContext";
 import PresentationGather from "./PresentationGather";
 import GatherRecap from "./GatherRecap";
 
-export default function Gather({
-  startCooldown,
-  setStartCooldown,
-  cooldownGather,
-  setCooldownGather,
-}) {
-  const [gatherScreen, setGatherScreen] = useState("presentation");
-  // const [startCooldown, setStartCooldown] = useState(false);
+export default function Gather() {
+  const { gatherScreen } = useGatherContext();
 
   if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
-    return (
-      <PresentationGather
-        gatherScreen={gatherScreen}
-        setGatherScreen={setGatherScreen}
-        startCooldown={startCooldown}
-        cooldownGather={cooldownGather}
-        setCooldownGather={setCooldownGather}
-        setStartCooldown={setStartCooldown}
-      />
-    );
+    return <PresentationGather />;
   }
   if (gatherScreen === "recap") {
-    return (
-      <GatherRecap
-        setGatherScreen={setGatherScreen}
-        setStartCooldown={setStartCooldown}
-      />
-    );
+    return <GatherRecap />;
   }
 }
-
-Gather.propTypes = {
-  cooldownGather: PropTypes.number.isRequired,
-  setCooldownGather: PropTypes.func.isRequired,
-  startCooldown: PropTypes.bool.isRequired,
-  setStartCooldown: PropTypes.func.isRequired,
-};

@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
+import { useGatherContext } from "../contexts/GatherContext";
 import styles from "./GatherRecap.module.css";
 
-export default function GatherRecap({ setGatherScreen, setStartCooldown }) {
+export default function GatherRecap() {
+  // Import du context
+  const { setGatherScreen, setStartCooldown } = useGatherContext();
+  // Au clic du bouton Close, on affiche le cooldown et on démarre le timer
   const handleClick = () => {
     setGatherScreen("cooldown");
     setStartCooldown(true);
@@ -21,8 +24,3 @@ export default function GatherRecap({ setGatherScreen, setStartCooldown }) {
     </div>
   );
 }
-
-GatherRecap.propTypes = {
-  setGatherScreen: PropTypes.func.isRequired,
-  setStartCooldown: PropTypes.func.isRequired,
-};

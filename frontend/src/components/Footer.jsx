@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
+import { useGatherContext } from "../contexts/GatherContext";
 import styles from "./Footer.module.css";
 
-export default function Footer({
-  gameMode,
-  setGameMode,
-  cooldownGather,
-  startCooldown,
-}) {
+export default function Footer({ gameMode, setGameMode }) {
+  // Import du context de Gather pour afficher le cooldown
+  const { cooldownGather, startCooldown } = useGatherContext();
+
   return (
     <div className={styles.gamepickcontainer}>
       <button
@@ -19,7 +18,11 @@ export default function Footer({
         type="button"
         onClick={() => setGameMode("gather")}
       >
-        {startCooldown === true ? <p>{cooldownGather}</p> : null}
+        {startCooldown === true ? (
+          <div className={styles.gatherCooldown}>
+            <span>{cooldownGather}</span>
+          </div>
+        ) : null}
         <img src="./src/assets/basket.png" alt="collect icon" />
       </button>
       <button
@@ -54,6 +57,4 @@ export default function Footer({
 Footer.propTypes = {
   gameMode: PropTypes.string.isRequired,
   setGameMode: PropTypes.func.isRequired,
-  cooldownGather: PropTypes.number.isRequired,
-  startCooldown: PropTypes.bool.isRequired,
 };
