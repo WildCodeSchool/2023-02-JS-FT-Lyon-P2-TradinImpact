@@ -10,15 +10,18 @@ export default function BargainModal({
   setShowRecap,
   selectedItem,
   itemPrice,
+  setItemPrice,
   moraCount,
   setMoraCount,
   random,
+  randomizeMerchant,
+  handleClick,
 }) {
   /* la modale est alimentée par le state itemSelected */
 
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
   par le biais du formulaire */
-  const [playerBet, setPlayerBet] = useState(itemPrice);
+  const [playerBet, setPlayerBet] = useState(moraCount);
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire (exemple : un joueur qui propose d'acheter
@@ -30,6 +33,18 @@ export default function BargainModal({
   playerBet */
   const handleChange = (event) => {
     setPlayerBet(event.target.value);
+  };
+
+  const itemRarity = selectedItem.rarity;
+
+  const getPrice = (rarity) => {
+    if (rarity === undefined) {
+      setItemPrice(random(15, 25));
+    } else if (rarity === 2) {
+      setItemPrice(random(25, 35));
+    } else if (rarity === 3) {
+      setItemPrice(random(35, 45));
+    }
   };
 
   let itemGot = false;
@@ -46,7 +61,7 @@ export default function BargainModal({
               className={styles.input}
               id="bet"
               name="bet"
-              type="number"
+              type="text"
               value={playerBet}
               onChange={handleChange}
             />
@@ -68,28 +83,37 @@ export default function BargainModal({
                   selection.possessed -= 1;
                   setMoraCount(moraCount + Math.floor(playerBet));
                   setShowRecap(true);
+                  setItemPrice(playerBet);
                 } else {
                   setShowBargainModal(false);
+                  randomizeMerchant();
+                  getPrice(itemRarity);
                 }
               } else if (tradeScreen === "buy") {
                 /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
                 /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
                 if (buyDeal) {
-                  for (const item of inventory) {
-                    if (item.name === selectedItem.name) {
-                      item.possessed += 1;
-                      itemGot = true;
+                  if (playerBet > moraCount) {
+                    setShowBargainModal(false);
+                  } else {
+                    for (const item of inventory) {
+                      if (item.name === selectedItem.name) {
+                        item.possessed += 1;
+                        itemGot = true;
+                      }
                     }
+                    if (itemGot === false) {
+                      selection.possessed = 1;
+                      setInventory([...inventory, selection]);
+                    }
+                    setMoraCount(moraCount - Math.ceil(playerBet));
+                    setShowBargainModal(false);
+                    setShowRecap(true);
+                    setItemPrice(playerBet);
                   }
-                  if (itemGot === false) {
-                    selection.possessed = 1;
-                    setInventory([...inventory, selection]);
-                  }
-                  setMoraCount(moraCount - Math.ceil(playerBet));
-                  setShowBargainModal(false);
-                  setShowRecap(true);
                 } else {
                   setShowBargainModal(false);
+                  handleClick();
                 }
               }
               /* On fait disparaître la modale et on retourne au menu Présentation */
@@ -122,9 +146,12 @@ BargainModal.propTypes = {
   setShowBargainModal: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
+  setItemPrice: PropTypes.func.isRequired,
   inventory: PropTypes.string.isRequired,
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  randomizeMerchant: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

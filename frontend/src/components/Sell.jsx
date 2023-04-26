@@ -88,11 +88,13 @@ export default function Sell({
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
           itemPrice={itemPrice}
+          setItemPrice={setItemPrice}
           inventory={inventory}
           setInventory={setInventory}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
           random={random}
+          randomizeMerchant={randomizeMerchant}
         />
       ) : null}
       {showModal ? (

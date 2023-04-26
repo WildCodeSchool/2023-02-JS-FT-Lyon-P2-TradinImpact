@@ -122,11 +122,13 @@ export default function Buy({
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
           itemPrice={itemPrice}
+          setItemPrice={setItemPrice}
           inventory={inventory}
           setInventory={setInventory}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
           random={random}
+          handleClick={handleClick}
         />
       ) : null}
       {showModal ? (
