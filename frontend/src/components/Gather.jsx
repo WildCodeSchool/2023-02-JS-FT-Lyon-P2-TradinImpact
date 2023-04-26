@@ -58,6 +58,10 @@ export default function Gather({ random }) {
     sessionRandomItems();
   }, []);
 
+  useEffect(() => {
+    return () => setGatherScreen("presentation");
+  }, []);
+
   if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
     return (
       <PresentationGather
