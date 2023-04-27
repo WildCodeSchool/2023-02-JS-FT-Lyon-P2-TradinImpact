@@ -32,7 +32,7 @@ export default function Gather({ random, inventory, setInventory }) {
     "Snapdragon",
     "Sweet Flower",
     "Tomato",
-    "Violet Grass",
+    "VioletGrass",
   ];
 
   /* Définition des objets qui pourront être récoltés dans cette session */
