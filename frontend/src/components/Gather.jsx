@@ -9,7 +9,7 @@ export default function Gather({ random, inventory, setInventory }) {
   const [itemsForSession, setItemsForSession] = useState([]);
   const { gatherScreen, setGatherScreen } = useGatherContext();
   const [gatherSatchel, setGatherSatchel] = useState([]);
-  /* tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte */
+  // tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte
   const itemsToGather = [
     "Bamboo-shoot",
     "Berry",
@@ -35,7 +35,7 @@ export default function Gather({ random, inventory, setInventory }) {
     "VioletGrass",
   ];
 
-  /* Définition des objets qui pourront être récoltés dans cette session */
+  // Définition des objets qui pourront être récoltés dans cette session
   const sessionRandomItems = () => {
     const randomItems = [];
     fetch(`https://api.genshin.dev/materials/cooking-ingredients/`)
@@ -54,11 +54,11 @@ export default function Gather({ random, inventory, setInventory }) {
         setItemsForSession(randomItems);
       });
   };
-
   useEffect(() => {
     sessionRandomItems();
   }, []);
 
+  // Lorsque le composant est démonté, le nouvel écran par défaut devient "présentation" / cooldown
   useEffect(() => {
     return () => setGatherScreen("presentation");
   }, []);
