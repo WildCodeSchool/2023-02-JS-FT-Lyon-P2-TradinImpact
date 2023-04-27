@@ -8,9 +8,10 @@
   border-radius: 50%;
 }
 
-.randomItemImg img {
-  width: 250px;
-  height: 250px;
+.randomItemImg,
+.randomItemDisplay img {
+  width: 25vh;
+  height: 25vh;
 }
 
 .randomItemName {

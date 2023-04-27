@@ -1,4 +1,4 @@
-.recapBackground {
+.background {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -9,9 +9,9 @@
   z-index: 5;
 }
 
-.recapModal {
+.modal {
   width: 60%;
-  height: 35%;
+  height: 40%;
   background-color: var(--nav-light);
   border: 1px solid black;
   border-radius: 50px;
@@ -21,32 +21,29 @@
   align-items: center;
 }
 
-.recapModal button {
-  font-family: var(--button-font);
-  font-size: 1.3em;
-  padding: 10px 20px;
-  background-color: var(--trade-third-color);
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.recapModal h3,
-h4 {
+.modal h3 {
   max-width: 20ch;
   font-family: var(--text-font);
   font-size: 1.6em;
 }
 
-.recapModal img {
-  width: 50px;
-  height: 50px;
+.inputcontainer {
+  display: flex;
+  border-radius: 1em;
+  background-color: lightgrey;
+  width: 150px;
+  margin-left: 2.2em;
 }
 
-.moraBalance,
-.itemTransaction {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bargainmoracoin {
+  width: 30px;
+  height: 30px;
+}
+.input {
+  border: none;
+  background-color: lightgrey;
+  border-radius: 1em;
+  width: 150px;
+  font-size: 1.3em;
+  text-align: center;
 }

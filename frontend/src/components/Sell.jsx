@@ -7,6 +7,7 @@ import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
+import BargainModal from "./BargainModal";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -16,6 +17,8 @@ export default function Sell({
   setTradeScreen,
   showModal,
   setShowModal,
+  showBargainModal,
+  setShowBargainModal,
   random,
   selectedItem,
   setSelectedItem,
@@ -29,8 +32,19 @@ export default function Sell({
   const [isItemSelected, setIsItemSelected] = useState(false);
 
   /* Randomisation du marchand au montage du composant */
-  const [portrait, setPortrait] = useState("aloy");
-  const merchants = ["aloy", "amber", "barbara", "diluc", "bennett", "xiao"];
+  const [portrait, setPortrait] = useState("albedo");
+  const merchants = [
+    "albedo",
+    "amber",
+    "barbara",
+    "diluc",
+    "bennett",
+    "jean",
+    "ningguang",
+    "ganyu",
+    "tartaglia",
+  ];
+
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -40,6 +54,7 @@ export default function Sell({
     );
   };
   useEffect(() => {
+    setSelectedItem(null);
     randomizeMerchant();
   }, []);
 
@@ -65,6 +80,24 @@ export default function Sell({
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
     <div className={styles.display}>
+      {showBargainModal ? (
+        <BargainModal
+          tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
+          setShowBargainModal={setShowBargainModal}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          setShowRecap={setShowRecap}
+          itemPrice={itemPrice}
+          setItemPrice={setItemPrice}
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          random={random}
+          randomizeMerchant={randomizeMerchant}
+        />
+      ) : null}
       {showModal ? (
         <ConfirmationModal
           inventory={inventory}
@@ -82,6 +115,7 @@ export default function Sell({
       ) : null}
       {showRecap ? (
         <Recap
+          itemPrice={itemPrice}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           tradeScreen={tradeScreen}
@@ -101,6 +135,8 @@ export default function Sell({
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
       />
     </div>
   ) : (
@@ -122,6 +158,8 @@ Sell.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  showBargainModal: PropTypes.bool.isRequired,
+  setShowBargainModal: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
