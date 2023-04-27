@@ -2,15 +2,25 @@ import PropTypes from "prop-types";
 import { useGatherContext } from "../contexts/GatherContext";
 import styles from "./GatherRecap.module.css";
 
-export default function GatherRecap({
-  // inventory,
-  // setInventory,
-  gatherSatchel,
-}) {
+export default function GatherRecap({ inventory, gatherSatchel }) {
   // Import du context
   const { setGatherScreen, setStartCooldown } = useGatherContext();
+
   // Au clic du bouton Close, on affiche le cooldown et on démarre le timer
   const handleClick = () => {
+    for (const gatheredItem of gatherSatchel) {
+      let itemGot = false;
+      for (const item of inventory) {
+        if (gatheredItem.name === item.name) {
+          item.possessed += 1;
+          itemGot = true;
+        }
+      }
+      if (itemGot === false) {
+        // setInventory((inventory) => [...inventory, gatheredItem]);
+        inventory.push(gatheredItem);
+      }
+    }
     setGatherScreen("cooldown");
     setStartCooldown(true);
   };
@@ -51,8 +61,6 @@ export default function GatherRecap({
 }
 
 GatherRecap.propTypes = {
-  // inventory: PropTypes.arrayOf.isRequired,
-  // setInventory: PropTypes.func.isRequired,
+  inventory: PropTypes.arrayOf.isRequired,
   gatherSatchel: PropTypes.arrayOf.isRequired,
-  // setGatherSatchel: PropTypes.func.isRequired,
 };

@@ -77,7 +77,6 @@ export default function Gather({ random, inventory, setInventory }) {
         inventory={inventory}
         setInventory={setInventory}
         gatherSatchel={gatherSatchel}
-        setGatherSatchel={setGatherSatchel}
       />
     );
   }

@@ -9,7 +9,7 @@ export default function GatherGame({
   setGatherSatchel,
   setGatherScreen,
 }) {
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(30);
   const [popTimer, setPopTimer] = useState(null);
   const [itemToPop, setItemToPop] = useState({
     name: "",
@@ -18,14 +18,15 @@ export default function GatherGame({
     possessed: "",
   });
   const [isGameOn, setIsGameOn] = useState(true);
+  const [count, setCount] = useState(0);
   let timerInterval = null;
   let popTimerInterval = null;
-  let clicksRemaining = null;
+  let clicks = null;
 
   // La fonction ci-dessous génère un nouvel item et une balise image associée,
   // ainsi que des coordonnées aléatoires et le temps que l'image va rester à ces coordonnées.
   const randomiseItemPop = () => {
-    clicksRemaining = 0;
+    clicks = 0;
     if (isGameOn) {
       setPopTimer(random(1, 2));
       const randomIndex = random(0, itemsForSession.length - 1);
@@ -45,9 +46,9 @@ export default function GatherGame({
           type="button"
           onClick={() => {
             // console.log("click");
-            clicksRemaining += 1;
-            // console.log(clicksRemaining);
-            if (clicksRemaining === itemToSet.timesToClick) {
+            clicks += 1;
+            // console.log(clicks);
+            if (clicks === itemToSet.timesToClick) {
               // console.log("ok !");
               let itemGot = false;
               for (const item of gatherSatchel) {
@@ -61,10 +62,19 @@ export default function GatherGame({
               if (itemGot === false) {
                 itemToSet.possessed = 1;
                 setGatherSatchel([...gatherSatchel, itemToSet]);
+                itemGot = true;
+              }
+              if (itemGot) {
+                setCount(() => count + 1);
               }
             }
           }}
         >
+          <p>
+            {itemToSet.timesToClick - clicks >= 0
+              ? itemToSet.timesToClick - clicks
+              : 0}
+          </p>
           <img
             className={styles.popImage}
             src={`https://api.genshin.dev/materials/cooking-ingredients/${itemToSet.name
@@ -117,8 +127,7 @@ export default function GatherGame({
       <div className={styles.gatherGameWindow}>
         <div className={styles.popWindow}>{itemToPop.img}</div>
         <div className={styles.counters}>
-          <div>{timer}s remaining</div> <div>{popTimer}</div>{" "}
-          <div>{itemToPop.timesToClick} clicks to get the item</div>
+          <div>{timer}s remaining</div> <div>{count} items gathered</div>
         </div>
       </div>
     );
