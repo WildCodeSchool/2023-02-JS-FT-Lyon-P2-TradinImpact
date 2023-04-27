@@ -1,5 +1,6 @@
 import { useGatherContext } from "../contexts/GatherContext";
 import PresentationGather from "./PresentationGather";
+import TestGather from "./TestGather";
 import GatherRecap from "./GatherRecap";
 
 export default function Gather() {
@@ -7,6 +8,9 @@ export default function Gather() {
 
   if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
     return <PresentationGather />;
+  }
+  if (gatherScreen === "test") {
+    return <TestGather />;
   }
   if (gatherScreen === "recap") {
     return <GatherRecap />;

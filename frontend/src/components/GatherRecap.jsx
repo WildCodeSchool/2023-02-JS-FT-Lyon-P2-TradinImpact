@@ -3,11 +3,11 @@ import styles from "./GatherRecap.module.css";
 
 export default function GatherRecap() {
   // Import du context
-  const { setGatherScreen, setStartCooldown } = useGatherContext();
+  const { setGatherScreen, coolDownBegin } = useGatherContext();
   // Au clic du bouton Close, on affiche le cooldown et on démarre le timer
   const handleClick = () => {
     setGatherScreen("cooldown");
-    setStartCooldown(true);
+    coolDownBegin();
   };
 
   return (

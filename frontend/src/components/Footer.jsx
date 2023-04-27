@@ -4,7 +4,24 @@ import styles from "./Footer.module.css";
 
 export default function Footer({ gameMode, setGameMode }) {
   // Import du context de Gather pour afficher le cooldown
-  const { cooldownGather, startCooldown } = useGatherContext();
+  const {
+    gatherScreen,
+    setGatherScreen,
+    cooldownGather,
+    // startCooldown,
+    // setStartCooldown,
+    coolDownBegin,
+  } = useGatherContext();
+
+  /* Au clic sur le bouton trade, change le gamemode et lance le cooldown pour Gather si le joueur 
+  change de gamemode au milieu d'une partie */
+  const handleClickTrade = () => {
+    setGameMode("trade");
+    if (gatherScreen !== "presentation" && gatherScreen !== "cooldown") {
+      setGatherScreen("cooldown");
+      coolDownBegin();
+    }
+  };
 
   return (
     <div className={styles.gamepickcontainer}>
@@ -18,7 +35,7 @@ export default function Footer({ gameMode, setGameMode }) {
         type="button"
         onClick={() => setGameMode("gather")}
       >
-        {startCooldown === true ? (
+        {cooldownGather < 90 ? (
           <div className={styles.gatherCooldown}>
             <span>{cooldownGather}</span>
           </div>
@@ -33,7 +50,7 @@ export default function Footer({ gameMode, setGameMode }) {
         }
         id="trade-icon"
         type="button"
-        onClick={() => setGameMode("trade")}
+        onClick={handleClickTrade}
       >
         <img src="./src/assets/bourse2.png" alt="trade icon" />
       </button>

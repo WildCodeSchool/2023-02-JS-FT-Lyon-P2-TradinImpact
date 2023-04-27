@@ -153,6 +153,7 @@ export default function Buy({
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
         handleClick={handleClick}
+        setSelectedItem={setSelectedItem}
         selectedItem={selectedItem}
         moraCount={moraCount}
         itemPrice={itemPrice}
