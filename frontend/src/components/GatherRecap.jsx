@@ -17,7 +17,6 @@ export default function GatherRecap({ inventory, gatherSatchel }) {
         }
       }
       if (itemGot === false) {
-        // setInventory((inventory) => [...inventory, gatheredItem]);
         inventory.push(gatheredItem);
       }
     }
@@ -27,9 +26,7 @@ export default function GatherRecap({ inventory, gatherSatchel }) {
 
   let loot = 0;
   gatherSatchel.forEach((item) => {
-    // console.log(item);
     loot += item.possessed;
-    // console.log(loot);
   });
 
   return (
@@ -37,10 +34,9 @@ export default function GatherRecap({ inventory, gatherSatchel }) {
       <div className={styles.gatherRecap}>
         <p>You managed to gather {loot.toString()} items</p>
         <div>
-          {/* {*itemsGathered.map(item => (item.image) (item.name) x (item.count))*} */}
           {gatherSatchel.map((item) => {
             return (
-              <p className={styles.itemLine}>
+              <p className={styles.itemLine} key={item.name}>
                 <img
                   src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name
                     .toLowerCase()
