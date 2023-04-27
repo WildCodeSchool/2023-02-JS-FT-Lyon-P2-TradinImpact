@@ -28,12 +28,12 @@ export default function GatherGame({
   const randomiseItemPop = () => {
     clicks = 0;
     if (isGameOn) {
-      setPopTimer(random(1, 2));
+      setPopTimer(random(2, 3));
       const randomIndex = random(0, itemsForSession.length - 1);
       const itemToSet = itemsForSession[randomIndex];
       const x = random(1, 81);
       const y = random(1, 81);
-      const timesToClick = random(3, 6);
+      const timesToClick = random(8, 12);
       itemToSet.timesToClick = timesToClick;
       itemToSet.gridArea = `${x.toString()} / ${y.toString()} / ${(
         x + 20
