@@ -51,8 +51,13 @@ export default function Gather({ random, inventory, setInventory }) {
             randomItems.push(data[randomItemName]);
           }
         }
-        setItemsForSession(randomItems);
       });
+    fetch(`https://api.genshin.dev/materials/local-specialties/`)
+      .then((response) => response.json())
+      .then((data) => {
+        randomItems.push(data.mondstadt[7]);
+      });
+    setItemsForSession(randomItems);
   };
   useEffect(() => {
     sessionRandomItems();
