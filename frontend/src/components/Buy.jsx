@@ -8,6 +8,7 @@ import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import styles from "./Buy.module.css";
 import BargainModal from "./BargainModal";
+import BargainFailure from "./BargainFailure";
 
 export default function Buy({
   inventory,
@@ -23,6 +24,8 @@ export default function Buy({
   setSelectedItem,
   showRecap,
   setShowRecap,
+  showBargainFailure,
+  setShowBargainFailure,
   moraCount,
   setMoraCount,
   itemPrice,
@@ -54,6 +57,7 @@ export default function Buy({
   ];
 
   const [portrait, setPortrait] = useState("albedo");
+  const [merchantName, setMerchantName] = useState(null);
   const merchants = [
     "albedo",
     "amber",
@@ -69,6 +73,7 @@ export default function Buy({
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
     randomMerchant = merchants[randomMerchantIndex];
+    setMerchantName(randomMerchant);
     setPortrait(
       `https://api.genshin.dev/characters/${randomMerchant}/portrait`
     );
@@ -118,6 +123,8 @@ export default function Buy({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowBargainModal={setShowBargainModal}
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
@@ -129,6 +136,7 @@ export default function Buy({
           setMoraCount={setMoraCount}
           random={random}
           handleClick={handleClick}
+          portrait={portrait}
         />
       ) : null}
       {showModal ? (
@@ -154,6 +162,14 @@ export default function Buy({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
+        />
+      ) : null}
+      {showBargainFailure ? (
+        <BargainFailure
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
+          merchantName={merchantName}
+          setTradeScreen={setTradeScreen}
         />
       ) : null}
       <TradeMerchantText
@@ -191,6 +207,8 @@ Buy.propTypes = {
   setShowModal: PropTypes.func.isRequired,
   showBargainModal: PropTypes.bool.isRequired,
   setShowBargainModal: PropTypes.func.isRequired,
+  showBargainFailure: PropTypes.bool.isRequired,
+  setShowBargainFailure: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
