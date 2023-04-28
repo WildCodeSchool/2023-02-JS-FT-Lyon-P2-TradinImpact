@@ -1,0 +1,20 @@
+.randomItemDisplay {
+  margin-left: -20%;
+  z-index: 2;
+}
+
+.randomItemImg {
+  background-color: var(--trade-third-color);
+  border-radius: 50%;
+}
+
+.randomItemImg,
+.randomItemDisplay img {
+  width: 25vh;
+  height: 25vh;
+}
+
+.randomItemName {
+  margin-top: 10px;
+  font-family: var(--text-font);
+}

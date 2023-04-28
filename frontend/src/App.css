@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 * {
   box-sizing: border-box;
@@ -15,11 +15,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* color variables */
-  --nav-dark: #F97700;
-  --nav-light: #FFB039;
-  --trade-first-color: #FFC700;
+  --nav-dark: #f97700;
+  --nav-light: #ffb039;
+  --nav-btn: #d9d9d9;
+  --trade-first-color: #ffc700;
   --trade-second-color: #fbaf4c;
   --trade-third-color: #ffea9e;
+  --gather-first-color: #2caa00;
+  --gather-second-color: #9add82;
   /* font variables */
   --text-font: "Indie Flower", sans-serif;
   --button-font: "Patrick Hand", sans-serif;

@@ -1,31 +1,50 @@
 .gamepickcontainer {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  
-  .icon {
-    width: 75px;
-    height: 75px;
-    background-color: var(--nav-dark);
-    padding: 25px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .icon > img {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .active {
-    transform: rotate(45deg);
-    border: 5px solid white;
-  }
-  
-  .activeImg {
-    transform: rotate(-45deg);
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.icon {
+  width: 75px;
+  height: 75px;
+  background-color: var(--nav-dark);
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.icon > img {
+  width: 40px;
+  height: 40px;
+  transition: 0.5s;
+}
+
+.active {
+  transform: rotate(45deg);
+  border: 5px solid white;
+  transition: 0.5s;
+}
+
+.active img, .active span {
+  transform: rotate(-45deg);
+  transition: 0.5s;
+}
+
+.gatherCooldown {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  border-radius: inherit;
+  font-family: var(--button-font);
+  font-size: 2em;
+  color: var(--nav-btn);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}

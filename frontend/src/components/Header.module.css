@@ -1,11 +1,11 @@
 .header {
-    width: 90%;
-    height: 75px;
-    background-color: var(--nav-dark);
-    border-radius: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 90%;
+  height: 75px;
+  background-color: var(--nav-dark);
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .avatar,

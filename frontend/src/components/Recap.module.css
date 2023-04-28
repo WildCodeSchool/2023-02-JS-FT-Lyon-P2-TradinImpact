@@ -1,0 +1,52 @@
+.recapBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 5;
+}
+
+.recapModal {
+  width: 60%;
+  height: 35%;
+  background-color: var(--nav-light);
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.recapModal button {
+  font-family: var(--button-font);
+  font-size: 1.3em;
+  padding: 10px 20px;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recapModal h3,
+h4 {
+  max-width: 20ch;
+  font-family: var(--text-font);
+  font-size: 1.6em;
+}
+
+.recapModal img {
+  width: 50px;
+  height: 50px;
+}
+
+.moraBalance,
+.itemTransaction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

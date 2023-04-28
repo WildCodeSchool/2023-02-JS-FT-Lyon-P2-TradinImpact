@@ -1,7 +1,17 @@
+import PropTypes from "prop-types";
 import styles from "./Merchant.module.css";
 
-function Merchant() {
-  return <div className={styles.merchant}>Merchant</div>;
+export default function Merchant({ portrait }) {
+  return (
+    <div className={styles.merchant}>
+      <img src={portrait} alt="Merchant" />
+    </div>
+  );
 }
 
-export default Merchant;
+Merchant.propTypes = {
+  portrait: PropTypes.string.isRequired,
+  merchant: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};

@@ -1,0 +1,42 @@
+.tradeInventory {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tradeInventoryText {
+  font-family: var(--button-font);
+  font-size: 1.5em;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  margin-inline: 1, 5em;
+  margin-bottom: 1em;
+  padding: 10px 30px;
+}
+
+.tradeInventoryItems {
+  width: 80%;
+  height: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.buttonTradeContainer {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonTrade {
+  font-family: var(--button-font);
+  font-size: 1.5em;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  margin-inline: 20px;
+  padding: 10px 30px;
+}
