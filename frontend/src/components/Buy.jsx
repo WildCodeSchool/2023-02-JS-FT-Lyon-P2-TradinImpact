@@ -176,6 +176,7 @@ export default function Buy({
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
         handleClick={handleClick}
+        setSelectedItem={setSelectedItem}
         selectedItem={selectedItem}
         moraCount={moraCount}
         itemPrice={itemPrice}
