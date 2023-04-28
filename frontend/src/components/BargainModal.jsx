@@ -80,8 +80,12 @@ export default function BargainModal({
             onClick={() => {
               const selection = selectedItem;
               if (tradeScreen === "sell") {
-                /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
-                if (saleDeal) {
+                if (playerBet === "") {
+                  setShowVoidAlert(true);
+                } else if (onlyDigits(playerBet) === false) {
+                  setShowNaNAlert(true);
+                } else if (saleDeal) {
+                  /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                   /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                   selection.possessed -= 1;
                   setMoraCount(moraCount + Math.floor(playerBet));
