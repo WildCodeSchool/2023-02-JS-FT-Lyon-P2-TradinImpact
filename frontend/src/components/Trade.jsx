@@ -16,6 +16,7 @@ export default function Trade({
   const [showRecap, setShowRecap] = useState(false);
   const [itemPrice, setItemPrice] = useState(0);
   const [showBargainModal, setShowBargainModal] = useState(false);
+  const [showBargainFailure, setShowBargainFailure] = useState(false);
 
   /* simple fonction random réutilisable */
   const random = (min, max) => {
@@ -48,6 +49,8 @@ export default function Trade({
         setShowModal={setShowModal}
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
+        showBargainFailure={showBargainFailure}
+        setShowBargainFailure={setShowBargainFailure}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
@@ -74,6 +77,8 @@ export default function Trade({
         setShowBargainModal={setShowBargainModal}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
+        showBargainFailure={showBargainFailure}
+        setShowBargainFailure={setShowBargainFailure}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         moraCount={moraCount}

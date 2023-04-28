@@ -8,26 +8,31 @@ export default function BargainModal({
   tradeScreen,
   setShowBargainModal,
   setShowRecap,
+  setShowBargainFailure,
   selectedItem,
   itemPrice,
   setItemPrice,
   moraCount,
   setMoraCount,
   random,
-  randomizeMerchant,
-  handleClick,
 }) {
   /* la modale est alimentée par le state itemSelected */
 
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
   par le biais du formulaire */
-  const [playerBet, setPlayerBet] = useState(moraCount);
+  const [playerBet, setPlayerBet] = useState(itemPrice);
+  const [showExcessAlert, setShowExcessAlert] = useState(false);
+  const [showVoidAlert, setShowVoidAlert] = useState(false);
+  const [showNaNAlert, setShowNaNAlert] = useState(false);
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
-  ou non sur la base d'un chiffre aléatoire (exemple : un joueur qui propose d'acheter
-  un item 15 moras pour un prix affiché de 20 moras a 15 chances sur 20 de voir sa proposition acceptée).  */
+  ou non sur la base d'un chiffre aléatoire  */
   const buyDeal = random(0, itemPrice) < playerBet;
+  /*  Exemple : un joueur qui propose d'acheter un item 18 moras pour un prix affiché de 
+  25 moras a 18 chances sur 25 de voir sa proposition acceptée. */
   const saleDeal = random(0, itemPrice) < itemPrice - (playerBet - itemPrice);
+  /* Exemple : un joueur qui propose de vendre un item 30 moras pour un prix affiché de 
+  25 moras a 20 chances sur 25 de voir sa proposition acceptée.  */
 
   /* Fonction permettant de passer la mise saisie par le joueur via le formulaire dans le state
   playerBet */
@@ -35,22 +40,20 @@ export default function BargainModal({
     setPlayerBet(event.target.value);
   };
 
-  const itemRarity = selectedItem.rarity;
-
-  const getPrice = (rarity) => {
-    if (rarity === undefined) {
-      setItemPrice(random(15, 25));
-    } else if (rarity === 2) {
-      setItemPrice(random(25, 35));
-    } else if (rarity === 3) {
-      setItemPrice(random(35, 45));
+  function onlyDigits(string) {
+    // eslint-disable-next-line no-plusplus
+    for (let i = string.length - 1; i >= 0; i--) {
+      const d = string.charCodeAt(i);
+      if (d < 48 || d > 57) return false;
     }
-  };
+    return true;
+  }
 
   let itemGot = false;
+
   return (
     <div className={styles.background}>
-      <div className={styles.modal}>
+      <div className={styles.bargainmodal}>
         <h3>
           How much would you like to {tradeScreen === "buy" ? "buy" : "sell"}{" "}
           this ?
@@ -87,13 +90,20 @@ export default function BargainModal({
                   setItemPrice(playerBet);
                 } else {
                   setShowBargainModal(false);
-                  randomizeMerchant();
-                  getPrice(itemRarity);
+                  /*                   randomizeMerchant();
+                  getPrice(itemRarity); */
+                  setShowBargainFailure(true);
                 }
               } else if (tradeScreen === "buy") {
-                /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
-                /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
-                if (buyDeal) {
+                /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément 
+                à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
+                if (playerBet > moraCount) {
+                  setShowExcessAlert(true);
+                } else if (playerBet === "") {
+                  setShowVoidAlert(true);
+                } else if (onlyDigits(playerBet) === false) {
+                  setShowNaNAlert(true);
+                } else if (buyDeal) {
                   if (playerBet > moraCount) {
                     setShowBargainModal(false);
                   } else {
@@ -114,7 +124,8 @@ export default function BargainModal({
                   }
                 } else {
                   setShowBargainModal(false);
-                  handleClick();
+                  /* handleClick(); */
+                  setShowBargainFailure(true);
                 }
               }
               /* On fait disparaître la modale et on retourne au menu Présentation */
@@ -137,6 +148,33 @@ export default function BargainModal({
           </button>
         </div>
       </div>
+      {showExcessAlert ? (
+        <div className={styles.alertmodal}>
+          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <h4>
+            {" "}
+            Not enough <br /> moras !
+          </h4>
+        </div>
+      ) : null}
+      {showVoidAlert ? (
+        <div className={styles.alertmodal}>
+          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <h4>
+            {" "}
+            You proposed <br /> nothing !
+          </h4>
+        </div>
+      ) : null}
+      {showNaNAlert ? (
+        <div className={styles.alertmodal}>
+          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <h4>
+            {" "}
+            You must only <br /> use digits
+          </h4>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -145,6 +183,7 @@ BargainModal.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   selectedItem: PropTypes.string.isRequired,
   setShowBargainModal: PropTypes.func.isRequired,
+  setShowBargainFailure: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
@@ -153,6 +192,4 @@ BargainModal.propTypes = {
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
-  randomizeMerchant: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired,
 };

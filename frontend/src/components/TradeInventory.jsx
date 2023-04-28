@@ -26,10 +26,20 @@ export default function TradeInventory({
       );
     });
   };
+
+  /*   Ces variables permettent de vérifier si l'inventaire est vide ou non, auquel cas, le message de
+  présentation est modifié */
+  const itemPossessed = (item) => {
+    return item.possessed === 0;
+  };
+  const emptyInventory = inventory.every(itemPossessed);
+
   /* Le joueur ne peut cliquer sur Select que si un élément a été sélectionné (state selectedItem) */
   return (
     <div className={styles.tradeInventory}>
-      <div className={styles.tradeInventoryText}>Select an item to sell</div>
+      <div className={styles.tradeInventoryText}>
+        {emptyInventory ? "No item to sell" : "Select an item to sell"}
+      </div>
       <div className={styles.tradeInventoryItems}>
         {mapInventory(inventory)}
       </div>
