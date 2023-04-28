@@ -35,9 +35,9 @@ export default function Footer({ gameMode, setGameMode }) {
         type="button"
         onClick={() => setGameMode("gather")}
       >
-        {cooldownGather < 90 ? (
+        {cooldownGather.started ? (
           <div className={styles.gatherCooldown}>
-            <span>{cooldownGather}</span>
+            <span>{cooldownGather.time}</span>
           </div>
         ) : null}
         <img src="./src/assets/basket.png" alt="collect icon" />

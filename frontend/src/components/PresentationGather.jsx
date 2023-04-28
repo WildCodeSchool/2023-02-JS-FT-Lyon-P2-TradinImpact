@@ -5,7 +5,7 @@ export default function PresentationGather() {
   // Import du contexte
   const { gatherScreen, setGatherScreen, cooldownGather } = useGatherContext();
 
-  if (gatherScreen === "presentation" && cooldownGather === 90) {
+  if (gatherScreen === "presentation" && cooldownGather.started === false) {
     return (
       <div className={styles.presentationGather}>
         <div>
@@ -20,11 +20,11 @@ export default function PresentationGather() {
 
   if (
     gatherScreen === "cooldown" ||
-    (gatherScreen === "presentation" && cooldownGather < 90)
+    (gatherScreen === "presentation" && cooldownGather.started === false)
   ) {
     return (
       <div className={styles.presentationGather}>
-        <div>Try again in {cooldownGather}s</div>
+        <div>Try again in {cooldownGather.time}s</div>
       </div>
     );
   }
