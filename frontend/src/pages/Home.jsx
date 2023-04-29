@@ -1,38 +1,10 @@
 import { useState } from "react";
-// import { useGatherContext } from "../contexts/GatherContext";
 import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
 
 export default function Home() {
-  // Gather
-  // Import du context de Gather
-  // const {
-  //   setGatherScreen,
-  //   cooldownGather,
-  //   setCooldownGather,
-  //   startCooldown,
-  //   setStartCooldown,
-  // } = useGatherContext();
-
-  // Lance le cooldown du Gather une fois la modal de recap fermée
-  // useEffect(() => {
-  //   if (startCooldown === true && cooldownGather === 90) {
-  //     const countdown = setInterval(
-  //       () => setCooldownGather(cooldownGather - 1),
-  //       1000
-  //     );
-  //     // Reset les différents states à la fin du cooldown
-  //     if (cooldownGather === 0) {
-  //       clearInterval(countdown);
-  //       setStartCooldown(false);
-  //       setGatherScreen("presentation");
-  //       setCooldownGather(90);
-  //     }
-  //   }
-  // }, [startCooldown, cooldownGather]);
-
   // Trade
   // Création des states
   const [moraCount, setMoraCount] = useState(20);

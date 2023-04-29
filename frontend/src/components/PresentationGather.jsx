@@ -11,7 +11,7 @@ export default function PresentationGather() {
         <div>
           Press <span>Start</span> to collect items from the wild
         </div>
-        <button type="button" onClick={() => setGatherScreen("test")}>
+        <button type="button" onClick={() => setGatherScreen("recap")}>
           Start
         </button>
       </div>

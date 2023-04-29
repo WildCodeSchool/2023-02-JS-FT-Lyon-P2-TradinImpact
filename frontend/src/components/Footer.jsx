@@ -4,14 +4,8 @@ import styles from "./Footer.module.css";
 
 export default function Footer({ gameMode, setGameMode }) {
   // Import du context de Gather pour afficher le cooldown
-  const {
-    gatherScreen,
-    setGatherScreen,
-    cooldownGather,
-    // startCooldown,
-    // setStartCooldown,
-    coolDownBegin,
-  } = useGatherContext();
+  const { gatherScreen, setGatherScreen, cooldownGather, coolDownBegin } =
+    useGatherContext();
 
   /* Au clic sur le bouton trade, change le gamemode et lance le cooldown pour Gather si le joueur 
   change de gamemode au milieu d'une partie */
