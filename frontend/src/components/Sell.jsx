@@ -7,6 +7,8 @@ import TradeItemDisplay from "./TradeItemDisplay";
 import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
+import BargainModal from "./BargainModal";
+import BargainFailure from "./BargainFailure";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -16,11 +18,15 @@ export default function Sell({
   setTradeScreen,
   showModal,
   setShowModal,
+  showBargainModal,
+  setShowBargainModal,
   random,
   selectedItem,
   setSelectedItem,
   showRecap,
   setShowRecap,
+  showBargainFailure,
+  setShowBargainFailure,
   moraCount,
   setMoraCount,
   itemPrice,
@@ -30,6 +36,7 @@ export default function Sell({
 
   /* Randomisation du marchand au montage du composant */
   const [portrait, setPortrait] = useState("albedo");
+  const [merchantName, setMerchantName] = useState(null);
   const merchants = [
     "albedo",
     "amber",
@@ -46,11 +53,13 @@ export default function Sell({
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
     randomMerchant = merchants[randomMerchantIndex];
+    setMerchantName(randomMerchant);
     setPortrait(
       `https://api.genshin.dev/characters/${randomMerchant}/portrait`
     );
   };
   useEffect(() => {
+    setSelectedItem(null);
     randomizeMerchant();
   }, []);
 
@@ -76,6 +85,26 @@ export default function Sell({
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
   return isItemSelected ? (
     <div className={styles.display}>
+      {showBargainModal ? (
+        <BargainModal
+          tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
+          setShowBargainModal={setShowBargainModal}
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          setShowRecap={setShowRecap}
+          itemPrice={itemPrice}
+          setItemPrice={setItemPrice}
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          random={random}
+          randomizeMerchant={randomizeMerchant}
+        />
+      ) : null}
       {showModal ? (
         <ConfirmationModal
           inventory={inventory}
@@ -101,6 +130,14 @@ export default function Sell({
           setShowRecap={setShowRecap}
         />
       ) : null}
+      {showBargainFailure ? (
+        <BargainFailure
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
+          setTradeScreen={setTradeScreen}
+          merchantName={merchantName}
+        />
+      ) : null}
       <TradeMerchantText
         tradeScreen={tradeScreen}
         itemPrice={itemPrice}
@@ -113,6 +150,8 @@ export default function Sell({
         tradeScreen={tradeScreen}
         setTradeScreen={setTradeScreen}
         setShowModal={setShowModal}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
       />
     </div>
   ) : (
@@ -134,8 +173,12 @@ Sell.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
+  showBargainModal: PropTypes.bool.isRequired,
+  setShowBargainModal: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,
   setShowRecap: PropTypes.func.isRequired,
+  showBargainFailure: PropTypes.bool.isRequired,
+  setShowBargainFailure: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,

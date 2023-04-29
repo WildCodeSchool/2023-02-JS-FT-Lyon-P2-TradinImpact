@@ -26,22 +26,32 @@
 }
 
 .gatherRecap p {
-    max-width: 20ch;
+  max-width: 20ch;
 }
 
 .gatherRecap div {
-    max-height: 50%;
-    font-size: 0.8em;
-    overflow: auto;
+  max-height: 50%;
+  font-size: 0.8em;
+  overflow: auto;
 }
 
 .gatherRecap button {
-    font-family: var(--button-font);
-    font-size: 1em;
-    padding: 10px 20px;
-    background-color: var(--nav-btn);
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-family: var(--button-font);
+  font-size: 1em;
+  padding: 10px 20px;
+  background-color: var(--nav-btn);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemLine {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+img {
+  height: 2em;
 }

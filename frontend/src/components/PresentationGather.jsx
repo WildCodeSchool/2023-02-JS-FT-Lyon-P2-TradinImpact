@@ -11,7 +11,7 @@ export default function PresentationGather() {
         <div>
           Press <span>Start</span> to collect items from the wild
         </div>
-        <button type="button" onClick={() => setGatherScreen("recap")}>
+        <button type="button" onClick={() => setGatherScreen("game")}>
           Start
         </button>
       </div>
@@ -20,7 +20,7 @@ export default function PresentationGather() {
 
   if (
     gatherScreen === "cooldown" ||
-    (gatherScreen === "presentation" && cooldownGather.started === false)
+    (gatherScreen === "presentation" && cooldownGather.started === true)
   ) {
     return (
       <div className={styles.presentationGather}>
