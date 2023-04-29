@@ -49,7 +49,6 @@ export default function Footer({ gameMode, setGameMode }) {
         <img src="./src/assets/bourse2.png" alt="trade icon" />
       </button>
       <button
-        disabled={gameMode !== "combat"}
         className={
           gameMode === "combat"
             ? `${styles.icon} ${styles.active}`
