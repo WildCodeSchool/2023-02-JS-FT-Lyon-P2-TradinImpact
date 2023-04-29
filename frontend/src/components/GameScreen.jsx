@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Trade from "./Trade";
 import Gather from "./Gather";
+import Combat from "./Combat";
 import styles from "./GameScreen.module.css";
 
 export default function GameScreen({
@@ -39,6 +40,13 @@ export default function GameScreen({
           setInventory={setInventory}
           random={random}
         />
+      </div>
+    );
+  }
+  if (gameMode === "combat") {
+    return (
+      <div className={`${styles.gamescreen} ${styles.combat}`}>
+        <Combat />{" "}
       </div>
     );
   }

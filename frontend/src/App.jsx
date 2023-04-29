@@ -4,23 +4,26 @@ import Home from "./pages/Home";
 import Start from "./pages/Start";
 import "./App.css";
 import { GatherContextProvider } from "./contexts/GatherContext";
+import { CombatContextProvider } from "./contexts/CombatContext";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
 
   return (
     <GatherContextProvider>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Start playerName={playerName} setPlayerName={setPlayerName} />
-            }
-          />
-          <Route path="/home" element={<Home playerName={playerName} />} />
-        </Routes>
-      </div>
+      <CombatContextProvider>
+        <div className="App">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Start playerName={playerName} setPlayerName={setPlayerName} />
+              }
+            />
+            <Route path="/home" element={<Home playerName={playerName} />} />
+          </Routes>
+        </div>
+      </CombatContextProvider>
     </GatherContextProvider>
   );
 }
