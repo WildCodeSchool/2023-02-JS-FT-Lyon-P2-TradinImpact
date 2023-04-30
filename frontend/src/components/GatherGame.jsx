@@ -33,6 +33,7 @@ export default function GatherGame({
     if (isGameOn) {
       setPopTimer(random(2, 3));
       const randomTrapItem = random(0, 10);
+      // Il y a une chance sur 11 que l'objet qui apparaît soit un objet piège
       if (randomTrapItem === 5) {
         const itemToSet = trapItem;
         const x = random(1, 81);
@@ -102,6 +103,7 @@ export default function GatherGame({
                   setGatherSatchel([...gatherSatchel, itemToSet]);
                   itemGot = true;
                 }
+                // le count permet l'affichage en temps réel du nombre d'objets dans la sacoche
                 if (itemGot) {
                   setCount(() => count + 1);
                 }
@@ -140,6 +142,7 @@ export default function GatherGame({
   }, []);
 
   // Le useEffect permet de mettre à jour le timer global du mini-jeu toutes les 1000ms
+  // mais aussi le timer de l'objet piège toutes les 1000ms
   useEffect(() => {
     timerInterval = setInterval(() => {
       setTimer(timer - 1);
@@ -169,11 +172,6 @@ export default function GatherGame({
       clearInterval(trapTimerInterval);
     };
   }, [timer]);
-
-  // Le useEffect permet de mettre à jour le timer de l'objet piège qui apparaît toutes les 1000ms
-  // useEffect(() => {
-
-  // }, [trapTimer]);
 
   // Le useEffect permet de mettre à jour le timer de l'objet qui apparaît toutes les 1000ms
   useEffect(() => {
