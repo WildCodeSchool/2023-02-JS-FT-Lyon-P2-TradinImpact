@@ -24,6 +24,7 @@ export default function BargainModal({
   const [showExcessAlert, setShowExcessAlert] = useState(false);
   const [showVoidAlert, setShowVoidAlert] = useState(false);
   const [showNaNAlert, setShowNaNAlert] = useState(false);
+  const [showCheatAlert, setShowCheatAlert] = useState(false);
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire  */
@@ -59,58 +60,69 @@ export default function BargainModal({
           this ?
         </h3>
         <div>
-          <div className={styles.inputcontainer}>
-            <input
-              className={styles.input}
-              id="bet"
-              name="bet"
-              type="text"
-              value={playerBet}
-              onChange={handleChange}
-            />
-            <img
-              src="src\assets\mora-coin.png"
-              alt="mora coin"
-              className={styles.bargainmoracoin}
-            />
-          </div>
-          <button
-            type="button"
-            className="button-confirm"
-            onClick={() => {
-              const selection = selectedItem;
-              if (tradeScreen === "sell") {
-                if (playerBet === "") {
-                  setShowVoidAlert(true);
-                } else if (onlyDigits(playerBet) === false) {
-                  setShowNaNAlert(true);
-                } else if (saleDeal) {
-                  /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
-                  /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
-                  selection.possessed -= 1;
-                  setMoraCount(moraCount + Math.floor(playerBet));
-                  setShowRecap(true);
-                  setShowBargainModal(false);
-                  setItemPrice(playerBet);
-                } else {
-                  setShowBargainModal(false);
-                  /*                   randomizeMerchant();
-                  getPrice(itemRarity); */
-                  setShowBargainFailure(true);
-                }
-              } else if (tradeScreen === "buy") {
-                /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément 
-                à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
-                if (playerBet > moraCount) {
-                  setShowExcessAlert(true);
-                } else if (playerBet === "") {
-                  setShowVoidAlert(true);
-                } else if (onlyDigits(playerBet) === false) {
-                  setShowNaNAlert(true);
-                } else if (buyDeal) {
-                  if (playerBet > moraCount) {
+          <form>
+            <div className={styles.inputcontainer}>
+              <input
+                className={styles.input}
+                id="bet"
+                name="bet"
+                type="text"
+                value={playerBet}
+                onChange={handleChange}
+              />
+              <img
+                src="src\assets\mora-coin.png"
+                alt="mora coin"
+                className={styles.bargainmoracoin}
+              />
+            </div>
+            <button
+              type="submit"
+              className="button-confirm"
+              onClick={(e) => {
+                e.preventDefault();
+                const selection = selectedItem;
+                if (tradeScreen === "sell") {
+                  if (playerBet === "") {
+                    setShowVoidAlert(true);
+                    setTimeout(() => setShowVoidAlert(false), 2000);
+                  } else if (playerBet === "IAmACheater") {
+                    setShowCheatAlert(true);
+                    setMoraCount(1000);
+                    setTimeout(() => setShowCheatAlert(false), 2000);
+                  } else if (onlyDigits(playerBet) === false) {
+                    setShowNaNAlert(true);
+                    setTimeout(() => setShowNaNAlert(false), 2000);
+                  } else if (saleDeal) {
+                    /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
+                    /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
+                    selection.possessed -= 1;
+                    setMoraCount(moraCount + Math.floor(playerBet));
+                    setShowRecap(true);
                     setShowBargainModal(false);
+                    setItemPrice(playerBet);
                   } else {
+                    setShowBargainModal(false);
+                    setShowBargainFailure(true);
+                  }
+                } else if (tradeScreen === "buy") {
+                  if (playerBet > moraCount) {
+                    setShowExcessAlert(true);
+                    setTimeout(() => setShowExcessAlert(false), 2000);
+                  } else if (playerBet === "") {
+                    setShowVoidAlert(true);
+                    setTimeout(() => setShowVoidAlert(false), 2000);
+                  } else if (playerBet === "IAmACheater") {
+                    setShowCheatAlert(true);
+                    setMoraCount(1000);
+                    setTimeout(() => setShowCheatAlert(false), 2000);
+                  } else if (onlyDigits(playerBet) === false) {
+                    setShowNaNAlert(true);
+                    setTimeout(() => setShowNaNAlert(false), 2000);
+                  } else if (buyDeal) {
+                    /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
+                    /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément 
+                à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
                     for (const item of inventory) {
                       if (item.name === selectedItem.name) {
                         item.possessed += 1;
@@ -125,21 +137,21 @@ export default function BargainModal({
                     setShowBargainModal(false);
                     setShowRecap(true);
                     setItemPrice(playerBet);
+                  } else {
+                    setShowBargainModal(false);
+                    /* handleClick(); */
+                    setShowBargainFailure(true);
                   }
-                } else {
-                  setShowBargainModal(false);
-                  /* handleClick(); */
-                  setShowBargainFailure(true);
                 }
-              }
-              /* On fait disparaître la modale et on retourne au menu Présentation */
-              /*               setShowBargainModal(false);
+                /* On fait disparaître la modale et on retourne au menu Présentation */
+                /*               setShowBargainModal(false);
               setShowRecap(true); */
-              /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
-            }}
-          >
-            Confirm
-          </button>
+                /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
+              }}
+            >
+              Confirm
+            </button>
+          </form>
           <button
             type="button"
             onClick={() => {
@@ -176,6 +188,15 @@ export default function BargainModal({
           <h4>
             {" "}
             You must only <br /> use digits
+          </h4>
+        </div>
+      ) : null}
+      {showCheatAlert ? (
+        <div className={styles.alertmodal}>
+          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <h4>
+            {" "}
+            You <br /> cheater!
           </h4>
         </div>
       ) : null}
