@@ -58,7 +58,11 @@ export default function Start({ playerName, setPlayerName }) {
             onChange={(e) => setPlayerName(e.target.value)}
           />
           <Link to="/home">
-            <button type="button" disabled={playerName === ""}>
+            <button
+              type="submit"
+              disabled={playerName === ""}
+              onSubmit={(e) => e.preventDefault()}
+            >
               Start your journey
             </button>
           </Link>
