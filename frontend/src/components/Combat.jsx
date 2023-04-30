@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
+import CombatGame from "./CombatGame";
 
 export default function Combat() {
   // Import des states nécessaires depuis le Context
@@ -12,5 +13,11 @@ export default function Combat() {
   }, []);
 
   // Affichage des composants en fonction du State combatScreen
-  return combatScreen === "presentation" && <PresentationCombat />;
+  if (combatScreen === "presentation") {
+    return <PresentationCombat />;
+  }
+
+  if (combatScreen === "game") {
+    return <CombatGame />;
+  }
 }
