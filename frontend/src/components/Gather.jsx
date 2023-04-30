@@ -9,6 +9,7 @@ export default function Gather({ random, inventory, setInventory }) {
   const [itemsForSession, setItemsForSession] = useState([]);
   const { gatherScreen, setGatherScreen } = useGatherContext();
   const [gatherSatchel, setGatherSatchel] = useState([]);
+  const [trapItem, setTrapItem] = useState(null);
   // tableau des items qui peuvent potentiellement apparaître lors du mini jeu de collecte
   const itemsToGather = [
     "Bamboo-shoot",
@@ -38,6 +39,7 @@ export default function Gather({ random, inventory, setInventory }) {
   // Définition des objets qui pourront être récoltés dans cette session
   const sessionRandomItems = () => {
     const randomItems = [];
+    setItemsForSession([]);
     fetch(`https://api.genshin.dev/materials/cooking-ingredients/`)
       .then((response) => response.json())
       .then((data) => {
@@ -51,16 +53,27 @@ export default function Gather({ random, inventory, setInventory }) {
             randomItems.push(data[randomItemName]);
           }
         }
-        setItemsForSession(randomItems);
       });
+    setItemsForSession(randomItems);
   };
+
+  useEffect(() => {
+    fetch(`https://api.genshin.dev/materials/local-specialties/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTrapItem(data.mondstadt[7]);
+      });
+  }, []);
+
   useEffect(() => {
     sessionRandomItems();
   }, []);
 
   // Lorsque le composant est démonté, le nouvel écran par défaut devient "présentation" / cooldown
   useEffect(() => {
-    return () => setGatherScreen("presentation");
+    return () => {
+      setGatherScreen("presentation");
+    };
   }, []);
 
   if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
@@ -84,6 +97,7 @@ export default function Gather({ random, inventory, setInventory }) {
   if (gatherScreen === "game") {
     return (
       <GatherGame
+        trapItem={trapItem}
         random={random}
         setGatherScreen={setGatherScreen}
         itemsForSession={itemsForSession}
