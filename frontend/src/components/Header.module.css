@@ -20,6 +20,11 @@
   margin-left: -5px;
 }
 
+.playerName {
+  font-family: var(--text-font);
+  font-size: 1.2rem;
+}
+
 .moraCount {
   width: 110px;
   height: 50px;

@@ -31,7 +31,6 @@
 
 .active img, .active span {
   transform: rotate(-45deg);
-  transition: 0.5s;
 }
 
 .gatherCooldown {

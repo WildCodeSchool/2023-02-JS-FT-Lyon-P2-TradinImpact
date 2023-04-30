@@ -4,8 +4,7 @@ import styles from "./GatherRecap.module.css";
 
 export default function GatherRecap({ inventory, gatherSatchel }) {
   // Import du context
-  const { setGatherScreen, setStartCooldown } = useGatherContext();
-
+  const { setGatherScreen, coolDownBegin } = useGatherContext();
   // Au clic du bouton Close, on affiche le cooldown et on démarre le timer
   const handleClick = () => {
     for (const gatheredItem of gatherSatchel) {
@@ -21,7 +20,7 @@ export default function GatherRecap({ inventory, gatherSatchel }) {
       }
     }
     setGatherScreen("cooldown");
-    setStartCooldown(true);
+    coolDownBegin();
   };
 
   let loot = 0;
