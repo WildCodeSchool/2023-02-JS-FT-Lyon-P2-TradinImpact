@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
 
-export default function Home() {
+export default function Home({ playerName }) {
   // Trade
   // Création des states
   const [moraCount, setMoraCount] = useState(20);
@@ -21,7 +22,7 @@ export default function Home() {
 
   return (
     <div className={styles.layout}>
-      <Header moraCount={moraCount} setMoraCount={setMoraCount} />
+      <Header moraCount={moraCount} playerName={playerName} />
       <GameScreen
         gameMode={gameMode}
         setGameMode={setGameMode}
@@ -34,3 +35,7 @@ export default function Home() {
     </div>
   );
 }
+
+Home.propTypes = {
+  playerName: PropTypes.string.isRequired,
+};
