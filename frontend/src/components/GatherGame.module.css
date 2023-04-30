@@ -4,9 +4,10 @@
 }
 
 .counters {
-  height: 10%;
+  height: 20%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .popWindow {
@@ -14,7 +15,6 @@
   display: grid;
   grid-template-columns: repeat(100, 1%);
   grid-template-rows: repeat(100, 1%);
-  margin-bottom: 3em;
 }
 
 .popButton {
@@ -44,7 +44,7 @@
 
 .counters > div {
   width: 40%;
-  height: 70%;
+  height: 50%;
   font-family: var(--button-font);
   font-size: 1.3em;
   background-color: var(--gather-second-color);
@@ -54,12 +54,25 @@
   align-items: center;
 }
 
+.trapPopup {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .trapText {
   width: 50%;
-  max-width: 25ch;
-  padding: 30px;
+  height: 40%;
+  padding: 10px;
   font-family: var(--text-font);
   font-size: 1.5em;
   background-color: var(--nav-light);
   border-radius: 50px;
+}
+
+.trapText > p {
+  width: 90%;
+  margin: auto;
 }

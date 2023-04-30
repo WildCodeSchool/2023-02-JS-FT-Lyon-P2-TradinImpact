@@ -186,19 +186,23 @@ export default function GatherGame({
   if (isGameOn) {
     return (
       <div className={styles.gatherGameWindow}>
-        <div className={styles.popWindow}>
-          {trapTimer > 0 ? (
+        {trapTimer > 0 ? (
+          <div className={styles.trapPopup}>
             <div className={styles.trapText}>
               <img
                 src="https://api.genshin.dev/materials/local-specialties/wolfhook"
                 alt={itemToPop.name}
               />
-              You've been stung ! Wait {trapTimer}s.
+              <p>
+                You've been stung ! Wait {trapTimer > timer ? timer : trapTimer}
+                s.
+              </p>
             </div>
-          ) : (
-            itemToPop.img
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className={styles.popWindow}>{itemToPop.img}</div>
+        )}
+
         <div className={styles.counters}>
           <div>{timer}s remaining</div> <div>{count} items gathered</div>
         </div>
