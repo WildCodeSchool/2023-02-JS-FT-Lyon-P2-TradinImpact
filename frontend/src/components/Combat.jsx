@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
+import CombatGame from "./CombatGame";
 
 export default function Combat({
   // inventory,
@@ -21,6 +22,10 @@ export default function Combat({
   // Affichage des composants en fonction du State combatScreen
   if (combatScreen === "presentation") {
     return <PresentationCombat random={random} />;
+  }
+
+  if (combatScreen === "game") {
+    return <CombatGame />;
   }
 }
 
