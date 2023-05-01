@@ -5,11 +5,10 @@ import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
 
-export default function Home({ playerName }) {
+export default function Home({ playerName, gameMode, setGameMode }) {
   // Trade
   // Création des states
   const [moraCount, setMoraCount] = useState(20);
-  const [gameMode, setGameMode] = useState("trade");
   const [inventory, setInventory] = useState([
     {
       name: "Almond",
@@ -38,4 +37,6 @@ export default function Home({ playerName }) {
 
 Home.propTypes = {
   playerName: PropTypes.string.isRequired,
+  gameMode: PropTypes.string.isRequired,
+  setGameMode: PropTypes.func.isRequired,
 };
