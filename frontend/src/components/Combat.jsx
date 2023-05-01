@@ -4,13 +4,7 @@ import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
 import CombatGame from "./CombatGame";
 
-export default function Combat({
-  // inventory,
-  // setInventory,
-  // moraCount,
-  // setMoraCount,
-  random,
-}) {
+export default function Combat({ random }) {
   // Import des states nécessaires depuis le Context
   const { combatScreen, setCombatScreen } = useCombatContext();
 
@@ -31,8 +25,4 @@ export default function Combat({
 
 Combat.propTypes = {
   random: PropTypes.func.isRequired,
-  // setInventory: PropTypes.func.isRequired,
-  // inventory: PropTypes.arrayOf.isRequired,
-  // setMoraCount: PropTypes.func.isRequired,
-  // moraCount: PropTypes.number.isRequired,
 };
