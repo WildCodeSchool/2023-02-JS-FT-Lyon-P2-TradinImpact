@@ -3,7 +3,13 @@ import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
 import CombatGame from "./CombatGame";
 
-export default function Combat() {
+export default function Combat(
+  random,
+  inventory,
+  setInventory,
+  moraCount,
+  setMoraCount
+) {
   // Import des states nécessaires depuis le Context
   const { combatScreen, setCombatScreen } = useCombatContext();
 
@@ -18,6 +24,14 @@ export default function Combat() {
   }
 
   if (combatScreen === "game") {
-    return <CombatGame />;
+    return (
+      <CombatGame
+        inventory={inventory}
+        setInventory={setInventory}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
+        random={random}
+      />
+    );
   }
 }

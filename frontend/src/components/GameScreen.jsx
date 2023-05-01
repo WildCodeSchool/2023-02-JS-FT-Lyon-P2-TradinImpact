@@ -46,7 +46,13 @@ export default function GameScreen({
   if (gameMode === "combat") {
     return (
       <div className={`${styles.gamescreen} ${styles.combat}`}>
-        <Combat />{" "}
+        <Combat
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          random={random}
+        />{" "}
       </div>
     );
   }
