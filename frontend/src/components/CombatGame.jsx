@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./CombatGame.module.css";
@@ -5,12 +6,12 @@ import CombatEnemy from "./CombatEnemy";
 import CombatResultModal from "./CombatResultModal";
 import JanKenPon from "./JanKenPon";
 
-export default function CombatGame(
+export default function CombatGame({
   inventory,
   setInventory,
   moraCount,
-  setMoraCount
-) {
+  setMoraCount,
+}) {
   const {
     enemyChoice,
     result,
@@ -23,6 +24,7 @@ export default function CombatGame(
     setMatchWinner,
     showCombatResultModal,
     setShowCombatResultModal,
+    enemy,
   } = useCombatContext();
 
   // const dropRarity = 2;
@@ -73,10 +75,17 @@ export default function CombatGame(
   return (
     <div className={styles.combatGame}>
       {showCombatResultModal ? (
-        <CombatResultModal moraCount={moraCount} setMoraCount={setMoraCount} />
+        <CombatResultModal
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          inventory={inventory}
+          setInventory={setInventory}
+        />
       ) : null}
       <div className={styles.enemyInfos}>
-        <p>*enemy.name* - {enemyHP} HP</p>
+        <p>
+          {enemy.name} - {enemyHP} HP
+        </p>
         {enemyChoice !== "" ? (
           <div className={styles.enemyChoice}>
             <img src={`./src/assets/${enemyChoice}.png`} alt={enemyChoice} />
@@ -104,3 +113,10 @@ export default function CombatGame(
     </div>
   );
 }
+
+CombatGame.propTypes = {
+  inventory: PropTypes.string.isRequired,
+  setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
+};

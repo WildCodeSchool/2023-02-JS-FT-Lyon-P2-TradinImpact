@@ -1,11 +1,9 @@
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./CombatResultModal.module.css";
 
-export default function CombatResultModal() {
-  //   {
-  //     //   moraCount,
-  //     //   setMoraCount,
-  //   }
+export default function CombatResultModal({ moraCount, setMoraCount }) {
   const {
     setCombatScreen,
     matchWinner,
@@ -13,12 +11,18 @@ export default function CombatResultModal() {
     setPlayerHP,
     setMatchWinner,
     setShowCombatResultModal,
+    enemy,
+    moraLoss,
+    setMoraLoss,
   } = useCombatContext();
-  //   console.log(matchWinner);
-  //   console.log(moraCount);
-  /*   if (matchWinner === "enemy") {
-    setMoraCount(Math.ceil(moraCount * 0.9));
-  } */
+
+  useEffect(() => {
+    if (matchWinner === "enemy") {
+      setMoraCount(Math.ceil(moraCount * 0.9));
+      setMoraLoss(Math.floor(moraCount * 0.1));
+    }
+  }, []);
+
   const handleClick = () => {
     setCombatScreen("presentation");
     setMatchWinner(null);
@@ -33,7 +37,7 @@ export default function CombatResultModal() {
           <h3>
             {" "}
             You win! <br />
-            enemyname* dropped this item before running away :
+            {enemy.name} dropped this item before running away :
           </h3>
           <div>
             <img src="" alt="item" />
@@ -48,8 +52,8 @@ export default function CombatResultModal() {
           <h3>
             {" "}
             You lost! <br />
-            enemyname* extorted X{/* {Math.floor(moraCount * 0.1)} */} moras
-            from you before running away...
+            {enemy.name} extorted {moraLoss} moras from you before running
+            away...
           </h3>
           <button type="button" onClick={() => handleClick()}>
             Close
@@ -59,3 +63,8 @@ export default function CombatResultModal() {
     </div>
   );
 }
+
+CombatResultModal.propTypes = {
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
+};

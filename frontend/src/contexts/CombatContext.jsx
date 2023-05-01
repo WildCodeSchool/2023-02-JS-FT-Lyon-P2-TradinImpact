@@ -17,11 +17,20 @@ export function CombatContextProvider({ children }) {
   const [playerHP, setPlayerHP] = useState(10);
   const [matchWinner, setMatchWinner] = useState(null);
   const [showCombatResultModal, setShowCombatResultModal] = useState(false);
+  const [moraLoss, setMoraLoss] = useState(null);
+  // Génération de l'ennemi et de son portrait
+  const [enemy, setEnemy] = useState(null);
+  const [enemyPortrait, setEnemyPortrait] = useState(null);
+
   // Memo pour optimisation => empêche les rerenders intempestifs au moindre changement de state
   //  - Passer les getter et setter de vos states entre les accolades, et le getter dans le tableau
   //    de dépendances
   const value = useMemo(
     () => ({
+      enemy,
+      setEnemy,
+      enemyPortrait,
+      setEnemyPortrait,
       combatScreen,
       setCombatScreen,
       playerChoice,
@@ -38,6 +47,8 @@ export function CombatContextProvider({ children }) {
       setMatchWinner,
       showCombatResultModal,
       setShowCombatResultModal,
+      moraLoss,
+      setMoraLoss,
     }),
     [
       combatScreen,
@@ -48,6 +59,9 @@ export function CombatContextProvider({ children }) {
       playerHP,
       matchWinner,
       showCombatResultModal,
+      enemy,
+      enemyPortrait,
+      moraLoss,
     ]
   );
 

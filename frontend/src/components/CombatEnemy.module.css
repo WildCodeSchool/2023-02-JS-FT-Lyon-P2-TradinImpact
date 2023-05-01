@@ -1,0 +1,8 @@
+.enemyBox {
+  height: 70%;
+}
+
+.enemyImg {
+  height: 100%;
+  filter: drop-shadow(5px 5px 7px black);
+}

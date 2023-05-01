@@ -106,6 +106,7 @@ export default function GatherGame({
                 // le count permet l'affichage en temps réel du nombre d'objets dans la sacoche
                 if (itemGot) {
                   setCount(() => count + 1);
+                  setItemToPop(null);
                 }
               }
             }}
@@ -198,7 +199,7 @@ export default function GatherGame({
             </div>
           </div>
         ) : (
-          <div className={styles.popWindow}>{itemToPop.img}</div>
+          <div className={styles.popWindow}>{itemToPop && itemToPop.img}</div>
         )}
 
         <div className={styles.counters}>
