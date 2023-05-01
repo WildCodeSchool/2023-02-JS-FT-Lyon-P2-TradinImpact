@@ -4,12 +4,12 @@ import CombatEnemy from "./CombatEnemy";
 import JanKenPon from "./JanKenPon";
 
 export default function CombatGame() {
-  const { enemyChoice, result } = useCombatContext();
+  const { enemyChoice, result, enemy } = useCombatContext();
 
   return (
     <div className={styles.combatGame}>
       <div className={styles.enemyInfos}>
-        <p>*enemy.name* - *enemy.hp*</p>
+        <p>{enemy.name} - *enemy.hp*</p>
         {enemyChoice !== "" ? (
           <div className={styles.enemyChoice}>
             <img src={`./src/assets/${enemyChoice}.png`} alt={enemyChoice} />

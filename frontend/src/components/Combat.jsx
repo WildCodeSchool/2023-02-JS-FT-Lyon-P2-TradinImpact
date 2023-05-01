@@ -1,9 +1,10 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
 import CombatGame from "./CombatGame";
 
-export default function Combat() {
+export default function Combat({ random }) {
   // Import des states nécessaires depuis le Context
   const { combatScreen, setCombatScreen } = useCombatContext();
 
@@ -14,10 +15,14 @@ export default function Combat() {
 
   // Affichage des composants en fonction du State combatScreen
   if (combatScreen === "presentation") {
-    return <PresentationCombat />;
+    return <PresentationCombat random={random} />;
   }
 
   if (combatScreen === "game") {
     return <CombatGame />;
   }
 }
+
+Combat.propTypes = {
+  random: PropTypes.func.isRequired,
+};

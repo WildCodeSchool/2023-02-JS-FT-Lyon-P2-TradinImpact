@@ -12,12 +12,18 @@ export function CombatContextProvider({ children }) {
   const [playerChoice, setPlayerChoice] = useState("");
   const [enemyChoice, setEnemyChoice] = useState("");
   const [result, setResult] = useState(null);
+  const [enemy, setEnemy] = useState(null);
+  const [enemyPortrait, setEnemyPortrait] = useState(null);
 
   // Memo pour optimisation => empêche les rerenders intempestifs au moindre changement de state
   //  - Passer les getter et setter de vos states entre les accolades, et le getter dans le tableau
   //    de dépendances
   const value = useMemo(
     () => ({
+      enemy,
+      setEnemy,
+      enemyPortrait,
+      setEnemyPortrait,
       combatScreen,
       setCombatScreen,
       playerChoice,
@@ -27,7 +33,7 @@ export function CombatContextProvider({ children }) {
       result,
       setResult,
     }),
-    [combatScreen, playerChoice, enemyChoice, result]
+    [combatScreen, playerChoice, enemyChoice, result, enemy, enemyPortrait]
   );
 
   return (
