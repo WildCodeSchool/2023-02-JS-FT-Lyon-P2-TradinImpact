@@ -1,20 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./CombatGame.module.css";
 import CombatEnemy from "./CombatEnemy";
+import CombatResultModal from "./CombatResultModal";
 import JanKenPon from "./JanKenPon";
 
-export default function CombatGame() {
-  // inventory,
-  // setInventory,
-  // moraCount,
-  // setMoraCount
-  const { enemyChoice, result } = useCombatContext();
-  const [enemyHP, setEnemyHP] = useState(10);
-  const [playerHP, setPlayerHP] = useState(10);
-  // const [winner, setWinner] = useState(null);
-  // const [roundWinner, setRoundWinner] = useState(null);
-  /*  Cet état pourrait stocker dynamiquement le vainqueur de chaque manche */
+export default function CombatGame(
+  inventory,
+  setInventory,
+  moraCount,
+  setMoraCount
+) {
+  const {
+    enemyChoice,
+    result,
+    // setCombatScreen,
+    enemyHP,
+    setEnemyHP,
+    playerHP,
+    setPlayerHP,
+    // matchWinner,
+    setMatchWinner,
+    showCombatResultModal,
+    setShowCombatResultModal,
+  } = useCombatContext();
+
   // const dropRarity = 2;
   //    Il s'agit d'une valeur test, à remplacer par la valeur de la propriété
   // "rarity" dans l'objet stocké dans le state qui sera alimenté par l'appel à l'API
@@ -44,19 +54,27 @@ export default function CombatGame() {
   useEffect(() => {
     if (ongoingMatch && result === "win") {
       setEnemyHP(Math.max(enemyHP - damage, 0));
-      // if (enemyHP === 0) {
-      //   setWinner("player");
-      // }
     } else if (ongoingMatch && result === "lose") {
       setPlayerHP(Math.max(playerHP - damage, 0));
-      // if (playerHP === 0) {
-      //   setWinner("enemy");
-      // }
     }
   }, [result]);
 
+  useEffect(() => {
+    if (enemyHP === 0) {
+      setMatchWinner("player");
+      setShowCombatResultModal(true);
+    } else if (playerHP === 0) {
+      setMatchWinner("enemy");
+      setShowCombatResultModal(true);
+    }
+  });
+  // const winner = playerHP === 0 || enemyHP === 0;
+
   return (
     <div className={styles.combatGame}>
+      {showCombatResultModal ? (
+        <CombatResultModal moraCount={moraCount} setMoraCount={setMoraCount} />
+      ) : null}
       <div className={styles.enemyInfos}>
         <p>*enemy.name* - {enemyHP} HP</p>
         {enemyChoice !== "" ? (

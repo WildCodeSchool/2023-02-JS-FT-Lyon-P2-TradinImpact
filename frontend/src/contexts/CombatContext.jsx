@@ -12,7 +12,11 @@ export function CombatContextProvider({ children }) {
   const [playerChoice, setPlayerChoice] = useState("");
   const [enemyChoice, setEnemyChoice] = useState("");
   const [result, setResult] = useState(null);
-
+  // Calcul des PV et désignation du vainqueur
+  const [enemyHP, setEnemyHP] = useState(10);
+  const [playerHP, setPlayerHP] = useState(10);
+  const [matchWinner, setMatchWinner] = useState(null);
+  const [showCombatResultModal, setShowCombatResultModal] = useState(false);
   // Memo pour optimisation => empêche les rerenders intempestifs au moindre changement de state
   //  - Passer les getter et setter de vos states entre les accolades, et le getter dans le tableau
   //    de dépendances
@@ -26,8 +30,25 @@ export function CombatContextProvider({ children }) {
       setEnemyChoice,
       result,
       setResult,
+      enemyHP,
+      setEnemyHP,
+      playerHP,
+      setPlayerHP,
+      matchWinner,
+      setMatchWinner,
+      showCombatResultModal,
+      setShowCombatResultModal,
     }),
-    [combatScreen, playerChoice, enemyChoice, result]
+    [
+      combatScreen,
+      playerChoice,
+      enemyChoice,
+      result,
+      enemyHP,
+      playerHP,
+      matchWinner,
+      showCombatResultModal,
+    ]
   );
 
   return (
