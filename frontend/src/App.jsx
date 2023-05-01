@@ -8,11 +8,21 @@ import { CombatContextProvider } from "./contexts/CombatContext";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
+  const [gameMode, setGameMode] = useState("trade");
+  let appClass = "App";
+
+  if (gameMode === "trade") {
+    appClass = "App AppTrade";
+  } else if (gameMode === "combat") {
+    appClass = "App AppCombat";
+  } else if (gameMode === "gather") {
+    appClass = "App AppGather";
+  }
 
   return (
     <GatherContextProvider>
       <CombatContextProvider>
-        <div className="App">
+        <div className={appClass}>
           <Routes>
             <Route
               path="/"
@@ -20,7 +30,16 @@ function App() {
                 <Start playerName={playerName} setPlayerName={setPlayerName} />
               }
             />
-            <Route path="/home" element={<Home playerName={playerName} />} />
+            <Route
+              path="/home"
+              element={
+                <Home
+                  gameMode={gameMode}
+                  setGameMode={setGameMode}
+                  playerName={playerName}
+                />
+              }
+            />
           </Routes>
         </div>
       </CombatContextProvider>

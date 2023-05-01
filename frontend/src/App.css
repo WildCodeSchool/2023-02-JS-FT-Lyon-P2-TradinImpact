@@ -23,8 +23,10 @@ body {
   --trade-third-color: #ffea9e;
   --gather-first-color: #2caa00;
   --gather-second-color: #9add82;
-  --combat-first-color: #ED3227;
+  --combat-first-color: #ed3227;
   --combat-second-color: #f48078;
+  --combat-third-color: #efb0ac;
+
   /* font variables */
   --text-font: "Indie Flower", sans-serif;
   --button-font: "Patrick Hand", sans-serif;
@@ -36,7 +38,21 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+}
+
+.AppTrade {
   background-color: var(--trade-third-color);
+  transition: 0.5s ease-out;
+}
+
+.AppGather {
+  background-color: var(--gather-second-color);
+  transition: 0.5s ease-out;
+}
+
+.AppCombat {
+  background-color: var(--combat-third-color);
+  transition: 0.5s ease-out;
 }
 
 .button-confirm {
