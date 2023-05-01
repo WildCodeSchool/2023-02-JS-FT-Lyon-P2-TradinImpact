@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./PresentationCombat.module.css";
 
 export default function PresentationCombat({ random }) {
   // Import des states nécessaires depuis le Context
-  const { setCombatScreen } = useCombatContext();
-  const [enemy, setEnemy] = useState(null);
-  const [enemyPortrait, setEnemyPortrait] = useState(null);
+  const { setCombatScreen, setEnemy, enemy, setEnemyPortrait } =
+    useCombatContext();
 
   const enemies = [
     "abyss-mage",
@@ -16,13 +15,18 @@ export default function PresentationCombat({ random }) {
     "whopperflower",
     "geovishap",
     "ruin-guard",
+    "samachurl",
+    "fatui-agent",
+    "samachurl",
+    "hilichurl",
+    "fatui-cicin-mage",
+    "mitachurl",
   ];
   let randomEnemy = null;
   // Génération aléatoire d'un ennemi et enregistrement de ses données dans le state enemy, ainsi que son portrait dans le state enemyPortrait
   const handleNewEnemy = () => {
     const randomIndex = random(0, enemies.length - 1);
     randomEnemy = enemies[randomIndex];
-    setEnemyPortrait(`https://api.genshin.dev/enemies/${randomEnemy}/portrait`);
 
     fetch(`https://api.genshin.dev/enemies/${randomEnemy}`)
       .then((response) => response.json())
@@ -31,10 +35,21 @@ export default function PresentationCombat({ random }) {
       });
   };
 
-  // le useEffect sélectionne un ennmi aléatoire au chargement du composant
+  // le useEffect sélectionne un ennemi aléatoire au chargement du composant
   useEffect(() => {
     handleNewEnemy();
   }, []);
+
+  // le useEffect définit le portrait de l'ennemi lorsque celui-ci a été sélectionné
+  useEffect(() => {
+    if (enemy) {
+      setEnemyPortrait(
+        `https://api.genshin.dev/enemies/${enemy.name
+          .toLowerCase()
+          .replaceAll(" ", "-")}/portrait`
+      );
+    }
+  }, [enemy]);
 
   // Affichage de la modale de présentation et du bouton pour lancer le jeu
   return (
@@ -45,31 +60,6 @@ export default function PresentationCombat({ random }) {
       <button type="button" onClick={() => setCombatScreen("game")}>
         Start
       </button>
-      {enemy && (
-        <div>
-          <h3>Enemy name : {enemy.name}</h3>
-          <img src={enemyPortrait} alt={enemy.name} />
-          <p>Drops :</p>
-          <div className="dropContainer">
-            <p>{enemy.drops[0].name}</p>
-            <img
-              className="enemyDrop"
-              src={`https://api.genshin.dev/materials/common-ascension/${enemy.drops[0].name
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              alt={enemy.drops[0].name}
-            />
-            <p>{enemy !== null ? enemy.drops[1].name : null}</p>
-            <img
-              className="enemyDrop"
-              src={`https://api.genshin.dev/materials/common-ascension/${enemy.drops[1].name
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              alt={enemy.drops[1].name}
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
