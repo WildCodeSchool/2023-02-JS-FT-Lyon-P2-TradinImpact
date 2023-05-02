@@ -26,7 +26,6 @@ export default function PresentationCombat({ random }) {
     "samachurl",
     "hilichurl",
     "fatui-cicin-mage",
-    "mitachurl",
   ];
   let randomEnemy = null;
   // Génération aléatoire d'un ennemi et enregistrement de ses données dans le state enemy, ainsi que son portrait dans le state enemyPortrait
