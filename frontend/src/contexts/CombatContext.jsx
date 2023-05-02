@@ -12,6 +12,13 @@ export function CombatContextProvider({ children }) {
   const [playerChoice, setPlayerChoice] = useState("");
   const [enemyChoice, setEnemyChoice] = useState("");
   const [result, setResult] = useState(null);
+  // Calcul des PV et désignation du vainqueur
+  const [enemyHP, setEnemyHP] = useState(10);
+  const [playerHP, setPlayerHP] = useState(10);
+  const [matchWinner, setMatchWinner] = useState(null);
+  const [showCombatResultModal, setShowCombatResultModal] = useState(false);
+  const [moraLoss, setMoraLoss] = useState(null);
+  // Génération de l'ennemi et de son portrait
   const [enemy, setEnemy] = useState(null);
   const [enemyPortrait, setEnemyPortrait] = useState(null);
 
@@ -32,8 +39,30 @@ export function CombatContextProvider({ children }) {
       setEnemyChoice,
       result,
       setResult,
+      enemyHP,
+      setEnemyHP,
+      playerHP,
+      setPlayerHP,
+      matchWinner,
+      setMatchWinner,
+      showCombatResultModal,
+      setShowCombatResultModal,
+      moraLoss,
+      setMoraLoss,
     }),
-    [combatScreen, playerChoice, enemyChoice, result, enemy, enemyPortrait]
+    [
+      combatScreen,
+      playerChoice,
+      enemyChoice,
+      result,
+      enemyHP,
+      playerHP,
+      matchWinner,
+      showCombatResultModal,
+      enemy,
+      enemyPortrait,
+      moraLoss,
+    ]
   );
 
   return (

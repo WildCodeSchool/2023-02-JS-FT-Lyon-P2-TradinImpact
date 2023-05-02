@@ -5,8 +5,14 @@ import styles from "./PresentationCombat.module.css";
 
 export default function PresentationCombat({ random }) {
   // Import des states nécessaires depuis le Context
-  const { setCombatScreen, setEnemy, enemy, setEnemyPortrait } =
-    useCombatContext();
+  const {
+    setCombatScreen,
+    setEnemy,
+    enemy,
+    setEnemyPortrait,
+    setPlayerHP,
+    setEnemyHP,
+  } = useCombatContext();
 
   const enemies = [
     "abyss-mage",
@@ -32,6 +38,8 @@ export default function PresentationCombat({ random }) {
       .then((response) => response.json())
       .then((data) => {
         setEnemy(data);
+        setPlayerHP(10);
+        setEnemyHP(10);
       });
   };
 

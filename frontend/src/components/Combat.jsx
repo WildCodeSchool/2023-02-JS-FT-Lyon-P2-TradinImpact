@@ -1,10 +1,16 @@
-import { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import PresentationCombat from "./PresentationCombat";
 import CombatGame from "./CombatGame";
 
-export default function Combat({ random }) {
+export default function Combat({
+  random,
+  inventory,
+  setInventory,
+  moraCount,
+  setMoraCount,
+}) {
   // Import des states nécessaires depuis le Context
   const { combatScreen, setCombatScreen } = useCombatContext();
 
@@ -19,10 +25,22 @@ export default function Combat({ random }) {
   }
 
   if (combatScreen === "game") {
-    return <CombatGame />;
+    return (
+      <CombatGame
+        inventory={inventory}
+        setInventory={setInventory}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
+        random={random}
+      />
+    );
   }
 }
 
 Combat.propTypes = {
+  inventory: PropTypes.string.isRequired,
+  setInventory: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
 };
