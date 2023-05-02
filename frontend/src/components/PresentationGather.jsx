@@ -9,7 +9,9 @@ export default function PresentationGather() {
     return (
       <div className={styles.presentationGather}>
         <div>
-          Press <span>Start</span> to collect items from the wild
+          Press <span>Start</span> to collect items from the wild.
+          <br /> <br />
+          Tap the items enough times to add them to your satchel.
         </div>
         <button type="button" onClick={() => setGatherScreen("game")}>
           Start

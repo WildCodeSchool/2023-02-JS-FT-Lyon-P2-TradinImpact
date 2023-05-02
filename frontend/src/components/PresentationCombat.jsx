@@ -62,7 +62,9 @@ export default function PresentationCombat({ random }) {
   return (
     <div className={styles.presentationCombat}>
       <div>
-        Press <span>Start</span> to fight an evil monster
+        Press <span>Start</span> to fight an evil monster.
+        <br /> <br />
+        Choose carefully your attacks to bring the monster's HP down to 0.
       </div>
       <button type="button" onClick={() => setCombatScreen("game")}>
         Start
