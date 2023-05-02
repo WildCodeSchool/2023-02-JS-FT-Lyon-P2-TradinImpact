@@ -40,7 +40,7 @@
 .enemyChoice {
   width: 75px;
   height: 75px;
-  background-color: var(--nav-dark);
+  background-color: #f97700aa;
   border-radius: 50%;
   position: absolute;
   top: 30%;
@@ -65,13 +65,13 @@
 }
 
 .win {
-  background-color: rgba(0, 255, 0, 0.5);
+  background-color: rgba(0, 255, 0, 0.7);
 }
 
 .draw {
-  background-color: rgba(255, 166, 0, 0.5);
+  background-color: rgba(255, 166, 0, 0.7);
 }
 
 .lose {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.7);
 }

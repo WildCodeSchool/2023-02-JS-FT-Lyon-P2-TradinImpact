@@ -26,7 +26,6 @@ export default function PresentationCombat({ random }) {
     "samachurl",
     "hilichurl",
     "fatui-cicin-mage",
-    "mitachurl",
   ];
   let randomEnemy = null;
   // Génération aléatoire d'un ennemi et enregistrement de ses données dans le state enemy, ainsi que son portrait dans le state enemyPortrait
@@ -63,7 +62,9 @@ export default function PresentationCombat({ random }) {
   return (
     <div className={styles.presentationCombat}>
       <div>
-        Press <span>Start</span> to fight an evil monster
+        Press <span>Start</span> to fight an evil monster.
+        <br /> <br />
+        Choose carefully your attacks to bring the monster's HP down to 0.
       </div>
       <button type="button" onClick={() => setCombatScreen("game")}>
         Start

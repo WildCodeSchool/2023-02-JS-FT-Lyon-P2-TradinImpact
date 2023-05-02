@@ -62,12 +62,12 @@ export default function CombatGame({
         <p>
           {enemy.name} - {enemyHP} HP
         </p>
+        <CombatEnemy />
         {enemyChoice !== "" ? (
           <div className={styles.enemyChoice}>
             <img src={`./src/assets/${enemyChoice}.png`} alt={enemyChoice} />
           </div>
         ) : null}
-        <CombatEnemy />
       </div>
       {result === "win" && (
         <div className={`${styles.result} ${styles.win}`}>

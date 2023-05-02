@@ -60,7 +60,7 @@ export default function JanKenPon() {
     <div className={styles.janKenPon}>
       <button
         type="button"
-        disabled={playerChoice !== "rock" && playerChoice !== ""}
+        disabled={playerChoice !== ""}
         className={
           playerChoice === "rock"
             ? `${styles.JKPButton} ${styles.active}`
@@ -72,7 +72,7 @@ export default function JanKenPon() {
       </button>
       <button
         type="button"
-        disabled={playerChoice !== "paper" && playerChoice !== ""}
+        disabled={playerChoice !== ""}
         className={
           playerChoice === "paper"
             ? `${styles.JKPButton} ${styles.active}`
@@ -84,7 +84,7 @@ export default function JanKenPon() {
       </button>
       <button
         type="button"
-        disabled={playerChoice !== "scissors" && playerChoice !== ""}
+        disabled={playerChoice !== ""}
         className={
           playerChoice === "scissors"
             ? `${styles.JKPButton} ${styles.active}`
