@@ -11,7 +11,13 @@ export default function PresentationGather() {
         <div>
           Press <span>Start</span> to collect items from the wild.
           <br /> <br />
-          Tap the items enough times to add them to your satchel.
+          Tap the items enough times to add them to your basket.
+          <br />
+          Beware the{" "}
+          <img
+            src="https://api.genshin.dev/materials/local-specialties/wolfhook"
+            alt="wolfhook"
+          />
         </div>
         <button type="button" onClick={() => setGatherScreen("game")}>
           Start

@@ -20,8 +20,8 @@
 .presTradeInfo {
   width: 80%;
   font-family: var(--text-font);
-  font-size: 1.5em;
+  font-size: calc(0.5em + 2vh);
   background-color: var(--nav-light);
   border-radius: 50px;
-  padding: 20px 30px;
+  padding: 15px;
 }

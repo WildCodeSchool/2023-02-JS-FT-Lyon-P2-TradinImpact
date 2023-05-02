@@ -22,7 +22,7 @@
 
 .playerName {
   font-family: var(--text-font);
-  font-size: 1.2rem;
+  font-size: calc(1.8rem + 2vw);
 }
 
 .moraCount {
