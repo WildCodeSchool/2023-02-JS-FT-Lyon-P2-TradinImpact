@@ -20,6 +20,7 @@ export function CombatContextProvider({ children }) {
   const [matchWinner, setMatchWinner] = useState(null);
   const [showCombatResultModal, setShowCombatResultModal] = useState(false);
   const [moraLoss, setMoraLoss] = useState(null);
+  const [ouch, setOuch] = useState(null);
   // Génération de l'ennemi et de son portrait
   const [enemy, setEnemy] = useState(null);
   const [enemyPortrait, setEnemyPortrait] = useState(null);
@@ -80,6 +81,8 @@ export function CombatContextProvider({ children }) {
       setShowCombatResultModal,
       moraLoss,
       setMoraLoss,
+      ouch,
+      setOuch,
       cooldownCombat,
       setCooldownCombat,
       coolDownCombatBegin,
@@ -96,6 +99,7 @@ export function CombatContextProvider({ children }) {
       enemy,
       enemyPortrait,
       moraLoss,
+      ouch,
       cooldownCombat,
     ]
   );

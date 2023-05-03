@@ -24,7 +24,13 @@ export default function CombatResultModal({ moraCount, setMoraCount }) {
     }
   }, []);
 
-  const handleClick = () => {
+  const handleClickRevenge = () => {
+    setMatchWinner(null);
+    setEnemyHP(10);
+    setPlayerHP(10);
+    setShowCombatResultModal(false);
+  };
+  const handleClickClose = () => {
     setCombatScreen("presentation");
     setMatchWinner(null);
     setShowCombatResultModal(false);
@@ -45,7 +51,11 @@ export default function CombatResultModal({ moraCount, setMoraCount }) {
             <img src="" alt="item" />
             <h4>itemname*</h4>
           </div>
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={styles.buttonclose}
+            type="button"
+            onClick={() => handleClickClose()}
+          >
             Close
           </button>
         </div>
@@ -54,10 +64,23 @@ export default function CombatResultModal({ moraCount, setMoraCount }) {
           <h3>
             {" "}
             You lost! <br />
-            {enemy.name} extorted {moraLoss} moras from you before running
-            away...
+            {enemy.name} extorted {moraLoss} {moraLoss > 1 ? "moras" : "mora"}{" "}
+            from you before running away...
           </h3>
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={styles.buttoncancel}
+            type="button"
+            onClick={() => {
+              handleClickRevenge();
+            }}
+          >
+            Revenge
+          </button>
+          <button
+            className={styles.buttonclose}
+            type="button"
+            onClick={() => handleClickClose()}
+          >
             Close
           </button>
         </div>
