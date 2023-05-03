@@ -19,9 +19,9 @@
 
 .tradeInventoryItems {
   width: 80%;
-  height: 40%;
+  height: 45%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   overflow: auto;
 }
