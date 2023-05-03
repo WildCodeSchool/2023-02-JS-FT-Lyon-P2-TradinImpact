@@ -53,7 +53,7 @@ export default function Start({ playerName, setPlayerName }) {
           <input
             type="text"
             name="playername"
-            maxLength={15}
+            maxLength={12}
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
           />
