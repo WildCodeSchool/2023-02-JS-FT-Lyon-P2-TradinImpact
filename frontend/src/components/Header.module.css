@@ -22,7 +22,7 @@
 
 .playerName {
   font-family: var(--text-font);
-  font-size: calc(1.8rem + 2vw);
+  font-size: calc(1rem + 2vw);
 }
 
 .moraCount {
@@ -38,7 +38,32 @@
   margin-right: 15px;
 }
 
-.moraCount > img {
+.moraCount img {
   width: 40px;
   height: 40px;
+}
+
+@media screen and (max-width: 380px) {
+
+  .avatar,
+  .avatar > img {
+    width: 80px;
+    height: 80px;
+}
+
+  .moraCount {
+    width: 70px;
+    font-size: 1rem;
+  }
+
+  .moraCount img {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .playerName {
+    font-family: var(--text-font);
+    font-size: 1rem;
+  }
+
 }

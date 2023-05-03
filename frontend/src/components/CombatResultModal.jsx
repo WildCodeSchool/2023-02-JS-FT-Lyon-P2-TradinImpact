@@ -20,6 +20,7 @@ export default function CombatResultModal({
     enemy,
     moraLoss,
     setMoraLoss,
+    coolDownCombatBegin,
   } = useCombatContext();
 
   // 30% de chances d'obtenir un objet rare en cas de victoire et 70% de chances d'obtenir un objet commun
@@ -44,7 +45,13 @@ export default function CombatResultModal({
     }
   }, []);
 
-  const handleClick = () => {
+  const handleClickRevenge = () => {
+    setMatchWinner(null);
+    setEnemyHP(10);
+    setPlayerHP(10);
+    setShowCombatResultModal(false);
+  };
+  const handleClickClose = () => {
     setCombatScreen("presentation");
     setMatchWinner(null);
     setShowCombatResultModal(false);
@@ -64,6 +71,7 @@ export default function CombatResultModal({
         setInventory([...inventory, combatLoot]);
       }
     }
+    coolDownCombatBegin();
   };
 
   return (
@@ -87,7 +95,11 @@ export default function CombatResultModal({
               <h4>{combatLoot.name}</h4>
             </div>
           )}
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={styles.buttonclose}
+            type="button"
+            onClick={() => handleClickClose()}
+          >
             Close
           </button>
         </div>
@@ -96,10 +108,23 @@ export default function CombatResultModal({
           <h3>
             {" "}
             You lost! <br />
-            {enemy.name} extorted {moraLoss} moras from you before running
-            away...
+            {enemy.name} extorted {moraLoss} {moraLoss > 1 ? "moras" : "mora"}{" "}
+            from you before running away...
           </h3>
-          <button type="button" onClick={() => handleClick()}>
+          <button
+            className={styles.buttoncancel}
+            type="button"
+            onClick={() => {
+              handleClickRevenge();
+            }}
+          >
+            Revenge
+          </button>
+          <button
+            className={styles.buttonclose}
+            type="button"
+            onClick={() => handleClickClose()}
+          >
             Close
           </button>
         </div>

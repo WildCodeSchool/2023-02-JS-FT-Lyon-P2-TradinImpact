@@ -42,8 +42,7 @@ export default function BargainModal({
   };
 
   function onlyDigits(string) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = string.length - 1; i >= 0; i--) {
+    for (let i = string.length - 1; i >= 0; i -= 1) {
       const d = string.charCodeAt(i);
       if (d < 48 || d > 57) return false;
     }
@@ -67,6 +66,7 @@ export default function BargainModal({
                 id="bet"
                 name="bet"
                 type="text"
+                maxLength={11}
                 value={playerBet}
                 onChange={handleChange}
               />

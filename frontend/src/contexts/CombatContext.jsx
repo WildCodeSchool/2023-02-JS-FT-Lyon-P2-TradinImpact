@@ -5,6 +5,8 @@ const CombatContext = createContext();
 
 export default CombatContext;
 
+const defaultCooldownTime = 90;
+
 export function CombatContextProvider({ children }) {
   // States du mode Combat
   const [combatScreen, setCombatScreen] = useState("presentation");
@@ -18,9 +20,39 @@ export function CombatContextProvider({ children }) {
   const [matchWinner, setMatchWinner] = useState(null);
   const [showCombatResultModal, setShowCombatResultModal] = useState(false);
   const [moraLoss, setMoraLoss] = useState(null);
+  const [ouch, setOuch] = useState(null);
   // Génération de l'ennemi et de son portrait
   const [enemy, setEnemy] = useState(null);
   const [enemyPortrait, setEnemyPortrait] = useState(null);
+  // Cooldown
+  const [cooldownCombat, setCooldownCombat] = useState({
+    started: false,
+    time: defaultCooldownTime,
+  });
+
+  const coolDownCombatBegin = () => {
+    /* quand on lance le cooldown, on l'affiche de suite
+    sinon il s'affiche 1 seconde après le click et est visible 1 secondes après le lancement
+    (est visible à partir de 9 secondes pour un CD à 10 secondes ) */
+    setCooldownCombat({
+      started: true,
+      time: defaultCooldownTime,
+    });
+    const cooldown = setInterval(() => {
+      setCooldownCombat((prev) => {
+        /* quand on est à 1, la prochaine fois on sera a 0 donc on doit anticiper le clear du cool down quand on sera à 0 */
+        if (prev.time === 1) {
+          clearInterval(cooldown);
+          setCombatScreen("presentation");
+          return {
+            started: false,
+            time: defaultCooldownTime,
+          };
+        }
+        return { started: true, time: prev.time - 1 };
+      });
+    }, 1000);
+  };
 
   // Memo pour optimisation => empêche les rerenders intempestifs au moindre changement de state
   //  - Passer les getter et setter de vos states entre les accolades, et le getter dans le tableau
@@ -49,6 +81,11 @@ export function CombatContextProvider({ children }) {
       setShowCombatResultModal,
       moraLoss,
       setMoraLoss,
+      ouch,
+      setOuch,
+      cooldownCombat,
+      setCooldownCombat,
+      coolDownCombatBegin,
     }),
     [
       combatScreen,
@@ -62,6 +99,8 @@ export function CombatContextProvider({ children }) {
       enemy,
       enemyPortrait,
       moraLoss,
+      ouch,
+      cooldownCombat,
     ]
   );
 

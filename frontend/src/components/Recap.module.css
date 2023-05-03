@@ -10,8 +10,8 @@
 }
 
 .recapModal {
-  width: 60%;
-  height: 35%;
+  max-width: 60%;
+  max-height: 50%;
   background-color: var(--nav-light);
   border: 1px solid black;
   border-radius: 50px;
@@ -19,6 +19,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  padding: 10px;
 }
 
 .recapModal button {

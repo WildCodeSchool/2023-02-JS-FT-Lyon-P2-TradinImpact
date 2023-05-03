@@ -24,6 +24,7 @@ export default function CombatGame({
     showCombatResultModal,
     setShowCombatResultModal,
     enemy,
+    setOuch,
   } = useCombatContext();
 
   const damage = random(3, 5);
@@ -33,8 +34,12 @@ export default function CombatGame({
   useEffect(() => {
     if (ongoingMatch && result === "win") {
       setEnemyHP(Math.max(enemyHP - damage, 0));
+      setOuch("enemy");
+      setTimeout(() => setOuch(null), 800);
     } else if (ongoingMatch && result === "lose") {
       setPlayerHP(Math.max(playerHP - damage, 0));
+      setOuch("player");
+      setTimeout(() => setOuch(null), 800);
     }
   }, [result]);
 

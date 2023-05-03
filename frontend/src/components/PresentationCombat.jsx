@@ -6,12 +6,15 @@ import styles from "./PresentationCombat.module.css";
 export default function PresentationCombat({ random }) {
   // Import des states nécessaires depuis le Context
   const {
+    combatScreen,
     setCombatScreen,
     setEnemy,
     enemy,
     setEnemyPortrait,
     setPlayerHP,
     setEnemyHP,
+    setOuch,
+    cooldownCombat,
   } = useCombatContext();
 
   const enemies = [
@@ -39,6 +42,7 @@ export default function PresentationCombat({ random }) {
         setEnemy(data);
         setPlayerHP(10);
         setEnemyHP(10);
+        setOuch(null);
       });
   };
 
@@ -59,18 +63,31 @@ export default function PresentationCombat({ random }) {
   }, [enemy]);
 
   // Affichage de la modale de présentation et du bouton pour lancer le jeu
-  return (
-    <div className={styles.presentationCombat}>
-      <div>
-        Press <span>Start</span> to fight an evil monster.
-        <br /> <br />
-        Choose carefully your attacks to bring the monster's HP down to 0.
+  if (combatScreen === "presentation" && cooldownCombat.started === false) {
+    return (
+      <div className={styles.presentationCombat}>
+        <div>
+          Press <span>Start</span> to fight an evil monster.
+          <br /> <br />
+          Choose carefully your attacks to bring the monster's HP down to 0.
+        </div>
+        <button type="button" onClick={() => setCombatScreen("game")}>
+          Start
+        </button>
       </div>
-      <button type="button" onClick={() => setCombatScreen("game")}>
-        Start
-      </button>
-    </div>
-  );
+    );
+  }
+
+  if (
+    combatScreen === "cooldown" ||
+    (combatScreen === "presentation" && cooldownCombat.started === true)
+  ) {
+    return (
+      <div className={styles.presentationCombat}>
+        <div>Try again in {cooldownCombat.time}s</div>
+      </div>
+    );
+  }
 }
 
 PresentationCombat.propTypes = {
