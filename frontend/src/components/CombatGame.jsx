@@ -52,6 +52,7 @@ export default function CombatGame({
     <div className={styles.combatGame}>
       {showCombatResultModal ? (
         <CombatResultModal
+          random={random}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
           inventory={inventory}

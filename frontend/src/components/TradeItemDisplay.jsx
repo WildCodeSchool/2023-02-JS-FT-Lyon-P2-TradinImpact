@@ -25,12 +25,22 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
       ) : (
         <div>
           <div className={styles.randomItemImg}>
-            <img
-              src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              alt={selectedItem.name}
-            />
+            {selectedItem.sources ? (
+              <img
+                src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")}`}
+                alt={`${selectedItem.name}`}
+              />
+            ) : (
+              <img
+                src={`https://api.genshin.dev/materials/common-ascension/${selectedItem.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")
+                  .replaceAll("'", "-")}`}
+                alt={selectedItem.name}
+              />
+            )}
           </div>
           <div className={styles.randomItemName}>
             <h2>
