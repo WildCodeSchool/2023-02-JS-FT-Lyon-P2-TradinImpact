@@ -139,7 +139,6 @@ export default function BargainModal({
                     setItemPrice(playerBet);
                   } else {
                     setShowBargainModal(false);
-                    /* handleClick(); */
                     setShowBargainFailure(true);
                   }
                 }
