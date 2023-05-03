@@ -1,16 +1,18 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./Start.module.css";
 import AvatarModal from "../components/AvatarModal";
 
 export default function Start({ playerName, setPlayerName }) {
+  const { avatar } = useAvatarContext();
   const [clickMora, setClickMora] = useState(false);
   const [start, setStart] = useState(true);
   const [story, setStory] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
 
-  const handleClickAvatar = () => {
+  const handleChangeAvatar = () => {
     setShowAvatarModal(true);
   };
 
@@ -67,11 +69,11 @@ export default function Start({ playerName, setPlayerName }) {
             <button
               type="button"
               className={styles.avatar}
-              onClick={handleClickAvatar}
+              onClick={handleChangeAvatar}
             >
               <img
                 className={styles.avatar}
-                src="src\assets\avatar-default.png"
+                src={avatar ? avatar.img : "src/assets/avatar-default.png"}
                 alt="avatar"
               />
             </button>
