@@ -10,6 +10,7 @@ export default function JanKenPon() {
     enemyChoice,
     setEnemyChoice,
     setResult,
+    ouch,
   } = useCombatContext();
 
   // Fonction permettant de générer le choix de jeu de l'ennemi
@@ -57,7 +58,13 @@ export default function JanKenPon() {
   }, [playerChoice, enemyChoice]);
 
   return (
-    <div className={styles.janKenPon}>
+    <div
+      className={
+        ouch === "player"
+          ? `${styles.janKenPon} ${styles.shook}`
+          : `${styles.janKenPon}`
+      }
+    >
       <button
         type="button"
         disabled={playerChoice !== ""}

@@ -12,6 +12,7 @@ export default function PresentationCombat({ random }) {
     setEnemyPortrait,
     setPlayerHP,
     setEnemyHP,
+    setOuch,
   } = useCombatContext();
 
   const enemies = [
@@ -39,6 +40,7 @@ export default function PresentationCombat({ random }) {
         setEnemy(data);
         setPlayerHP(10);
         setEnemyHP(10);
+        setOuch(null);
       });
   };
 
