@@ -15,11 +15,7 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
             />
           </div>
           <div className={styles.randomItemName}>
-            <h2>
-              {/* {objectName.charAt(0).toUpperCase() +
-                objectName.slice(1).replaceAll("-", " ")} */}
-              {selectedItem ? selectedItem.name : null}
-            </h2>
+            <h2>{selectedItem ? selectedItem.name : null}</h2>
           </div>
         </div>
       ) : (
@@ -43,12 +39,7 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
             )}
           </div>
           <div className={styles.randomItemName}>
-            <h2>
-              {
-                selectedItem.name /* objectName.charAt(0).toUpperCase() +
-              objectName.slice(1).replaceAll("-", " ") */
-              }{" "}
-            </h2>
+            <h2>{selectedItem.name} </h2>
           </div>
         </div>
       )}
@@ -58,7 +49,6 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
 
 TradeItemDisplay.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
-  /* REGLER DETECTION DU PROP TYPE OBJECT NAME DANS SELL */
   selectedItem: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

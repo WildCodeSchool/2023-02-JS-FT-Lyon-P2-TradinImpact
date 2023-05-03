@@ -35,7 +35,6 @@ export default function Start({ playerName, setPlayerName }) {
   if (story === true) {
     return (
       <div className={styles.story}>
-        {/* <img src="/src/assets/mora-coin.png" alt="mora coin" /> */}
         <p>
           A long time ago, in a galaxy far, far away... <br />
           <br />

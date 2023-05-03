@@ -181,7 +181,6 @@ export default function Buy({
         <TradeItemDisplay
           tradeScreen={tradeScreen}
           selectedItem={selectedItem}
-          // objectName={objectName}
         />
       )}
       <Merchant portrait={portrait} />

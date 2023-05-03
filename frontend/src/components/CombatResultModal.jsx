@@ -22,6 +22,8 @@ export default function CombatResultModal({
     setMoraLoss,
   } = useCombatContext();
 
+  // 30% de chances d'obtenir un objet rare en cas de victoire et 70% de chances d'obtenir un objet commun
+  // sélectionné parmi les drops de l'enemy
   const [combatLoot, setCombatLoot] = useState(null);
   useEffect(() => {
     if (matchWinner === "player") {
@@ -34,6 +36,7 @@ export default function CombatResultModal({
     }
   }, []);
 
+  // le useEffect permet la perte de 10% des moras en cas de défaite
   useEffect(() => {
     if (matchWinner === "enemy") {
       setMoraCount(Math.ceil(moraCount * 0.9));
@@ -47,6 +50,7 @@ export default function CombatResultModal({
     setShowCombatResultModal(false);
     setEnemyHP(10);
     setPlayerHP(10);
+    // les lignes suivantes décrivent le processus d'ajout du loot dans l'inventaire en cas de victoire
     if (combatLoot) {
       let itemGot = false;
       for (const item of inventory) {
@@ -61,6 +65,7 @@ export default function CombatResultModal({
       }
     }
   };
+
   return (
     <div className={styles.background}>
       {matchWinner === "player" ? (
