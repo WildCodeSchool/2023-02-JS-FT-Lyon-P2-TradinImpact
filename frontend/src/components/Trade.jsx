@@ -19,6 +19,19 @@ export default function Trade({
   const [itemPrice, setItemPrice] = useState(0);
   const [showBargainModal, setShowBargainModal] = useState(false);
   const [showBargainFailure, setShowBargainFailure] = useState(false);
+  const [portrait, setPortrait] = useState("albedo");
+  const [merchantName, setMerchantName] = useState(null);
+  const merchants = [
+    "albedo",
+    "amber",
+    "barbara",
+    "diluc",
+    "bennett",
+    "jean",
+    "ningguang",
+    "ganyu",
+    "tartaglia",
+  ];
 
   /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
@@ -53,6 +66,11 @@ export default function Trade({
         random={random}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        portrait={portrait}
+        setPortrait={setPortrait}
+        merchantName={merchantName}
+        setMerchantName={setMerchantName}
+        merchants={merchants}
       />
     );
   }
@@ -78,11 +96,25 @@ export default function Trade({
         setSelectedItem={setSelectedItem}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        portrait={portrait}
+        setPortrait={setPortrait}
+        merchantName={merchantName}
+        setMerchantName={setMerchantName}
+        merchants={merchants}
       />
     );
   }
   if (tradeScreen === "bargain") {
-    return <Bargain />;
+    return (
+      <Bargain
+        setTradeScreen={setTradeScreen}
+        setSelectedItem={setSelectedItem}
+        portrait={portrait}
+        selectedItem={selectedItem}
+        showRecap={showRecap}
+        setShowRecap={setShowRecap}
+      />
+    );
   }
 }
 

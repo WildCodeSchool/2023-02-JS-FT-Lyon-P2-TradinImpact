@@ -31,23 +31,28 @@ export default function Sell({
   setMoraCount,
   itemPrice,
   setItemPrice,
+  portrait,
+  setPortrait,
+  merchantName,
+  setMerchantName,
+  merchants,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
 
   /* Randomisation du marchand au montage du composant */
-  const [portrait, setPortrait] = useState("albedo");
-  const [merchantName, setMerchantName] = useState(null);
-  const merchants = [
-    "albedo",
-    "amber",
-    "barbara",
-    "diluc",
-    "bennett",
-    "jean",
-    "ningguang",
-    "ganyu",
-    "tartaglia",
-  ];
+  // const [portrait, setPortrait] = useState("albedo");
+  // const [merchantName, setMerchantName] = useState(null);
+  // const merchants = [
+  //   "albedo",
+  //   "amber",
+  //   "barbara",
+  //   "diluc",
+  //   "bennett",
+  //   "jean",
+  //   "ningguang",
+  //   "ganyu",
+  //   "tartaglia",
+  // ];
 
   let randomMerchant = null;
   const randomizeMerchant = () => {
@@ -190,4 +195,9 @@ Sell.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  portrait: PropTypes.string.isRequired,
+  setPortrait: PropTypes.func.isRequired,
+  merchantName: PropTypes.string.isRequired,
+  setMerchantName: PropTypes.func.isRequired,
+  merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };

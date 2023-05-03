@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
 import Recap from "./Recap";
@@ -30,6 +30,11 @@ export default function Buy({
   setMoraCount,
   itemPrice,
   setItemPrice,
+  portrait,
+  setPortrait,
+  merchantName,
+  setMerchantName,
+  merchants,
 }) {
   const merchantItems = [
     "flour",
@@ -56,19 +61,19 @@ export default function Buy({
     "sausage",
   ];
 
-  const [portrait, setPortrait] = useState("albedo");
-  const [merchantName, setMerchantName] = useState(null);
-  const merchants = [
-    "albedo",
-    "amber",
-    "barbara",
-    "diluc",
-    "bennett",
-    "jean",
-    "ningguang",
-    "ganyu",
-    "tartaglia",
-  ];
+  // const [portrait, setPortrait] = useState("albedo");
+  // const [merchantName, setMerchantName] = useState(null);
+  // const merchants = [
+  //   "albedo",
+  //   "amber",
+  //   "barbara",
+  //   "diluc",
+  //   "bennett",
+  //   "jean",
+  //   "ningguang",
+  //   "ganyu",
+  //   "tartaglia",
+  // ];
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -219,4 +224,9 @@ Buy.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  portrait: PropTypes.string.isRequired,
+  setPortrait: PropTypes.func.isRequired,
+  merchantName: PropTypes.string.isRequired,
+  setMerchantName: PropTypes.func.isRequired,
+  merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };

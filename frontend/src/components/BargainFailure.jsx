@@ -17,10 +17,10 @@ export default function BargainFailure({
         <h3>
           {merchantName.charAt(0).toUpperCase() +
             merchantName.slice(1).toLowerCase()}{" "}
-          does not approve of this price !
+          does not approve of this price and wants to fight to settle the deal !
         </h3>
         <button type="button" onClick={() => handleClick()}>
-          Close
+          Next
         </button>
       </div>
     </div>
