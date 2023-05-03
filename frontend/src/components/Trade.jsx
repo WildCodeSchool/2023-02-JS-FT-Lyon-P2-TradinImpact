@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PresentationTrade from "./PresentationTrade";
 import Sell from "./Sell";
 import Buy from "./Buy";
+import Bargain from "./Bargain";
 
 export default function Trade({
   inventory,
@@ -79,6 +80,9 @@ export default function Trade({
         setMoraCount={setMoraCount}
       />
     );
+  }
+  if (tradeScreen === "bargain") {
+    return <Bargain />;
   }
 }
 

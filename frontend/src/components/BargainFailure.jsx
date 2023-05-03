@@ -8,7 +8,7 @@ export default function BargainFailure({
 }) {
   const handleClick = () => {
     setShowBargainFailure(false);
-    setTradeScreen("presentation");
+    setTradeScreen("bargain");
   };
 
   return (
