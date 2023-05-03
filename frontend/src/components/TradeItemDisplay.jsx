@@ -3,9 +3,9 @@ import styles from "./TradeItemDisplay.module.css";
 
 export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
   return (
-    <div className={styles.randomItemDisplay}>
+    <div>
       {tradeScreen === "buy" ? (
-        <div>
+        <div className={styles.randomItemDisplay}>
           <div className={styles.randomItemImg}>
             <img
               src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
@@ -19,7 +19,7 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
           </div>
         </div>
       ) : (
-        <div>
+        <div className={styles.randomItemDisplay}>
           <div className={styles.randomItemImg}>
             {selectedItem.sources ? (
               <img
