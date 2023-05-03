@@ -33,7 +33,7 @@
   transform: rotate(-45deg);
 }
 
-.gatherCooldown {
+.cooldown {
   width: inherit;
   height: inherit;
   position: absolute;

@@ -67,6 +67,7 @@ export default function BargainModal({
                 id="bet"
                 name="bet"
                 type="text"
+                maxLength={11}
                 value={playerBet}
                 onChange={handleChange}
               />

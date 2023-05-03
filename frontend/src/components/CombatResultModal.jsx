@@ -14,6 +14,7 @@ export default function CombatResultModal({ moraCount, setMoraCount }) {
     enemy,
     moraLoss,
     setMoraLoss,
+    coolDownCombatBegin,
   } = useCombatContext();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function CombatResultModal({ moraCount, setMoraCount }) {
     setShowCombatResultModal(false);
     setEnemyHP(10);
     setPlayerHP(10);
+    coolDownCombatBegin();
   };
   return (
     <div className={styles.background}>
