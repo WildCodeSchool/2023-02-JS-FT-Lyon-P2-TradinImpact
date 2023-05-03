@@ -45,12 +45,22 @@ export default function Recap({
             </div>
             <br />
             <div className={styles.itemTransaction}>
-              <img
-                src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
-                  .toLowerCase()
-                  .replaceAll(" ", "-")}`}
-                alt={`${selectedItem.name}`}
-              />
+              {selectedItem.sources ? (
+                <img
+                  src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
+                    .toLowerCase()
+                    .replaceAll(" ", "-")}`}
+                  alt={`${selectedItem.name}`}
+                />
+              ) : (
+                <img
+                  src={`https://api.genshin.dev/materials/common-ascension/${selectedItem.name
+                    .toLowerCase()
+                    .replaceAll(" ", "-")
+                    .replaceAll("'", "-")}`}
+                  alt={selectedItem.name}
+                />
+              )}
               <h4>- {selectedItem.name}</h4>
             </div>
           </div>

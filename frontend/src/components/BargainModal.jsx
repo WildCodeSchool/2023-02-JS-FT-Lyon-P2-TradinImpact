@@ -139,14 +139,9 @@ export default function BargainModal({
                     setItemPrice(playerBet);
                   } else {
                     setShowBargainModal(false);
-                    /* handleClick(); */
                     setShowBargainFailure(true);
                   }
                 }
-                /* On fait disparaître la modale et on retourne au menu Présentation */
-                /*               setShowBargainModal(false);
-              setShowRecap(true); */
-                /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
               }}
             >
               Confirm

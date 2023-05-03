@@ -26,7 +26,6 @@ export default function TradeInventory({
       );
     });
   };
-
   /*   Ces variables permettent de vérifier si l'inventaire est vide ou non, auquel cas, le message de
   présentation est modifié */
   const itemPossessed = (item) => {
