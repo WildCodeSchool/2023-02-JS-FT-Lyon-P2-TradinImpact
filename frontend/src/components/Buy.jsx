@@ -30,6 +30,12 @@ export default function Buy({
   setMoraCount,
   itemPrice,
   setItemPrice,
+  portrait,
+  setPortrait,
+  merchantName,
+  setMerchantName,
+  merchants,
+  setBuyOrSell,
 }) {
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
   par le biais du formulaire dans la BargainModal */
@@ -59,19 +65,6 @@ export default function Buy({
     "sausage",
   ];
 
-  const [portrait, setPortrait] = useState("albedo");
-  const [merchantName, setMerchantName] = useState(null);
-  const merchants = [
-    "albedo",
-    "amber",
-    "barbara",
-    "diluc",
-    "bennett",
-    "jean",
-    "ningguang",
-    "ganyu",
-    "tartaglia",
-  ];
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -173,10 +166,11 @@ export default function Buy({
       ) : null}
       {showBargainFailure ? (
         <BargainFailure
-          showBargainFailure={showBargainFailure}
           setShowBargainFailure={setShowBargainFailure}
           merchantName={merchantName}
+          tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
+          setBuyOrSell={setBuyOrSell}
         />
       ) : null}
       <TradeMerchantText
@@ -226,4 +220,10 @@ Buy.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  portrait: PropTypes.string.isRequired,
+  setPortrait: PropTypes.func.isRequired,
+  merchantName: PropTypes.string.isRequired,
+  setMerchantName: PropTypes.func.isRequired,
+  merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  setBuyOrSell: PropTypes.func.isRequired,
 };
