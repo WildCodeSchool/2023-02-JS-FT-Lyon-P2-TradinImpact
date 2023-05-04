@@ -70,6 +70,7 @@ export default function Sell({
     randomizeMerchant();
   }, []);
 
+  // le useEffect permet la détermination d'une fourchette de prix de l'item à vendre en fonction de sa rareté
   useEffect(() => {
     if (selectedItem != null) {
       const itemRarity = selectedItem.rarity;
@@ -77,13 +78,16 @@ export default function Sell({
       const getPrice = (rarity) => {
         if (rarity === undefined) {
           setItemPrice(random(15, 25));
+        } else if (rarity === 1) {
+          setItemPrice(random(20, 30));
         } else if (rarity === 2) {
           setItemPrice(random(25, 35));
         } else if (rarity === 3) {
           setItemPrice(random(35, 45));
+        } else {
+          setItemPrice(random(45, 55));
         }
       };
-
       getPrice(itemRarity);
     }
   }, [selectedItem]);

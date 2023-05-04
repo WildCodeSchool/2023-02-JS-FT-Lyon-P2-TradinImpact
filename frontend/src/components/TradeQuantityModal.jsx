@@ -41,11 +41,6 @@ export default function TradeQuantityModal({
                 defaultValue=""
                 onChange={handleChange}
               />
-              {/* <img
-                src="src\assets\mora-coin.png"
-                alt="mora coin"
-                className={styles.bargainmoracoin}
-              /> */}
             </div>
             <button
               type="submit"

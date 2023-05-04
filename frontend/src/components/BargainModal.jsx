@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./BargainModal.module.css";
 
 export default function BargainModal({
@@ -19,6 +20,7 @@ export default function BargainModal({
   playerBet,
   setPlayerBet,
 }) {
+  const { avatar } = useAvatarContext();
   /* la modale est alimentée par le state itemSelected */
 
   const [showExcessAlert, setShowExcessAlert] = useState(false);
@@ -150,14 +152,9 @@ export default function BargainModal({
                     setItemPrice(playerBet);
                   } else {
                     setShowBargainModal(false);
-                    /* handleClick(); */
                     setShowBargainFailure(true);
                   }
                 }
-                /* On fait disparaître la modale et on retourne au menu Présentation */
-                /*               setShowBargainModal(false);
-              setShowRecap(true); */
-                /* AJOUTER ICI LES EFFETS FINANCIERS DE LA TRANSACTION */
               }}
             >
               Confirm
@@ -178,7 +175,7 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -187,7 +184,7 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -196,7 +193,7 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You must only <br /> use digits
@@ -214,7 +211,7 @@ export default function BargainModal({
       ) : null}
       {showCheatAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You <br /> cheater!

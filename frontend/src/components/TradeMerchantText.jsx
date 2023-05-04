@@ -27,9 +27,4 @@ TradeMerchantText.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
   itemPrice: PropTypes.number.isRequired,
   itemQuantity: PropTypes.string.isRequired,
-  /*   objectInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rarity: PropTypes.number.isRequired,
-  }), */
 };

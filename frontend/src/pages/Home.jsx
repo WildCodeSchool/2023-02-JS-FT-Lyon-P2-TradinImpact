@@ -21,7 +21,11 @@ export default function Home({ playerName, gameMode, setGameMode }) {
 
   return (
     <div className={styles.layout}>
-      <Header moraCount={moraCount} playerName={playerName} />
+      <Header
+        gameMode={gameMode}
+        moraCount={moraCount}
+        playerName={playerName}
+      />
       <GameScreen
         gameMode={gameMode}
         setGameMode={setGameMode}

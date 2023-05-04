@@ -7,9 +7,9 @@ export default function TradeItemDisplay({
   itemQuantity,
 }) {
   return (
-    <div className={styles.randomItemDisplay}>
+    <div>
       {tradeScreen === "buy" ? (
-        <div>
+        <div className={styles.randomItemDisplay}>
           <div className={styles.randomItemImg}>
             <img
               src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
@@ -19,22 +19,28 @@ export default function TradeItemDisplay({
             />
           </div>
           <div className={styles.randomItemName}>
-            <h2>
-              {/* {objectName.charAt(0).toUpperCase() +
-                objectName.slice(1).replaceAll("-", " ")} */}
-              {selectedItem ? selectedItem.name : null}
-            </h2>
+            <h2>{selectedItem ? selectedItem.name : null}</h2>
           </div>
         </div>
       ) : (
-        <div>
+        <div className={styles.randomItemDisplay}>
           <div className={styles.randomItemImg}>
-            <img
-              src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              alt={selectedItem.name}
-            />
+            {selectedItem.sources ? (
+              <img
+                src={`https://api.genshin.dev/materials/cooking-ingredients/${selectedItem.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")}`}
+                alt={`${selectedItem.name}`}
+              />
+            ) : (
+              <img
+                src={`https://api.genshin.dev/materials/common-ascension/${selectedItem.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")
+                  .replaceAll("'", "-")}`}
+                alt={selectedItem.name}
+              />
+            )}
           </div>
           <div className={styles.randomItemName}>
             <h2>
@@ -50,7 +56,6 @@ export default function TradeItemDisplay({
 
 TradeItemDisplay.propTypes = {
   tradeScreen: PropTypes.string.isRequired,
-  /* REGLER DETECTION DU PROP TYPE OBJECT NAME DANS SELL */
   selectedItem: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

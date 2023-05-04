@@ -1,12 +1,20 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./Start.module.css";
+import AvatarModal from "../components/AvatarModal";
 
 export default function Start({ playerName, setPlayerName }) {
+  const { avatar } = useAvatarContext();
   const [clickMora, setClickMora] = useState(false);
   const [start, setStart] = useState(true);
   const [story, setStory] = useState(false);
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
+
+  const handleChangeAvatar = () => {
+    setShowAvatarModal(true);
+  };
 
   const handleClickStart = () => {
     setClickMora(true);
@@ -35,7 +43,10 @@ export default function Start({ playerName, setPlayerName }) {
   if (story === true) {
     return (
       <div className={styles.story}>
-        {/* <img src="/src/assets/mora-coin.png" alt="mora coin" /> */}
+        {showAvatarModal ? (
+          <AvatarModal setShowAvatarModal={setShowAvatarModal} />
+        ) : null}
+        ;
         <p>
           A long time ago, in a galaxy far, far away... <br />
           <br />
@@ -43,22 +54,40 @@ export default function Start({ playerName, setPlayerName }) {
           <br />
           For that, you'll need to save 1000{" "}
           <span>
-            <img src="/src/assets/mora-coin.png" alt="mora coin" />
+            <img
+              className={styles.mora}
+              src="/src/assets/mora-coin.png"
+              alt="mora coin"
+            />
           </span>
           , so you start collecting all the items lying around and selling them
           away to get yourself that home sweet home.
         </p>
         <form>
           <label htmlFor="playername">Enter your name</label>
-          <input
-            type="text"
-            name="playername"
-            maxLength={12}
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-          />
+          <div className={styles.selectors}>
+            <button
+              type="button"
+              className={styles.avatar}
+              onClick={handleChangeAvatar}
+            >
+              <img
+                className={styles.avatar}
+                src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+                alt="avatar"
+              />
+            </button>
+            <input
+              type="text"
+              name="playername"
+              maxLength={12}
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+            />
+          </div>
           <Link to="/home">
             <button
+              className={styles.startButton}
               type="submit"
               disabled={playerName === ""}
               onSubmit={(e) => e.preventDefault()}
