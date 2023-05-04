@@ -1,42 +1,14 @@
-import { useState, useEffect } from "react";
-import { useGatherContext } from "../contexts/GatherContext";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
 
-export default function Home() {
-  // Gather
-  // Import du context de Gather
-  const {
-    setGatherScreen,
-    cooldownGather,
-    setCooldownGather,
-    startCooldown,
-    setStartCooldown,
-  } = useGatherContext();
-
-  // Lance le cooldown du Gather une fois la modal de recap fermée
-  useEffect(() => {
-    if (startCooldown === true) {
-      const countdown = setTimeout(
-        () => setCooldownGather(cooldownGather - 1),
-        1000
-      );
-      // Reset les différents states à la fin du cooldown
-      if (cooldownGather === 0) {
-        clearTimeout(countdown);
-        setStartCooldown(false);
-        setGatherScreen("presentation");
-        setCooldownGather(90);
-      }
-    }
-  }, [cooldownGather]);
-
+export default function Home({ playerName, gameMode, setGameMode }) {
   // Trade
   // Création des states
   const [moraCount, setMoraCount] = useState(20);
-  const [gameMode, setGameMode] = useState("trade");
   const [inventory, setInventory] = useState([
     {
       name: "Almond",
@@ -49,7 +21,11 @@ export default function Home() {
 
   return (
     <div className={styles.layout}>
-      <Header moraCount={moraCount} setMoraCount={setMoraCount} />
+      <Header
+        gameMode={gameMode}
+        moraCount={moraCount}
+        playerName={playerName}
+      />
       <GameScreen
         gameMode={gameMode}
         setGameMode={setGameMode}
@@ -62,3 +38,9 @@ export default function Home() {
     </div>
   );
 }
+
+Home.propTypes = {
+  playerName: PropTypes.string.isRequired,
+  gameMode: PropTypes.string.isRequired,
+  setGameMode: PropTypes.func.isRequired,
+};

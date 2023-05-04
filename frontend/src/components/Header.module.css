@@ -20,6 +20,62 @@
   margin-left: -5px;
 }
 
+.tradeAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--trade-third-color);
+  margin-left: -5px;
+  transition: 0.5s ease-out;
+  border: 5px solid var(--nav-dark);
+}
+
+.tradeAvatar > img {
+  translate: -5px -5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.gatherAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--gather-second-color);
+  margin-left: -5px;
+  transition: 0.5s ease-out;
+  border: 5px solid var(--nav-dark);
+}
+
+.gatherAvatar > img {
+  translate: -5px -5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.combatAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--combat-third-color);
+  margin-left: -5px;
+  transition: 0.5s ease-out;
+  border: 5px solid var(--nav-dark);
+}
+
+.combatAvatar > img {
+  translate: -5px -5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.playerName {
+  font-family: var(--text-font);
+  font-size: calc(1rem + 2vw);
+}
+
 .moraCount {
   width: 110px;
   height: 50px;
@@ -33,7 +89,30 @@
   margin-right: 15px;
 }
 
-.moraCount > img {
+.moraCount img {
   width: 40px;
   height: 40px;
+}
+
+@media screen and (max-width: 380px) {
+  .avatar,
+  .avatar > img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .moraCount {
+    width: 70px;
+    font-size: 1rem;
+  }
+
+  .moraCount img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .playerName {
+    font-family: var(--text-font);
+    font-size: 1rem;
+  }
 }

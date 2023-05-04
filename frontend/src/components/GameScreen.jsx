@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Trade from "./Trade";
 import Gather from "./Gather";
+import Combat from "./Combat";
 import styles from "./GameScreen.module.css";
 
 export default function GameScreen({
@@ -10,6 +11,13 @@ export default function GameScreen({
   moraCount,
   setMoraCount,
 }) {
+  /* simple fonction random réutilisable */
+  const random = (min, max) => {
+    const mini = Math.ceil(min);
+    const maxi = Math.floor(max);
+    return Math.floor(Math.random() * (maxi - mini + 1)) + min;
+  };
+
   /* Selon le gameMode sélectionné dans le footer, le gamescreen change entre Trade, Gather et Fight */
   if (gameMode === "trade") {
     return (
@@ -19,6 +27,7 @@ export default function GameScreen({
           setInventory={setInventory}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
+          random={random}
         />
       </div>
     );
@@ -26,7 +35,24 @@ export default function GameScreen({
   if (gameMode === "gather") {
     return (
       <div className={`${styles.gamescreen} ${styles.gather}`}>
-        <Gather inventory={inventory} setInventory={setInventory} />
+        <Gather
+          inventory={inventory}
+          setInventory={setInventory}
+          random={random}
+        />
+      </div>
+    );
+  }
+  if (gameMode === "combat") {
+    return (
+      <div className={`${styles.gamescreen} ${styles.combat}`}>
+        <Combat
+          inventory={inventory}
+          setInventory={setInventory}
+          moraCount={moraCount}
+          setMoraCount={setMoraCount}
+          random={random}
+        />{" "}
       </div>
     );
   }

@@ -8,6 +8,8 @@ import Merchant from "./Merchant";
 import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
 import BargainModal from "./BargainModal";
+import BargainFailure from "./BargainFailure";
+import TradeQuantityModal from "./TradeQuantityModal";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -24,15 +26,24 @@ export default function Sell({
   setSelectedItem,
   showRecap,
   setShowRecap,
+  showBargainFailure,
+  setShowBargainFailure,
   moraCount,
   setMoraCount,
   itemPrice,
   setItemPrice,
+  itemQuantity,
+  setItemQuantity,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
+  const [showQuantityModal, setShowQuantityModal] = useState(false);
+  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
+  par le biais du formulaire dans la BargainModal */
+  const [playerBet, setPlayerBet] = useState(null);
 
   /* Randomisation du marchand au montage du composant */
   const [portrait, setPortrait] = useState("albedo");
+  const [merchantName, setMerchantName] = useState(null);
   const merchants = [
     "albedo",
     "amber",
@@ -49,6 +60,7 @@ export default function Sell({
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
     randomMerchant = merchants[randomMerchantIndex];
+    setMerchantName(randomMerchant);
     setPortrait(
       `https://api.genshin.dev/characters/${randomMerchant}/portrait`
     );
@@ -58,6 +70,7 @@ export default function Sell({
     randomizeMerchant();
   }, []);
 
+  // le useEffect permet la détermination d'une fourchette de prix de l'item à vendre en fonction de sa rareté
   useEffect(() => {
     if (selectedItem != null) {
       const itemRarity = selectedItem.rarity;
@@ -65,13 +78,16 @@ export default function Sell({
       const getPrice = (rarity) => {
         if (rarity === undefined) {
           setItemPrice(random(15, 25));
+        } else if (rarity === 1) {
+          setItemPrice(random(20, 30));
         } else if (rarity === 2) {
           setItemPrice(random(25, 35));
         } else if (rarity === 3) {
           setItemPrice(random(35, 45));
+        } else {
+          setItemPrice(random(45, 55));
         }
       };
-
       getPrice(itemRarity);
     }
   }, [selectedItem]);
@@ -85,6 +101,8 @@ export default function Sell({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowBargainModal={setShowBargainModal}
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           setShowRecap={setShowRecap}
@@ -96,6 +114,9 @@ export default function Sell({
           setMoraCount={setMoraCount}
           random={random}
           randomizeMerchant={randomizeMerchant}
+          itemQuantity={itemQuantity}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
         />
       ) : null}
       {showModal ? (
@@ -111,6 +132,7 @@ export default function Sell({
           itemPrice={itemPrice}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
+          itemQuantity={itemQuantity}
         />
       ) : null}
       {showRecap ? (
@@ -121,14 +143,31 @@ export default function Sell({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
+          itemQuantity={itemQuantity}
+          setItemQuantity={setItemQuantity}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
+        />
+      ) : null}
+      {showBargainFailure ? (
+        <BargainFailure
+          showBargainFailure={showBargainFailure}
+          setShowBargainFailure={setShowBargainFailure}
+          setTradeScreen={setTradeScreen}
+          merchantName={merchantName}
         />
       ) : null}
       <TradeMerchantText
         tradeScreen={tradeScreen}
         itemPrice={itemPrice}
         selectedItem={selectedItem}
+        itemQuantity={itemQuantity}
       />
-      <TradeItemDisplay tradeScreen={tradeScreen} selectedItem={selectedItem} />
+      <TradeItemDisplay
+        tradeScreen={tradeScreen}
+        selectedItem={selectedItem}
+        itemQuantity={itemQuantity}
+      />
       <Merchant portrait={portrait} />
       <TradeMenu
         setSelectedItem={setSelectedItem}
@@ -138,6 +177,13 @@ export default function Sell({
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
       />
+      {showQuantityModal ? (
+        <TradeQuantityModal
+          setShowQuantityModal={setShowQuantityModal}
+          setItemQuantity={setItemQuantity}
+          selectedItem={selectedItem}
+        />
+      ) : null}
     </div>
   ) : (
     <TradeInventory
@@ -147,6 +193,7 @@ export default function Sell({
       setTradeScreen={setTradeScreen}
       selectedItem={selectedItem}
       setSelectedItem={setSelectedItem}
+      setShowQuantityModal={setShowQuantityModal}
     />
   );
 }
@@ -162,6 +209,8 @@ Sell.propTypes = {
   setShowBargainModal: PropTypes.func.isRequired,
   showRecap: PropTypes.bool.isRequired,
   setShowRecap: PropTypes.func.isRequired,
+  showBargainFailure: PropTypes.bool.isRequired,
+  setShowBargainFailure: PropTypes.func.isRequired,
   selectedItem: PropTypes.bool.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
@@ -169,4 +218,6 @@ Sell.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
 };

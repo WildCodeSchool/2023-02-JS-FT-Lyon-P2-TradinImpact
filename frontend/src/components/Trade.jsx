@@ -9,6 +9,7 @@ export default function Trade({
   setInventory,
   moraCount,
   setMoraCount,
+  random,
 }) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -16,13 +17,8 @@ export default function Trade({
   const [showRecap, setShowRecap] = useState(false);
   const [itemPrice, setItemPrice] = useState(0);
   const [showBargainModal, setShowBargainModal] = useState(false);
-
-  /* simple fonction random réutilisable */
-  const random = (min, max) => {
-    const mini = Math.ceil(min);
-    const maxi = Math.floor(max);
-    return Math.floor(Math.random() * (maxi - mini + 1)) + min;
-  };
+  const [showBargainFailure, setShowBargainFailure] = useState(false);
+  const [itemQuantity, setItemQuantity] = useState(1);
 
   /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
@@ -32,6 +28,7 @@ export default function Trade({
         setTradeScreen={setTradeScreen}
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
+        setItemQuantity={setItemQuantity}
       />
     );
   }
@@ -48,6 +45,8 @@ export default function Trade({
         setShowModal={setShowModal}
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
+        showBargainFailure={showBargainFailure}
+        setShowBargainFailure={setShowBargainFailure}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
         selectedItem={selectedItem}
@@ -55,6 +54,8 @@ export default function Trade({
         random={random}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        itemQuantity={itemQuantity}
+        setItemQuantity={setItemQuantity}
       />
     );
   }
@@ -74,6 +75,8 @@ export default function Trade({
         setShowBargainModal={setShowBargainModal}
         showRecap={showRecap}
         setShowRecap={setShowRecap}
+        showBargainFailure={showBargainFailure}
+        setShowBargainFailure={setShowBargainFailure}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
         moraCount={moraCount}
@@ -88,4 +91,5 @@ Trade.propTypes = {
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
+  random: PropTypes.func.isRequired,
 };

@@ -18,10 +18,11 @@
 }
 
 .tradeInventoryItems {
-  width: 60%;
-  height: 40%;
+  width: 80%;
+  height: 45%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  flex-wrap: wrap;
   overflow: auto;
 }
 

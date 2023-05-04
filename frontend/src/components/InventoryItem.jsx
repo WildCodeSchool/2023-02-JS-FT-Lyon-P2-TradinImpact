@@ -9,12 +9,22 @@ export default function InventoryItem({ item, selectedItem, setSelectedItem }) {
         onClick={() => setSelectedItem(item)}
         className={styles.inventoryItem}
       >
-        <img
-          src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name
-            .toLowerCase()
-            .replaceAll(" ", "-")}`}
-          alt={`${item.name}`}
-        />
+        {item.sources ? (
+          <img
+            src={`https://api.genshin.dev/materials/cooking-ingredients/${item.name
+              .toLowerCase()
+              .replaceAll(" ", "-")}`}
+            alt={`${item.name}`}
+          />
+        ) : (
+          <img
+            src={`https://api.genshin.dev/materials/common-ascension/${item.name
+              .toLowerCase()
+              .replaceAll(" ", "-")
+              .replaceAll("'", "-")}`}
+            alt={item.name}
+          />
+        )}
       </button>
       <div className={styles.inventoryItemStock}>
         {selectedItem === item ? "✔" : item.possessed}
