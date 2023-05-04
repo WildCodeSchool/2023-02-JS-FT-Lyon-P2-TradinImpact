@@ -4,7 +4,7 @@ import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./AvatarModal.module.css";
 
 export default function AvatarModal({ setShowAvatarModal }) {
-  const { avatars, setAvatar } = useAvatarContext();
+  const { avatars, setAvatar, avatar } = useAvatarContext();
 
   return (
     <div className={styles.background}>
@@ -16,7 +16,11 @@ export default function AvatarModal({ setShowAvatarModal }) {
               <button
                 key={character}
                 type="button"
-                className={styles.selectAvatar}
+                className={
+                  avatar && avatar.name === character
+                    ? styles.clicked
+                    : styles.selectAvatar
+                }
                 onClick={() => {
                   setAvatar({
                     name: character,
