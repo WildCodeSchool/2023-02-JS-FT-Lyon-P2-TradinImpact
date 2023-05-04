@@ -1,28 +1,29 @@
 @keyframes Shaking {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(5px, 5px) rotate(5deg); }
-  50% { transform: translate(0, 0) rotate(0eg); }
-  75% { transform: translate(-5px, 5px) rotate(-5deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-  /* 0% { transform: skewY(-10deg); }
-  5% { transform: skewY(10deg); }
-  10% { transform: skewY(-10deg); }
-  15% { transform: skewY(10deg); }
-  20% { transform: skewY(0deg); }
-  100% { transform: skewY(0deg); }   */
-  /* 10% { transform: translateX(0);}
-  20% { transform: translateX(4px); }
-  32% { transform: translateX(-4px);}
-  44% { transform: translateX(4px);}
-  60% { transform: translateX(-4px); }
-  76% { transform: translateX(4px); }
-  100% { transform: translateX(0px); } */
-  /* 69% { transform: translateX(0); }
-  69% { transform: translateX(0); } */
- }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, 5px) rotate(5deg);
+  }
+  50% {
+    transform: translate(0, 0) rotate(0eg);
+  }
+  75% {
+    transform: translate(-5px, 5px) rotate(-5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
 
 .enemyBox {
-  height: 70%;
+  height: 80%;
+}
+
+@media screen and (max-width: 300px) {
+  .enemyBox {
+    height: 70%;
+  }
 }
 
 .enemyImg {
@@ -32,5 +33,5 @@
 
 .shook {
   animation-name: Shaking;
-  animation-duration: 0.8s
-  }
+  animation-duration: 0.8s;
+}

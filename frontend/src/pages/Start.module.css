@@ -1,6 +1,6 @@
 .start {
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   background-color: var(--nav-light);
   font-family: var(--text-font);
   display: flex;
@@ -47,8 +47,8 @@
 }
 
 .story {
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   background-color: var(--nav-light);
   font-family: var(--text-font);
   display: flex;
