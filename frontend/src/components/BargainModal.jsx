@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./BargainModal.module.css";
 
 export default function BargainModal({
@@ -16,6 +17,7 @@ export default function BargainModal({
   setMoraCount,
   random,
 }) {
+  const { avatar } = useAvatarContext();
   /* la modale est alimentée par le state itemSelected */
 
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
@@ -161,7 +163,7 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -170,7 +172,7 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -179,7 +181,7 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You must only <br /> use digits
@@ -188,7 +190,7 @@ export default function BargainModal({
       ) : null}
       {showCheatAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You <br /> cheater!

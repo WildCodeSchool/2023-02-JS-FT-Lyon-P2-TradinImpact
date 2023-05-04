@@ -5,6 +5,7 @@ import styles from "./AvatarModal.module.css";
 
 export default function AvatarModal({ setShowAvatarModal }) {
   const { avatars, setAvatar } = useAvatarContext();
+
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
