@@ -34,9 +34,19 @@ export default function Trade({
     "tartaglia",
   ];
 
+  const [itemQuantity, setItemQuantity] = useState(1);
+
   /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
-    return <PresentationTrade setTradeScreen={setTradeScreen} />;
+    return (
+      <PresentationTrade
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        showBargainModal={showBargainModal}
+        setShowBargainModal={setShowBargainModal}
+        setItemQuantity={setItemQuantity}
+      />
+    );
   }
   if (tradeScreen === "sell") {
     return (
@@ -66,6 +76,8 @@ export default function Trade({
         setMerchantName={setMerchantName}
         merchants={merchants}
         setBuyOrSell={setBuyOrSell}
+        itemQuantity={itemQuantity}
+        setItemQuantity={setItemQuantity}
       />
     );
   }

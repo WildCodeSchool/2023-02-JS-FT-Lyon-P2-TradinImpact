@@ -11,6 +11,7 @@ export default function ConfirmationModal({
   itemPrice,
   moraCount,
   setMoraCount,
+  itemQuantity,
 }) {
   /* la modale est alimentée par le state itemSelected */
   let itemGot = false;
@@ -19,7 +20,7 @@ export default function ConfirmationModal({
       <div className={styles.modal}>
         <h3>
           {tradeScreen === "buy" ? "Buy" : "Sell"} {selectedItem.name} for{" "}
-          {itemPrice} moras ?
+          {itemQuantity > 1 ? itemPrice * itemQuantity : itemPrice} moras ?
         </h3>
         <div>
           <button
@@ -29,8 +30,13 @@ export default function ConfirmationModal({
               const selection = selectedItem;
               if (tradeScreen === "sell") {
                 /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
-                selection.possessed -= 1;
-                setMoraCount(moraCount + itemPrice);
+                if (itemQuantity === "1" || itemQuantity === 1) {
+                  selection.possessed -= 1;
+                  setMoraCount(moraCount + itemPrice);
+                } else if (itemQuantity > 1) {
+                  selection.possessed -= itemQuantity;
+                  setMoraCount(moraCount + itemPrice * itemQuantity);
+                }
               } else if (tradeScreen === "buy") {
                 /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
                 /* IL FAUDRA REVOIR LA CONDITION CI-DESSOUS lorsque le menu Buy sera complètement codé avec un bon dialogue avec les states inventory et itemSelected */
@@ -80,4 +86,5 @@ ConfirmationModal.propTypes = {
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
 };

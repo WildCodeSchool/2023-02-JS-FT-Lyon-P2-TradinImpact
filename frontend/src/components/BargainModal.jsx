@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./BargainModal.module.css";
 
 export default function BargainModal({
@@ -15,23 +16,27 @@ export default function BargainModal({
   moraCount,
   setMoraCount,
   random,
+  itemQuantity,
+  playerBet,
+  setPlayerBet,
 }) {
+  const { avatar } = useAvatarContext();
   /* la modale est alimentée par le state itemSelected */
 
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire */
-  const [playerBet, setPlayerBet] = useState(itemPrice);
   const [showExcessAlert, setShowExcessAlert] = useState(false);
   const [showVoidAlert, setShowVoidAlert] = useState(false);
   const [showNaNAlert, setShowNaNAlert] = useState(false);
   const [showCheatAlert, setShowCheatAlert] = useState(false);
+  const [showFSAlert, setShowFSAlert] = useState(false);
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire  */
   const buyDeal = random(0, itemPrice) < playerBet;
   /*  Exemple : un joueur qui propose d'acheter un item 18 moras pour un prix affiché de 
   25 moras a 18 chances sur 25 de voir sa proposition acceptée. */
-  const saleDeal = random(0, itemPrice) < itemPrice - (playerBet - itemPrice);
+  const saleDeal =
+    random(0, itemPrice * itemQuantity) <
+    itemPrice * itemQuantity - (playerBet - itemPrice * itemQuantity);
   /* Exemple : un joueur qui propose de vendre un item 30 moras pour un prix affiché de 
   25 moras a 20 chances sur 25 de voir sa proposition acceptée.  */
 
@@ -56,7 +61,7 @@ export default function BargainModal({
       <div className={styles.bargainmodal}>
         <h3>
           How much would you like to {tradeScreen === "buy" ? "buy" : "sell"}{" "}
-          this ?
+          {itemQuantity > 1 ? "these items" : "this"} ?
         </h3>
         <div>
           <form>
@@ -90,17 +95,21 @@ export default function BargainModal({
                     setShowCheatAlert(true);
                     setMoraCount(1000);
                     setTimeout(() => setShowCheatAlert(false), 2000);
+                  } else if (playerBet === "git gud") {
+                    setShowFSAlert(true);
+                    setMoraCount(-1000);
+                    setTimeout(() => setShowFSAlert(false), 2000);
                   } else if (onlyDigits(playerBet) === false) {
                     setShowNaNAlert(true);
                     setTimeout(() => setShowNaNAlert(false), 2000);
                   } else if (saleDeal) {
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
-                    selection.possessed -= 1;
+                    selection.possessed -= itemQuantity;
+                    // setItemPrice(playerBet);
                     setMoraCount(moraCount + Math.floor(playerBet));
                     setShowRecap(true);
                     setShowBargainModal(false);
-                    setItemPrice(playerBet);
                   } else {
                     setShowBargainModal(false);
                     setShowBargainFailure(true);
@@ -116,6 +125,10 @@ export default function BargainModal({
                     setShowCheatAlert(true);
                     setMoraCount(1000);
                     setTimeout(() => setShowCheatAlert(false), 2000);
+                  } else if (playerBet === "git gud") {
+                    setShowFSAlert(true);
+                    setMoraCount(-1000);
+                    setTimeout(() => setShowFSAlert(false), 2000);
                   } else if (onlyDigits(playerBet) === false) {
                     setShowNaNAlert(true);
                     setTimeout(() => setShowNaNAlert(false), 2000);
@@ -152,6 +165,7 @@ export default function BargainModal({
             onClick={() => {
               /* On fait disparaître la modale et on retourne au menu Vente */
               setShowBargainModal(false);
+              setPlayerBet("");
             }}
             className="button-cancel"
           >
@@ -161,7 +175,7 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -170,7 +184,7 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -179,16 +193,25 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You must only <br /> use digits
           </h4>
         </div>
       ) : null}
-      {showCheatAlert ? (
+      {showFSAlert ? (
         <div className={styles.alertmodal}>
           <img src="src\assets\avatar-default.png" alt="avatar" />
+          <h4>
+            {" "}
+            Prepare <br /> to die!
+          </h4>
+        </div>
+      ) : null}
+      {showCheatAlert ? (
+        <div className={styles.alertmodal}>
+          <img src={avatar.img} alt="avatar" />
           <h4>
             {" "}
             You <br /> cheater!
@@ -212,4 +235,7 @@ BargainModal.propTypes = {
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };

@@ -5,6 +5,7 @@ import Start from "./pages/Start";
 import "./App.css";
 import { GatherContextProvider } from "./contexts/GatherContext";
 import { CombatContextProvider } from "./contexts/CombatContext";
+import { AvatarContextProvider } from "./contexts/AvatarContext";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
@@ -20,30 +21,35 @@ function App() {
   }
 
   return (
-    <GatherContextProvider>
-      <CombatContextProvider>
-        <div className={appClass}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Start playerName={playerName} setPlayerName={setPlayerName} />
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <Home
-                  gameMode={gameMode}
-                  setGameMode={setGameMode}
-                  playerName={playerName}
-                />
-              }
-            />
-          </Routes>
-        </div>
-      </CombatContextProvider>
-    </GatherContextProvider>
+    <AvatarContextProvider>
+      <GatherContextProvider>
+        <CombatContextProvider>
+          <div className={appClass}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Start
+                    playerName={playerName}
+                    setPlayerName={setPlayerName}
+                  />
+                }
+              />
+              <Route
+                path="/home"
+                element={
+                  <Home
+                    gameMode={gameMode}
+                    setGameMode={setGameMode}
+                    playerName={playerName}
+                  />
+                }
+              />
+            </Routes>
+          </div>
+        </CombatContextProvider>
+      </GatherContextProvider>
+    </AvatarContextProvider>
   );
 }
 
