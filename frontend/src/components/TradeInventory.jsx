@@ -8,7 +8,13 @@ export default function TradeInventory({
   setTradeScreen,
   selectedItem,
   setSelectedItem,
+  setShowQuantityModal,
 }) {
+  const quantityCheck = (item) => {
+    if (item.possessed > 1) {
+      setShowQuantityModal(true);
+    }
+  };
   /* la fonction mapInventory crée un item dans le menu uniquement si l'item est présent dans l'inventaire du joueur en au moins un exemplaire */
   const mapInventory = (inv) => {
     return inv.map((item) => {
@@ -48,7 +54,11 @@ export default function TradeInventory({
           type="button"
           disabled={!selectedItem}
           className={styles.buttonTrade}
-          onClick={() => (selectedItem ? setIsItemSelected(true) : null)}
+          onClick={() =>
+            selectedItem
+              ? (setIsItemSelected(true), quantityCheck(selectedItem))
+              : null
+          }
         >
           Select
         </button>
@@ -74,4 +84,5 @@ TradeInventory.propTypes = {
   setIsItemSelected: PropTypes.func.isRequired,
   selectedItem: PropTypes.string.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
+  setShowQuantityModal: PropTypes.func.isRequired,
 };

@@ -8,12 +8,18 @@ export default function Recap({
   tradeScreen,
   setTradeScreen,
   setShowRecap,
+  setItemQuantity,
+  itemQuantity,
+  playerBet,
+  setPlayerBet,
 }) {
   const handleClick = () => {
     setTradeScreen("presentation");
     /* On remet à null le state selectedItem */
     setSelectedItem(null);
     setShowRecap(false);
+    setItemQuantity(1);
+    setPlayerBet(null);
   };
 
   return (
@@ -41,7 +47,10 @@ export default function Recap({
           <div>
             <div className={styles.moraBalance}>
               <img src="src\assets\mora-coin.png" alt="mora coin" />
-              <h4>+ {itemPrice} moras</h4>
+              <h4>
+                + {playerBet !== null ? playerBet : itemPrice * itemQuantity}{" "}
+                moras
+              </h4>
             </div>
             <br />
             <div className={styles.itemTransaction}>
@@ -51,7 +60,10 @@ export default function Recap({
                   .replaceAll(" ", "-")}`}
                 alt={`${selectedItem.name}`}
               />
-              <h4>- {selectedItem.name}</h4>
+              <h4>
+                - {selectedItem.name}{" "}
+                {itemQuantity > 1 ? `X${itemQuantity}` : null}
+              </h4>
             </div>
           </div>
         )}
@@ -70,4 +82,8 @@ Recap.propTypes = {
   setTradeScreen: PropTypes.func.isRequired,
   setShowRecap: PropTypes.func.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.func.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };

@@ -31,6 +31,9 @@ export default function Buy({
   itemPrice,
   setItemPrice,
 }) {
+  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
+  par le biais du formulaire dans la BargainModal */
+  const [playerBet, setPlayerBet] = useState(null /* * itemQuantity */);
   const merchantItems = [
     "flour",
     "almond",
@@ -137,6 +140,8 @@ export default function Buy({
           random={random}
           handleClick={handleClick}
           portrait={portrait}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
         />
       ) : null}
       {showModal ? (
@@ -162,6 +167,8 @@ export default function Buy({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
         />
       ) : null}
       {showBargainFailure ? (

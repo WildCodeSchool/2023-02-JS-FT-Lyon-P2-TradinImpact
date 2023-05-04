@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import styles from "./TradeItemDisplay.module.css";
 
-export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
+export default function TradeItemDisplay({
+  tradeScreen,
+  selectedItem,
+  itemQuantity,
+}) {
   return (
     <div className={styles.randomItemDisplay}>
       {tradeScreen === "buy" ? (
@@ -34,10 +38,8 @@ export default function TradeItemDisplay({ tradeScreen, selectedItem }) {
           </div>
           <div className={styles.randomItemName}>
             <h2>
-              {
-                selectedItem.name /* objectName.charAt(0).toUpperCase() +
-              objectName.slice(1).replaceAll("-", " ") */
-              }{" "}
+              {selectedItem.name} <br />
+              {itemQuantity > 1 ? `(X${itemQuantity})` : null}
             </h2>
           </div>
         </div>
@@ -54,4 +56,5 @@ TradeItemDisplay.propTypes = {
     description: PropTypes.string.isRequired,
     sources: PropTypes.arrayOf.isRequired,
   }).isRequired,
+  itemQuantity: PropTypes.string.isRequired,
 };
