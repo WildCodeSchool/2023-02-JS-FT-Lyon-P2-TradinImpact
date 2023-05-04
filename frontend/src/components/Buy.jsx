@@ -33,7 +33,7 @@ export default function Buy({
 }) {
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
   par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null /* * itemQuantity */);
+  const [playerBet, setPlayerBet] = useState(null);
   const merchantItems = [
     "flour",
     "almond",

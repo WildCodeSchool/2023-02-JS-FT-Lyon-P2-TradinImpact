@@ -39,7 +39,7 @@ export default function Sell({
   const [showQuantityModal, setShowQuantityModal] = useState(false);
   /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
   par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null /* * itemQuantity */);
+  const [playerBet, setPlayerBet] = useState(null);
 
   /* Randomisation du marchand au montage du composant */
   const [portrait, setPortrait] = useState("albedo");
