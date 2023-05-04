@@ -9,6 +9,7 @@ import TradeMerchantText from "./TradeMerchantText";
 import TradeInventory from "./TradeInventory";
 import BargainModal from "./BargainModal";
 import BargainFailure from "./BargainFailure";
+import TradeQuantityModal from "./TradeQuantityModal";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -31,23 +32,20 @@ export default function Sell({
   setMoraCount,
   itemPrice,
   setItemPrice,
+  portrait,
+  setPortrait,
+  merchantName,
+  setMerchantName,
+  merchants,
+  setBuyOrSell,
+  itemQuantity,
+  setItemQuantity,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
-
-  /* Randomisation du marchand au montage du composant */
-  const [portrait, setPortrait] = useState("albedo");
-  const [merchantName, setMerchantName] = useState(null);
-  const merchants = [
-    "albedo",
-    "amber",
-    "barbara",
-    "diluc",
-    "bennett",
-    "jean",
-    "ningguang",
-    "ganyu",
-    "tartaglia",
-  ];
+  const [showQuantityModal, setShowQuantityModal] = useState(false);
+  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
+  par le biais du formulaire dans la BargainModal */
+  const [playerBet, setPlayerBet] = useState(null);
 
   let randomMerchant = null;
   const randomizeMerchant = () => {
@@ -107,6 +105,9 @@ export default function Sell({
           setMoraCount={setMoraCount}
           random={random}
           randomizeMerchant={randomizeMerchant}
+          itemQuantity={itemQuantity}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
         />
       ) : null}
       {showModal ? (
@@ -122,6 +123,7 @@ export default function Sell({
           itemPrice={itemPrice}
           moraCount={moraCount}
           setMoraCount={setMoraCount}
+          itemQuantity={itemQuantity}
         />
       ) : null}
       {showRecap ? (
@@ -132,22 +134,33 @@ export default function Sell({
           tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           setShowRecap={setShowRecap}
+          itemQuantity={itemQuantity}
+          setItemQuantity={setItemQuantity}
+          playerBet={playerBet}
+          setPlayerBet={setPlayerBet}
         />
       ) : null}
       {showBargainFailure ? (
         <BargainFailure
           showBargainFailure={showBargainFailure}
           setShowBargainFailure={setShowBargainFailure}
+          tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
           merchantName={merchantName}
+          setBuyOrSell={setBuyOrSell}
         />
       ) : null}
       <TradeMerchantText
         tradeScreen={tradeScreen}
         itemPrice={itemPrice}
         selectedItem={selectedItem}
+        itemQuantity={itemQuantity}
       />
-      <TradeItemDisplay tradeScreen={tradeScreen} selectedItem={selectedItem} />
+      <TradeItemDisplay
+        tradeScreen={tradeScreen}
+        selectedItem={selectedItem}
+        itemQuantity={itemQuantity}
+      />
       <Merchant portrait={portrait} />
       <TradeMenu
         setSelectedItem={setSelectedItem}
@@ -157,6 +170,13 @@ export default function Sell({
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
       />
+      {showQuantityModal ? (
+        <TradeQuantityModal
+          setShowQuantityModal={setShowQuantityModal}
+          setItemQuantity={setItemQuantity}
+          selectedItem={selectedItem}
+        />
+      ) : null}
     </div>
   ) : (
     <TradeInventory
@@ -166,6 +186,7 @@ export default function Sell({
       setTradeScreen={setTradeScreen}
       selectedItem={selectedItem}
       setSelectedItem={setSelectedItem}
+      setShowQuantityModal={setShowQuantityModal}
     />
   );
 }
@@ -190,4 +211,12 @@ Sell.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  portrait: PropTypes.string.isRequired,
+  setPortrait: PropTypes.func.isRequired,
+  merchantName: PropTypes.string.isRequired,
+  setMerchantName: PropTypes.func.isRequired,
+  merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  setBuyOrSell: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
 };

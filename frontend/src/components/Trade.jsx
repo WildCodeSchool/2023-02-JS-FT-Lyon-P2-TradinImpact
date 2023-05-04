@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PresentationTrade from "./PresentationTrade";
 import Sell from "./Sell";
 import Buy from "./Buy";
+import Bargain from "./Bargain";
 
 export default function Trade({
   inventory,
@@ -18,6 +19,22 @@ export default function Trade({
   const [itemPrice, setItemPrice] = useState(0);
   const [showBargainModal, setShowBargainModal] = useState(false);
   const [showBargainFailure, setShowBargainFailure] = useState(false);
+  const [buyOrSell, setBuyOrSell] = useState("");
+  const [portrait, setPortrait] = useState("albedo");
+  const [merchantName, setMerchantName] = useState(null);
+  const merchants = [
+    "albedo",
+    "amber",
+    "barbara",
+    "diluc",
+    "bennett",
+    "jean",
+    "ningguang",
+    "ganyu",
+    "tartaglia",
+  ];
+
+  const [itemQuantity, setItemQuantity] = useState(1);
 
   /* Selon l'état du state tradeScreen, l'écran sera celui de la présentation du jeu Trade (par défaut) ou de l'achat ou de la vente */
   if (tradeScreen === "presentation") {
@@ -27,6 +44,7 @@ export default function Trade({
         setTradeScreen={setTradeScreen}
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
+        setItemQuantity={setItemQuantity}
       />
     );
   }
@@ -52,6 +70,14 @@ export default function Trade({
         random={random}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        portrait={portrait}
+        setPortrait={setPortrait}
+        merchantName={merchantName}
+        setMerchantName={setMerchantName}
+        merchants={merchants}
+        setBuyOrSell={setBuyOrSell}
+        itemQuantity={itemQuantity}
+        setItemQuantity={setItemQuantity}
       />
     );
   }
@@ -75,6 +101,30 @@ export default function Trade({
         setShowBargainFailure={setShowBargainFailure}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        moraCount={moraCount}
+        setMoraCount={setMoraCount}
+        portrait={portrait}
+        setPortrait={setPortrait}
+        merchantName={merchantName}
+        setMerchantName={setMerchantName}
+        merchants={merchants}
+        setBuyOrSell={setBuyOrSell}
+      />
+    );
+  }
+  if (tradeScreen === "bargain") {
+    return (
+      <Bargain
+        tradeScreen={tradeScreen}
+        setTradeScreen={setTradeScreen}
+        setSelectedItem={setSelectedItem}
+        portrait={portrait}
+        selectedItem={selectedItem}
+        showRecap={showRecap}
+        setShowRecap={setShowRecap}
+        buyOrSell={buyOrSell}
+        merchantName={merchantName}
+        itemPrice={itemPrice}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
       />
