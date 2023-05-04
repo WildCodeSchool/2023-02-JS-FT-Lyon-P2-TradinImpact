@@ -28,15 +28,19 @@
 }
 
 .avatar {
-  width: 6em;
-  height: 6em;
+  width: 25vw;
+  height: 25vw;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 50%;
 }
 
 .selectAvatar {
   margin: 10px;
-  width: 6em;
-  height: 6em;
+  width: 25vw;
+  height: 25vw;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 50%;
   background-color: var(--nav-light);
   padding: 0px;
@@ -54,8 +58,10 @@
 
 .clicked {
   margin: 10px;
-  width: 6em;
-  height: 6em;
+  width: 25vw;
+  height: 25vw;
+  max-width: 100px;
+  max-height: 100px;
   border-radius: 50%;
   background-color: var(--nav-dark);
   padding: 0px;
