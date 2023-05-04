@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import styles from "./PresentationTrade.module.css";
 
-export default function PresentationTrade({ setTradeScreen }) {
+export default function PresentationTrade({ setTradeScreen, setItemQuantity }) {
+  setItemQuantity(1);
   return (
     <div className={styles.presTrade}>
       <div className={styles.presTradeInfo}>
@@ -29,4 +30,5 @@ export default function PresentationTrade({ setTradeScreen }) {
 
 PresentationTrade.propTypes = {
   setTradeScreen: PropTypes.func.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
 };
