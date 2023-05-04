@@ -35,6 +35,7 @@ export default function Buy({
   merchantName,
   setMerchantName,
   merchants,
+  setBuyOrSell,
 }) {
   const merchantItems = [
     "flour",
@@ -61,19 +62,6 @@ export default function Buy({
     "sausage",
   ];
 
-  // const [portrait, setPortrait] = useState("albedo");
-  // const [merchantName, setMerchantName] = useState(null);
-  // const merchants = [
-  //   "albedo",
-  //   "amber",
-  //   "barbara",
-  //   "diluc",
-  //   "bennett",
-  //   "jean",
-  //   "ningguang",
-  //   "ganyu",
-  //   "tartaglia",
-  // ];
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -171,10 +159,11 @@ export default function Buy({
       ) : null}
       {showBargainFailure ? (
         <BargainFailure
-          showBargainFailure={showBargainFailure}
           setShowBargainFailure={setShowBargainFailure}
           merchantName={merchantName}
+          tradeScreen={tradeScreen}
           setTradeScreen={setTradeScreen}
+          setBuyOrSell={setBuyOrSell}
         />
       ) : null}
       <TradeMerchantText
@@ -229,4 +218,5 @@ Buy.propTypes = {
   merchantName: PropTypes.string.isRequired,
   setMerchantName: PropTypes.func.isRequired,
   merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  setBuyOrSell: PropTypes.func.isRequired,
 };

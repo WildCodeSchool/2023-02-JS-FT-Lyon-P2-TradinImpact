@@ -2,11 +2,16 @@ import PropTypes from "prop-types";
 import styles from "./BargainFailure.module.css";
 
 export default function BargainFailure({
+  tradeScreen,
   setTradeScreen,
   setShowBargainFailure,
   merchantName,
+  setBuyOrSell,
 }) {
   const handleClick = () => {
+    /* Récupère la valeur de l'écran de jeu (buy ou sell) avant de passer au bargain afin de
+    pouvoir indiquer les infos correspondantes dans le récap du bargain */
+    setBuyOrSell(tradeScreen);
     setShowBargainFailure(false);
     setTradeScreen("bargain");
   };
@@ -28,7 +33,9 @@ export default function BargainFailure({
 }
 
 BargainFailure.propTypes = {
+  tradeScreen: PropTypes.string.isRequired,
   setTradeScreen: PropTypes.func.isRequired,
   setShowBargainFailure: PropTypes.func.isRequired,
   merchantName: PropTypes.string.isRequired,
+  setBuyOrSell: PropTypes.func.isRequired,
 };
