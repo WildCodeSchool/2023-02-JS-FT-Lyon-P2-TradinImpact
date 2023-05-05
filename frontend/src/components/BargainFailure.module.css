@@ -11,7 +11,7 @@
   
   .failureModal {
     width: 60%;
-    height: 35%;
+    max-height: 50%;
     background-color: var(--nav-light);
     border: 1px solid black;
     border-radius: 50px;
@@ -19,7 +19,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    padding: 10px;
   }
+
   .failureModal button {
     font-family: var(--button-font);
     font-size: 1.3em;
@@ -29,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
   }
   .failureModal h3 {
     max-width: 15ch;

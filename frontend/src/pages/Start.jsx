@@ -46,7 +46,6 @@ export default function Start({ playerName, setPlayerName }) {
         {showAvatarModal ? (
           <AvatarModal setShowAvatarModal={setShowAvatarModal} />
         ) : null}
-        ;
         <p>
           A long time ago, in a galaxy far, far away... <br />
           <br />
@@ -64,7 +63,9 @@ export default function Start({ playerName, setPlayerName }) {
           away to get yourself that home sweet home.
         </p>
         <form>
-          <label htmlFor="playername">Enter your name</label>
+          <label htmlFor="playername">
+            Enter your name and select your avatar
+          </label>
           <div className={styles.selectors}>
             <button
               type="button"

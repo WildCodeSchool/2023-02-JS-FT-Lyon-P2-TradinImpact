@@ -1,51 +1,52 @@
 .background {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 5;
-  }
-  
-  .resultModal {
-    width: 60%;
-    height: 50%;
-    background-color: var(--nav-light);
-    border: 1px solid black;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .buttonclose {
-    font-family: var(--button-font);
-    font-size: 1.3em;
-    padding: 10px 20px;
-    background-color: var(--trade-third-color);
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.4em;
-    width: 10.5ch;
-  }
-  .resultModal h3 {
-    max-width: 15ch;
-    font-family: var(--text-font);
-    font-size: 1.6em;
-  }
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+}
 
-  .buttoncancel {
-    font-family: var(--button-font);
-    color: var(--trade-third-color);
-    font-size: 1.3em;
-    background-color: red;
-    border-radius: 50px;
-    margin: 10px 20px;
-    padding: 10px 20px;
-  }
-  
+.resultModal {
+  width: 60%;
+  height: 50%;
+  background-color: var(--nav-light);
+  border: 1px solid black;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttonclose {
+  font-family: var(--button-font);
+  font-size: 1.3em;
+  padding: 10px 20px;
+  background-color: var(--trade-third-color);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.4em;
+  width: 10.5ch;
+}
+
+.resultModal h3 {
+  max-width: 26ch;
+  font-family: var(--text-font);
+  font-size: 1.6em;
+}
+
+.buttoncancel {
+  font-family: var(--button-font);
+  color: var(--trade-third-color);
+  font-size: 1.3em;
+  background-color: red;
+  border-radius: 50px;
+  margin: 10px 20px;
+  padding: 10px 20px;
+}
