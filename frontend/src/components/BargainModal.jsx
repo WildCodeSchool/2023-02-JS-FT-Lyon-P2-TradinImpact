@@ -200,7 +200,10 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -209,7 +212,10 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -218,7 +224,10 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You must only <br /> use digits
@@ -227,7 +236,10 @@ export default function BargainModal({
       ) : null}
       {showFSAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Prepare <br /> to die!
@@ -236,7 +248,10 @@ export default function BargainModal({
       ) : null}
       {showCheatAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You <br /> cheater!
