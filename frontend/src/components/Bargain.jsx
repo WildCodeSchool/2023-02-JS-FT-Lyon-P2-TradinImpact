@@ -45,8 +45,12 @@ export default function Bargain({
         if (buyOrSell === "buy") {
           if (bargainResult === "win") {
             setMoraCount(moraCount - playerBet);
-          } else {
-            setMoraCount(moraCount - itemPrice);
+          } else if (bargainResult === "lose") {
+            if (itemPrice > moraCount) {
+              setMoraCount(0);
+            } else {
+              setMoraCount(moraCount - itemPrice);
+            }
           }
           // Ajout de l'objet dans l'inventaire
           for (const item of inventory) {
