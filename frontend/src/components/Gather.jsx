@@ -79,8 +79,10 @@ export default function Gather({ random, inventory, setInventory }) {
   }, []);
 
   useEffect(() => {
-    sessionRandomItems();
-  }, []);
+    if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
+      sessionRandomItems();
+    }
+  }, [gatherScreen]);
 
   // Lorsque le composant est démonté, le nouvel écran par défaut devient "présentation" / cooldown
   useEffect(() => {
