@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Encyclopedia.module.css";
 
 export default function Encyclopedia({ inventory, setShowEncyclopedia }) {
   const numberOfItemsTotal = 66;
   const numberOfItemsCollected = inventory.length;
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const [itemToDescribe, setItemToDescribe] = useState(null);
 
   return (
     <div className={styles.background}>
@@ -17,9 +19,10 @@ export default function Encyclopedia({ inventory, setShowEncyclopedia }) {
                 key={item.name}
                 type="button"
                 className={styles.itemButton}
-                // onClick={() => {
-                //   console.log("click");
-                // }}
+                onClick={() => {
+                  setShowDescriptionModal(true);
+                  setItemToDescribe(item);
+                }}
               >
                 {item.sources ? (
                   <img
@@ -53,6 +56,23 @@ export default function Encyclopedia({ inventory, setShowEncyclopedia }) {
         >
           Close
         </button>
+        {showDescriptionModal ? (
+          <div className={styles.descriptionBackground}>
+            <div className={styles.descriptionModal}>
+              {`${itemToDescribe.name} : ${itemToDescribe.description}`}
+              <button
+                type="button"
+                className={styles.close}
+                onClick={() => {
+                  setShowDescriptionModal(false);
+                  setItemToDescribe(null);
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
