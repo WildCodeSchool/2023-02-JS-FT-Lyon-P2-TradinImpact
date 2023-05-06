@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
+import Encyclopedia from "../components/Encyclopedia";
 
 export default function Home({ playerName, gameMode, setGameMode }) {
   // Trade
@@ -18,15 +19,25 @@ export default function Home({ playerName, gameMode, setGameMode }) {
       possessed: 1,
     },
   ]);
+  const [showEncyclopedia, setShowEncyclopedia] = useState(false);
 
   return (
     <div className={styles.layout}>
+      {showEncyclopedia ? (
+        <Encyclopedia
+          inventory={inventory}
+          setShowEncyclopedia={setShowEncyclopedia}
+        />
+      ) : null}
       <Header
         gameMode={gameMode}
         moraCount={moraCount}
         playerName={playerName}
+        setShowEncyclopedia={setShowEncyclopedia}
+        showEncyclopedia={showEncyclopedia}
       />
       <GameScreen
+        showEncyclopedia={showEncyclopedia}
         gameMode={gameMode}
         setGameMode={setGameMode}
         inventory={inventory}
