@@ -15,7 +15,6 @@ export default function Recap({
   moraCount,
   setShowEndModal,
 }) {
-  console.log(moraCount);
   const handleClick = () => {
     if (moraCount < 1000) {
       setTradeScreen("presentation");
