@@ -6,6 +6,7 @@ export default function TradeQuantityModal({
   setShowQuantityModal,
   selectedItem,
   setItemQuantity,
+  setIsItemSelected,
 }) {
   /* la modale est alimentée par le state itemSelected */
   const [playerChoice, setPlayerChoice] = useState(null);
@@ -59,6 +60,7 @@ export default function TradeQuantityModal({
                 } else {
                   setShowQuantityModal(false);
                   setItemQuantity(playerChoice);
+                  setIsItemSelected(true);
                 }
               }}
             >
@@ -117,4 +119,5 @@ TradeQuantityModal.propTypes = {
   }).isRequired,
   setShowQuantityModal: PropTypes.func.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
+  setIsItemSelected: PropTypes.func.isRequired,
 };

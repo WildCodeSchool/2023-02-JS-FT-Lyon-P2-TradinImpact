@@ -12,9 +12,16 @@ export default function Recap({
   itemQuantity,
   playerBet,
   setPlayerBet,
+  moraCount,
+  setShowEndModal,
 }) {
+  console.log(moraCount);
   const handleClick = () => {
-    setTradeScreen("presentation");
+    if (moraCount < 1000) {
+      setTradeScreen("presentation");
+    } else {
+      setShowEndModal(true);
+    }
     /* On remet à null le state selectedItem */
     setSelectedItem(null);
     setShowRecap(false);
@@ -96,4 +103,6 @@ Recap.propTypes = {
   setItemQuantity: PropTypes.func.isRequired,
   playerBet: PropTypes.string.isRequired,
   setPlayerBet: PropTypes.func.isRequired,
+  moraCount: PropTypes.number.isRequired,
+  setShowEndModal: PropTypes.func.isRequired,
 };
