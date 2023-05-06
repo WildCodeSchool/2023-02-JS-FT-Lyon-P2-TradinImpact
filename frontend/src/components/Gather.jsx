@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 import { useGatherContext } from "../contexts/GatherContext";
 import PresentationGather from "./PresentationGather";
@@ -36,6 +38,15 @@ export default function Gather({ random, inventory, setInventory }) {
     "VioletGrass",
   ];
 
+  const showToastMessage = (error) => {
+    toast.success(
+      `There's been a problem. Go back to the trade menu and try again later. (${error})`,
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
+  };
+
   // Définition des objets qui pourront être récoltés dans cette session
   const sessionRandomItems = () => {
     const randomItems = [];
@@ -53,7 +64,8 @@ export default function Gather({ random, inventory, setInventory }) {
             randomItems.push(data[randomItemName]);
           }
         }
-      });
+      })
+      .catch((error) => showToastMessage(error));
     setItemsForSession(randomItems);
   };
 
@@ -62,7 +74,8 @@ export default function Gather({ random, inventory, setInventory }) {
       .then((response) => response.json())
       .then((data) => {
         setTrapItem(data.mondstadt[7]);
-      });
+      })
+      .catch((error) => showToastMessage(error));
   }, []);
 
   useEffect(() => {
@@ -78,10 +91,13 @@ export default function Gather({ random, inventory, setInventory }) {
 
   if (gatherScreen === "presentation" || gatherScreen === "cooldown") {
     return (
-      <PresentationGather
-        setGatherScreen={setGatherScreen}
-        itemsForSession={itemsForSession}
-      />
+      <>
+        <ToastContainer />
+        <PresentationGather
+          setGatherScreen={setGatherScreen}
+          itemsForSession={itemsForSession}
+        />
+      </>
     );
   }
   if (gatherScreen === "recap") {
