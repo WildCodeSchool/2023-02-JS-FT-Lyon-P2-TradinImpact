@@ -8,12 +8,17 @@ export default function BargainFailure({
   merchantName,
   setBuyOrSell,
 }) {
-  const handleClick = () => {
+  const handleClickAccept = () => {
     /* Récupère la valeur de l'écran de jeu (buy ou sell) avant de passer au bargain afin de
     pouvoir indiquer les infos correspondantes dans le récap du bargain */
     setBuyOrSell(tradeScreen);
     setShowBargainFailure(false);
     setTradeScreen("bargain");
+  };
+
+  const handleClickRefuse = () => {
+    setShowBargainFailure(false);
+    setTradeScreen("presentation");
   };
 
   return (
@@ -24,9 +29,14 @@ export default function BargainFailure({
             merchantName.slice(1).toLowerCase()}{" "}
           does not approve of this price and wants to fight to settle the deal !
         </h3>
-        <button type="button" onClick={() => handleClick()}>
-          Next
-        </button>
+        <div className={styles.failureButtons}>
+          <button type="button" onClick={() => handleClickAccept()}>
+            Accept
+          </button>
+          <button type="button" onClick={() => handleClickRefuse()}>
+            Refuse
+          </button>
+        </div>
       </div>
     </div>
   );

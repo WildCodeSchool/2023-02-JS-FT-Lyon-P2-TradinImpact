@@ -14,6 +14,10 @@ function TradeMenu({
   return (
     <div className={styles.background}>
       <button
+        disabled={
+          tradeScreen === "buy" ? moraCount < itemPrice * 0.75 : null
+          /* Disable le bargain si le solde de mora du joueur est trop faible pour qu'il ait une chance de bargain */
+        }
         type="button"
         className={styles.button}
         onClick={() => setShowBargainModal(true)}

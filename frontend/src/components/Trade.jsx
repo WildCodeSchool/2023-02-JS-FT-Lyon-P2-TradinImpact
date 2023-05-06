@@ -22,6 +22,7 @@ export default function Trade({
   const [buyOrSell, setBuyOrSell] = useState("");
   const [portrait, setPortrait] = useState("albedo");
   const [merchantName, setMerchantName] = useState(null);
+  const [playerBet, setPlayerBet] = useState(null);
   const merchants = [
     "albedo",
     "amber",
@@ -78,6 +79,8 @@ export default function Trade({
         setBuyOrSell={setBuyOrSell}
         itemQuantity={itemQuantity}
         setItemQuantity={setItemQuantity}
+        playerBet={playerBet}
+        setPlayerBet={setPlayerBet}
       />
     );
   }
@@ -109,6 +112,8 @@ export default function Trade({
         setMerchantName={setMerchantName}
         merchants={merchants}
         setBuyOrSell={setBuyOrSell}
+        playerBet={playerBet}
+        setPlayerBet={setPlayerBet}
       />
     );
   }
@@ -127,6 +132,10 @@ export default function Trade({
         itemPrice={itemPrice}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        itemQuantity={itemQuantity}
+        inventory={inventory}
+        setInventory={setInventory}
+        playerBet={playerBet}
       />
     );
   }

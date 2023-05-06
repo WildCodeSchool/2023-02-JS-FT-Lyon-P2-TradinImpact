@@ -40,12 +40,11 @@ export default function Sell({
   setBuyOrSell,
   itemQuantity,
   setItemQuantity,
+  playerBet,
+  setPlayerBet,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
   const [showQuantityModal, setShowQuantityModal] = useState(false);
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null);
 
   let randomMerchant = null;
   const randomizeMerchant = () => {
@@ -219,4 +218,6 @@ Sell.propTypes = {
   setBuyOrSell: PropTypes.func.isRequired,
   itemQuantity: PropTypes.string.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };

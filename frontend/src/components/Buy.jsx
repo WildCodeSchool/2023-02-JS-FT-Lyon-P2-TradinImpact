@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
 import Recap from "./Recap";
@@ -36,10 +36,9 @@ export default function Buy({
   setMerchantName,
   merchants,
   setBuyOrSell,
+  playerBet,
+  setPlayerBet,
 }) {
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null);
   const merchantItems = [
     "flour",
     "almond",
@@ -226,4 +225,6 @@ Buy.propTypes = {
   setMerchantName: PropTypes.func.isRequired,
   merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   setBuyOrSell: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };
