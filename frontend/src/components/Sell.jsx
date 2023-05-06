@@ -33,30 +33,20 @@ export default function Sell({
   setMoraCount,
   itemPrice,
   setItemPrice,
+  portrait,
+  setPortrait,
+  merchantName,
+  setMerchantName,
+  merchants,
+  setBuyOrSell,
   itemQuantity,
   setItemQuantity,
+  playerBet,
+  setPlayerBet,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
   const [showQuantityModal, setShowQuantityModal] = useState(false);
   const [showEndModal, setShowEndModal] = useState(false);
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null);
-
-  /* Randomisation du marchand au montage du composant */
-  const [portrait, setPortrait] = useState("albedo");
-  const [merchantName, setMerchantName] = useState(null);
-  const merchants = [
-    "albedo",
-    "amber",
-    "barbara",
-    "diluc",
-    "bennett",
-    "jean",
-    "ningguang",
-    "ganyu",
-    "tartaglia",
-  ];
 
   let randomMerchant = null;
   const randomizeMerchant = () => {
@@ -158,8 +148,10 @@ export default function Sell({
           <BargainFailure
             showBargainFailure={showBargainFailure}
             setShowBargainFailure={setShowBargainFailure}
+            tradeScreen={tradeScreen}
             setTradeScreen={setTradeScreen}
             merchantName={merchantName}
+            setBuyOrSell={setBuyOrSell}
           />
         ) : null}
         {showEndModal ? <EndModal setTradeScreen={setTradeScreen} /> : null}
@@ -231,6 +223,14 @@ Sell.propTypes = {
   setMoraCount: PropTypes.func.isRequired,
   itemPrice: PropTypes.number.isRequired,
   setItemPrice: PropTypes.func.isRequired,
+  portrait: PropTypes.string.isRequired,
+  setPortrait: PropTypes.func.isRequired,
+  merchantName: PropTypes.string.isRequired,
+  setMerchantName: PropTypes.func.isRequired,
+  merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  setBuyOrSell: PropTypes.func.isRequired,
   itemQuantity: PropTypes.string.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };

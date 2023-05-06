@@ -15,7 +15,7 @@ export function AvatarContextProvider({ children }) {
       setAvatar,
       avatars,
     }),
-    [avatar, setAvatar, avatars]
+    [avatar]
   );
   return (
     <AvatarContext.Provider value={value}>{children}</AvatarContext.Provider>

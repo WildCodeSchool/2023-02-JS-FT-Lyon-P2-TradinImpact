@@ -6,7 +6,12 @@ export default function PresentationTrade({ setTradeScreen, setItemQuantity }) {
   return (
     <div className={styles.presTrade}>
       <div className={styles.presTradeInfo}>
-        <p>What would you like to do ?</p>
+        <h3>Buy or sell items !</h3>
+        <br />
+        <p>
+          You can also try and bargain prices up to 25 %, but it's not
+          guaranteed to work everytime...
+        </p>
       </div>
       <div>
         <button

@@ -11,7 +11,4 @@ export default function Merchant({ portrait }) {
 
 Merchant.propTypes = {
   portrait: PropTypes.string.isRequired,
-  merchant: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
 };

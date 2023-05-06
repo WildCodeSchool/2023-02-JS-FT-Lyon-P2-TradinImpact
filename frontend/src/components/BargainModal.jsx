@@ -28,6 +28,8 @@ export default function BargainModal({
   const [showNaNAlert, setShowNaNAlert] = useState(false);
   const [showCheatAlert, setShowCheatAlert] = useState(false);
   const [showFSAlert, setShowFSAlert] = useState(false);
+  const [showTooLowAlert, setShowTooLowAlert] = useState(false);
+  const [showTooHighAlert, setShowTooHighAlert] = useState(false);
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire  */
@@ -61,7 +63,10 @@ export default function BargainModal({
       <div className={styles.bargainmodal}>
         <h3>
           How much would you like to {tradeScreen === "buy" ? "buy" : "sell"}{" "}
-          {itemQuantity > 1 ? "these items" : "this"} ?
+          {itemQuantity > 1 ? "these" : "this"} ?{" "}
+          {tradeScreen === "buy"
+            ? ` min : ${Math.ceil(itemPrice * 0.75)} mora`
+            : ` max : ${Math.floor(itemPrice * itemQuantity * 1.25)} mora`}
         </h3>
         <div>
           <form>
@@ -102,7 +107,17 @@ export default function BargainModal({
                   } else if (onlyDigits(playerBet) === false) {
                     setShowNaNAlert(true);
                     setTimeout(() => setShowNaNAlert(false), 2000);
-                  } else if (saleDeal) {
+                  } else if (playerBet > itemPrice * itemQuantity * 1.25) {
+                    setShowTooHighAlert(true);
+                    setTimeout(() => setShowTooHighAlert(false), 2000);
+                  } else if (playerBet < itemPrice * itemQuantity) {
+                    setShowTooLowAlert(true);
+                    setTimeout(() => setShowTooLowAlert(false), 2000);
+                  } else if (
+                    playerBet < itemPrice * itemQuantity * 1.25 &&
+                    playerBet > itemPrice &&
+                    saleDeal
+                  ) {
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                     selection.possessed -= itemQuantity;
@@ -132,7 +147,17 @@ export default function BargainModal({
                   } else if (onlyDigits(playerBet) === false) {
                     setShowNaNAlert(true);
                     setTimeout(() => setShowNaNAlert(false), 2000);
-                  } else if (buyDeal) {
+                  } else if (playerBet < itemPrice * 0.75) {
+                    setShowTooLowAlert(true);
+                    setTimeout(() => setShowTooLowAlert(false), 2000);
+                  } else if (playerBet > itemPrice) {
+                    setShowTooHighAlert(true);
+                    setTimeout(() => setShowTooHighAlert(false), 2000);
+                  } else if (
+                    playerBet > itemPrice * 0.75 &&
+                    playerBet < itemPrice &&
+                    buyDeal
+                  ) {
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Buy, cliquer sur le bouton Confirmer ajoute l'élément 
                 à l'inventaire, ou, s'il est déjà présent, incrémente la possession de cet objet de 1 */
@@ -175,7 +200,10 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -184,7 +212,10 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -193,7 +224,10 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You must only <br /> use digits
@@ -202,7 +236,10 @@ export default function BargainModal({
       ) : null}
       {showFSAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Prepare <br /> to die!
@@ -211,10 +248,31 @@ export default function BargainModal({
       ) : null}
       {showCheatAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You <br /> cheater!
+          </h4>
+        </div>
+      ) : null}
+      {showTooLowAlert ? (
+        <div className={styles.alertmodal}>
+          <img src={avatar.img} alt="avatar" />
+          <h4>
+            {" "}
+            Too <br /> Low!
+          </h4>
+        </div>
+      ) : null}
+      {showTooHighAlert ? (
+        <div className={styles.alertmodal}>
+          <img src={avatar.img} alt="avatar" />
+          <h4>
+            {" "}
+            Too <br /> High!
           </h4>
         </div>
       ) : null}

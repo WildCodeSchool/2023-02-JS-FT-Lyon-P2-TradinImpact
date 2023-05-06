@@ -85,7 +85,7 @@ export default function CombatGame({
       )}
       {result === "lose" && (
         <div className={`${styles.result} ${styles.lose}`}>
-          You lose this round
+          You lost this round
         </div>
       )}
       <div className={styles.playerInfos}>
