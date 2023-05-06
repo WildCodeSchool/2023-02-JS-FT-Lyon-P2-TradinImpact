@@ -11,7 +11,7 @@ export default function Encyclopedia({ inventory, setShowEncyclopedia }) {
   return (
     <div className={styles.background}>
       <div className={styles.modal}>
-        <h1>Encyclopédie</h1>
+        <h1>Encyclopedia</h1>
         <div className={styles.encyclopediaGrid}>
           {inventory.map((item) => {
             return (
@@ -59,7 +59,11 @@ export default function Encyclopedia({ inventory, setShowEncyclopedia }) {
         {showDescriptionModal ? (
           <div className={styles.descriptionBackground}>
             <div className={styles.descriptionModal}>
-              {`${itemToDescribe.name} : ${itemToDescribe.description}`}
+              {`${itemToDescribe.name} ${
+                itemToDescribe.description
+                  ? `: ${itemToDescribe.description}`
+                  : ""
+              }`}
               <button
                 type="button"
                 className={styles.close}

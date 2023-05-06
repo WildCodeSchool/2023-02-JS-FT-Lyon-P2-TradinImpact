@@ -11,6 +11,8 @@
 }
 
 .modal {
+  font-family: var(--text-font);
+  font-size: calc(1em + 1vw);
   width: 80%;
   height: 75%;
   background-color: var(--nav-light);
@@ -21,6 +23,12 @@
   justify-content: space-evenly;
   align-items: center;
   z-index: 6;
+  padding: 1em;
+}
+
+.modal h1 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .encyclopediaGrid {
@@ -61,6 +69,7 @@
   border-radius: 50%;
   background-color: var(--nav-dark);
   padding: 0px;
+  margin-bottom: 0.5em;
 }
 
 .descriptionBackground {
