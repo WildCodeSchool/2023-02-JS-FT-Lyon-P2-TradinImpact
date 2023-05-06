@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./PresentationCombat.module.css";
@@ -30,6 +32,16 @@ export default function PresentationCombat({ random }) {
     "hilichurl",
     "fatui-cicin-mage",
   ];
+
+  const showToastMessage = (error) => {
+    toast.success(
+      `There's been a problem. Go back to the trade menu and try again later. (${error})`,
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
+  };
+
   let randomEnemy = null;
   // Génération aléatoire d'un ennemi et enregistrement de ses données dans le state enemy, ainsi que son portrait dans le state enemyPortrait
   const handleNewEnemy = () => {
@@ -43,7 +55,8 @@ export default function PresentationCombat({ random }) {
         setPlayerHP(10);
         setEnemyHP(10);
         setOuch(null);
-      });
+      })
+      .catch((error) => showToastMessage(error));
   };
 
   // le useEffect sélectionne un ennemi aléatoire au chargement du composant
@@ -66,7 +79,7 @@ export default function PresentationCombat({ random }) {
   if (combatScreen === "presentation" && cooldownCombat.started === false) {
     return (
       <div className={styles.presentationCombat}>
-        <div>
+        <div className={styles.message}>
           Press <span>Start</span> to fight an evil monster.
           <br /> <br />
           Choose carefully your attacks to bring the monster's HP down to 0.
@@ -74,6 +87,7 @@ export default function PresentationCombat({ random }) {
         <button type="button" onClick={() => setCombatScreen("game")}>
           Start
         </button>
+        <ToastContainer />
       </div>
     );
   }
@@ -84,7 +98,10 @@ export default function PresentationCombat({ random }) {
   ) {
     return (
       <div className={styles.presentationCombat}>
-        <div>Try again in {cooldownCombat.time}s</div>
+        <div className={styles.message}>
+          Try again in {cooldownCombat.time}s
+        </div>
+        <ToastContainer />
       </div>
     );
   }
