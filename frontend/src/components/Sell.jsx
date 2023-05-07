@@ -10,7 +10,6 @@ import TradeInventory from "./TradeInventory";
 import BargainModal from "./BargainModal";
 import BargainFailure from "./BargainFailure";
 import TradeQuantityModal from "./TradeQuantityModal";
-import EndModal from "./EndModal";
 import styles from "./Sell.module.css";
 
 export default function Sell({
@@ -140,6 +139,7 @@ export default function Sell({
             setItemQuantity={setItemQuantity}
             playerBet={playerBet}
             setPlayerBet={setPlayerBet}
+            showEndModal={showEndModal}
             setShowEndModal={setShowEndModal}
             moraCount={moraCount}
           />
@@ -154,7 +154,6 @@ export default function Sell({
             setBuyOrSell={setBuyOrSell}
           />
         ) : null}
-        {showEndModal ? <EndModal setTradeScreen={setTradeScreen} /> : null}
         <TradeMerchantText
           tradeScreen={tradeScreen}
           itemPrice={itemPrice}

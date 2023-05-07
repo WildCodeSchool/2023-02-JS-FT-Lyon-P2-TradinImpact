@@ -15,7 +15,7 @@ export default function Header({
   const handleClickAvatar = () => {
     if (showEncyclopedia) {
       setShowEncyclopedia(false);
-    } else {
+    } else if (showEncyclopedia === false) {
       setShowEncyclopedia(true);
     }
   };

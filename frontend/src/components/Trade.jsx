@@ -11,6 +11,9 @@ export default function Trade({
   moraCount,
   setMoraCount,
   random,
+  uncompleted,
+  setUncompleted,
+  setShowEncyclopedia,
 }) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -46,6 +49,10 @@ export default function Trade({
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
         setItemQuantity={setItemQuantity}
+        moraCount={moraCount}
+        uncompleted={uncompleted}
+        setUncompleted={setUncompleted}
+        setShowEncyclopedia={setShowEncyclopedia}
       />
     );
   }
@@ -147,4 +154,7 @@ Trade.propTypes = {
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  uncompleted: PropTypes.bool.isRequired,
+  setUncompleted: PropTypes.func.isRequired,
+  setShowEncyclopedia: PropTypes.func.isRequired,
 };
