@@ -29,7 +29,7 @@ export default function Bargain({
   /* Sert à stocker la valeur du résultat du match car avec le state result initial,
   la valeur est reset au bout de 2sec */
   const [bargainResult, setBargainResult] = useState("");
-  // const [bargainPrice, setBargainPrice] = useState(itemPrice);
+
   const selection = selectedItem;
   let itemGot = false;
 

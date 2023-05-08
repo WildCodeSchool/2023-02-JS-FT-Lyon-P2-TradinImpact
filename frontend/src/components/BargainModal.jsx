@@ -121,7 +121,6 @@ export default function BargainModal({
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                     selection.possessed -= itemQuantity;
-                    // setItemPrice(playerBet);
                     setMoraCount(moraCount + Math.floor(playerBet));
                     setShowRecap(true);
                     setShowBargainModal(false);

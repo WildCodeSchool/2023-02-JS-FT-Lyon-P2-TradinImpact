@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import EndModal from "./EndModal";
-// import { useEndGameContext } from "../contexts/EndGameContext";
 import styles from "./PresentationTrade.module.css";
 
 export default function PresentationTrade({
@@ -11,7 +10,6 @@ export default function PresentationTrade({
   setUncompleted,
   setShowEncyclopedia,
 }) {
-  // const { uncompleted, setUncompleted } = useEndGameContext();
   setItemQuantity(1);
   return (
     <div className={styles.display}>
