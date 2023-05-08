@@ -18,6 +18,7 @@ export default function Recap({
 }) {
   const handleClick = () => {
     setTradeScreen("presentation");
+
     /* On remet à null le state selectedItem */
     setSelectedItem(null);
     setShowRecap(false);

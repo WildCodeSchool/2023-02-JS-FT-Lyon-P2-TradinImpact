@@ -98,7 +98,7 @@ export default function BargainModal({
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
                     setShowCheatAlert(true);
-                    setMoraCount(1000);
+                    setMoraCount(999);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);
@@ -138,7 +138,7 @@ export default function BargainModal({
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
                     setShowCheatAlert(true);
-                    setMoraCount(1000);
+                    setMoraCount(999);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);
