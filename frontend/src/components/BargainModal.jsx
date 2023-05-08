@@ -93,7 +93,7 @@ export default function BargainModal({
                 e.preventDefault();
                 const selection = selectedItem;
                 if (tradeScreen === "sell") {
-                  if (playerBet === "") {
+                  if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
@@ -132,7 +132,7 @@ export default function BargainModal({
                   if (playerBet > moraCount) {
                     setShowExcessAlert(true);
                     setTimeout(() => setShowExcessAlert(false), 2000);
-                  } else if (playerBet === "") {
+                  } else if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
