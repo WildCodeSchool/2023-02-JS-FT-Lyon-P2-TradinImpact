@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15%;
+  gap: 4em;
 }
 
 .presTradeBtn {
