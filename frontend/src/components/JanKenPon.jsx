@@ -11,6 +11,7 @@ export default function JanKenPon() {
     setEnemyChoice,
     setResult,
     ouch,
+    setBargainResult,
   } = useCombatContext();
 
   // Fonction permettant de générer le choix de jeu de l'ennemi
@@ -27,6 +28,15 @@ export default function JanKenPon() {
     randomEnemyChoice();
   };
 
+  // Timer pour reset le choix du joueur et de l'ennemi et pouvoir passer à la prochaine manche
+  const reset = () => {
+    setTimeout(() => {
+      setPlayerChoice("");
+      setEnemyChoice("");
+      setResult(null);
+    }, 2000);
+  };
+
   useEffect(() => {
     // Vérifie le résultat du round
     if (
@@ -35,25 +45,24 @@ export default function JanKenPon() {
       (enemyChoice === "rock" && playerChoice === "paper")
     ) {
       setResult("win");
+      setBargainResult("win");
+      reset();
     } else if (
       (enemyChoice === "rock" && playerChoice === "scissors") ||
       (enemyChoice === "scissors" && playerChoice === "paper") ||
       (enemyChoice === "paper" && playerChoice === "rock")
     ) {
       setResult("lose");
+      setBargainResult("lose");
+      reset();
     } else if (
       (enemyChoice === "rock" && playerChoice === "rock") ||
       (enemyChoice === "scissors" && playerChoice === "scissors") ||
       (enemyChoice === "paper" && playerChoice === "paper")
     ) {
       setResult("draw");
+      reset();
     }
-    // Timer pour reset le choix du joueur et de l'ennemi et pouvoir passer à la prochaine manche
-    const reset = setTimeout(() => {
-      setPlayerChoice("");
-      setEnemyChoice("");
-      setResult(null);
-    }, 2000);
     return () => clearTimeout(reset);
   }, [playerChoice, enemyChoice]);
 

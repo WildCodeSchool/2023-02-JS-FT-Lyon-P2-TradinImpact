@@ -11,6 +11,8 @@
 }
 
 .popWindow {
+  margin: auto;
+  width: 80%;
   height: 80%;
   display: grid;
   grid-template-columns: repeat(100, 1%);
@@ -23,16 +25,20 @@
 }
 
 .popButton > p {
-  height: 1em;
-  width: 1em;
+  padding: 0.1em;
+  height: 1.5em;
+  width: 1.5em;
   line-height: 1em;
   border-radius: 50%;
   font-family: var(--button-font);
-  color: var(--nav-btn);
+  color: var(black);
   font-size: 2em;
   position: absolute;
   z-index: 2;
-  translate: 1.3em 3.6em;
+  border-radius: 50px;
+  translate: calc(2.5em + 2vh) calc(0.8em + 2vw);
+  background-color: var(--gather-second-color);
+  border: 1px solid black;
 }
 
 .popImage {
@@ -46,7 +52,7 @@
   width: 40%;
   height: 50%;
   font-family: var(--button-font);
-  font-size: 1.3em;
+  font-size: calc(0.8em + 1vw);
   background-color: var(--gather-second-color);
   border-radius: 50px;
   display: flex;

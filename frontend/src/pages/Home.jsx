@@ -4,11 +4,13 @@ import Header from "../components/Header";
 import GameScreen from "../components/GameScreen";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
+import Encyclopedia from "../components/Encyclopedia";
 
 export default function Home({ playerName, gameMode, setGameMode }) {
   // Trade
   // Création des states
   const [moraCount, setMoraCount] = useState(20);
+  const [uncompleted, setUncompleted] = useState(true);
   const [inventory, setInventory] = useState([
     {
       name: "Almond",
@@ -18,21 +20,34 @@ export default function Home({ playerName, gameMode, setGameMode }) {
       possessed: 1,
     },
   ]);
+  const [showEncyclopedia, setShowEncyclopedia] = useState(null);
 
   return (
     <div className={styles.layout}>
+      {showEncyclopedia ? (
+        <Encyclopedia
+          inventory={inventory}
+          setShowEncyclopedia={setShowEncyclopedia}
+        />
+      ) : null}
       <Header
         gameMode={gameMode}
         moraCount={moraCount}
         playerName={playerName}
+        setShowEncyclopedia={setShowEncyclopedia}
+        showEncyclopedia={showEncyclopedia}
       />
       <GameScreen
+        showEncyclopedia={showEncyclopedia}
+        setShowEncyclopedia={setShowEncyclopedia}
         gameMode={gameMode}
         setGameMode={setGameMode}
         inventory={inventory}
         setInventory={setInventory}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        uncompleted={uncompleted}
+        setUncompleted={setUncompleted}
       />
       <Footer gameMode={gameMode} setGameMode={setGameMode} />
     </div>

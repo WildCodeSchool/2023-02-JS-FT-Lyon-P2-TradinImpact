@@ -11,6 +11,9 @@ export default function Trade({
   moraCount,
   setMoraCount,
   random,
+  uncompleted,
+  setUncompleted,
+  setShowEncyclopedia,
 }) {
   const [tradeScreen, setTradeScreen] = useState("presentation");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -22,6 +25,7 @@ export default function Trade({
   const [buyOrSell, setBuyOrSell] = useState("");
   const [portrait, setPortrait] = useState("albedo");
   const [merchantName, setMerchantName] = useState(null);
+  const [playerBet, setPlayerBet] = useState(null);
   const merchants = [
     "albedo",
     "amber",
@@ -45,6 +49,10 @@ export default function Trade({
         showBargainModal={showBargainModal}
         setShowBargainModal={setShowBargainModal}
         setItemQuantity={setItemQuantity}
+        moraCount={moraCount}
+        uncompleted={uncompleted}
+        setUncompleted={setUncompleted}
+        setShowEncyclopedia={setShowEncyclopedia}
       />
     );
   }
@@ -78,6 +86,8 @@ export default function Trade({
         setBuyOrSell={setBuyOrSell}
         itemQuantity={itemQuantity}
         setItemQuantity={setItemQuantity}
+        playerBet={playerBet}
+        setPlayerBet={setPlayerBet}
       />
     );
   }
@@ -101,6 +111,8 @@ export default function Trade({
         setShowBargainFailure={setShowBargainFailure}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        itemQuantity={itemQuantity}
+        setItemQuantity={setItemQuantity}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
         portrait={portrait}
@@ -109,6 +121,8 @@ export default function Trade({
         setMerchantName={setMerchantName}
         merchants={merchants}
         setBuyOrSell={setBuyOrSell}
+        playerBet={playerBet}
+        setPlayerBet={setPlayerBet}
       />
     );
   }
@@ -127,6 +141,10 @@ export default function Trade({
         itemPrice={itemPrice}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
+        itemQuantity={itemQuantity}
+        inventory={inventory}
+        setInventory={setInventory}
+        playerBet={playerBet}
       />
     );
   }
@@ -138,4 +156,7 @@ Trade.propTypes = {
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
   random: PropTypes.func.isRequired,
+  uncompleted: PropTypes.bool.isRequired,
+  setUncompleted: PropTypes.func.isRequired,
+  setShowEncyclopedia: PropTypes.func.isRequired,
 };

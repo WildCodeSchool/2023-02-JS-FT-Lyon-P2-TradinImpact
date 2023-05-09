@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 import ConfirmationModal from "./ConfirmationModal";
 import Recap from "./Recap";
@@ -36,10 +38,11 @@ export default function Buy({
   setMerchantName,
   merchants,
   setBuyOrSell,
+  playerBet,
+  setPlayerBet,
+  itemQuantity,
+  setItemQuantity,
 }) {
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null);
   const merchantItems = [
     "flour",
     "almond",
@@ -65,6 +68,15 @@ export default function Buy({
     "sausage",
   ];
 
+  const showToastMessage = (error) => {
+    toast.success(
+      `There's been a problem. Go back to the trade menu and try again later. (${error})`,
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
+  };
+
   let randomMerchant = null;
   const randomizeMerchant = () => {
     const randomMerchantIndex = random(0, merchants.length - 1);
@@ -78,7 +90,8 @@ export default function Buy({
     const randomItemIndex = random(0, merchantItems.length - 1);
     fetch("https://api.genshin.dev/materials/cooking-ingredients/")
       .then((response) => response.json())
-      .then((data) => setSelectedItem(data[merchantItems[randomItemIndex]]));
+      .then((data) => setSelectedItem(data[merchantItems[randomItemIndex]]))
+      .catch((error) => showToastMessage(error));
   };
 
   /* Randomisation du marchand et de l'item qu'il vend au montage du composant */
@@ -114,6 +127,7 @@ export default function Buy({
 
   return (
     <div className={styles.display}>
+      <ToastContainer />
       {showBargainModal ? (
         <BargainModal
           tradeScreen={tradeScreen}
@@ -162,6 +176,8 @@ export default function Buy({
           setShowRecap={setShowRecap}
           playerBet={playerBet}
           setPlayerBet={setPlayerBet}
+          itemQuantity={itemQuantity}
+          setItemQuantity={setItemQuantity}
         />
       ) : null}
       {showBargainFailure ? (
@@ -226,4 +242,8 @@ Buy.propTypes = {
   setMerchantName: PropTypes.func.isRequired,
   merchants: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   setBuyOrSell: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
 };

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./Recap.module.css";
+import { useCombatContext } from "../contexts/CombatContext";
 
 export default function Recap({
   itemPrice,
@@ -11,19 +12,22 @@ export default function Recap({
   buyOrSell,
   bargainResult,
   merchantName,
-  bargainPrice,
   setItemQuantity,
   itemQuantity,
   playerBet,
   setPlayerBet,
 }) {
+  const { setBargainResult } = useCombatContext();
+
   const handleClick = () => {
     setTradeScreen("presentation");
+
     /* On remet à null le state selectedItem */
     setSelectedItem(null);
     setShowRecap(false);
     setItemQuantity(1);
     setPlayerBet(null);
+    setBargainResult("");
   };
 
   return (
@@ -54,7 +58,10 @@ export default function Recap({
             <div className={styles.moraBalance}>
               <img src="src\assets\mora-coin.png" alt="mora coin" />
               <h4>
-                + {playerBet !== null ? playerBet : itemPrice * itemQuantity}{" "}
+                +{" "}
+                {playerBet !== null && playerBet !== ""
+                  ? playerBet
+                  : itemPrice * itemQuantity}{" "}
                 moras
               </h4>
             </div>
@@ -94,7 +101,7 @@ export default function Recap({
                 : `You lost, ${
                     merchantName.charAt(0).toUpperCase() +
                     merchantName.slice(1).toLowerCase()
-                  } sold you the item for a higher price`}
+                  } sold you the item for the initial price`}
             </h3>
             <div className={styles.itemTransaction}>
               <img
@@ -108,7 +115,7 @@ export default function Recap({
             <br />
             <div className={styles.moraBalance}>
               <img src="src\assets\mora-coin.png" alt="mora coin" />
-              <h4>- {bargainPrice} moras</h4>
+              <h4>- {bargainResult === "win" ? playerBet : itemPrice} moras</h4>
             </div>
           </div>
         ) : null}
@@ -123,11 +130,15 @@ export default function Recap({
                 : `You lost, ${
                     merchantName.charAt(0).toUpperCase() +
                     merchantName.slice(1).toLowerCase()
-                  } purchased your item at a lower price`}
+                  } purchased your item at the initial price`}
             </h3>
             <div className={styles.moraBalance}>
               <img src="src\assets\mora-coin.png" alt="mora coin" />
-              <h4>+ {bargainPrice} moras</h4>
+              <h4>
+                +{" "}
+                {bargainResult === "win" ? playerBet : itemPrice * itemQuantity}{" "}
+                moras
+              </h4>
             </div>
             <br />
             <div className={styles.itemTransaction}>
@@ -147,7 +158,10 @@ export default function Recap({
                   alt={selectedItem.name}
                 />
               )}
-              <h4>- {selectedItem.name}</h4>
+              <h4>
+                - {selectedItem.name}{" "}
+                {itemQuantity > 1 ? `X${itemQuantity}` : null}
+              </h4>
             </div>
           </div>
         ) : null}
@@ -169,7 +183,6 @@ Recap.propTypes = {
   buyOrSell: PropTypes.string.isRequired,
   bargainResult: PropTypes.string.isRequired,
   merchantName: PropTypes.string.isRequired,
-  bargainPrice: PropTypes.number.isRequired,
   itemQuantity: PropTypes.func.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
   playerBet: PropTypes.string.isRequired,

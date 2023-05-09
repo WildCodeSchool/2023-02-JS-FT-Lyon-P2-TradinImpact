@@ -14,6 +14,9 @@ export function CombatContextProvider({ children }) {
   const [playerChoice, setPlayerChoice] = useState("");
   const [enemyChoice, setEnemyChoice] = useState("");
   const [result, setResult] = useState(null);
+  /* Sert à stocker la valeur du résultat du match pour le bargain car avec le state result initial,
+  la valeur est reset au bout de 2sec */
+  const [bargainResult, setBargainResult] = useState("");
   // Calcul des PV et désignation du vainqueur
   const [enemyHP, setEnemyHP] = useState(10);
   const [playerHP, setPlayerHP] = useState(10);
@@ -86,6 +89,8 @@ export function CombatContextProvider({ children }) {
       cooldownCombat,
       setCooldownCombat,
       coolDownCombatBegin,
+      bargainResult,
+      setBargainResult,
     }),
     [
       combatScreen,
@@ -101,6 +106,7 @@ export function CombatContextProvider({ children }) {
       moraLoss,
       ouch,
       cooldownCombat,
+      bargainResult,
     ]
   );
 

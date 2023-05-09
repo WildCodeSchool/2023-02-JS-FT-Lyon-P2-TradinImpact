@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./TradeQuantityModal.module.css";
 
 export default function TradeQuantityModal({
   setShowQuantityModal,
   selectedItem,
   setItemQuantity,
+  setIsItemSelected,
 }) {
+  const { avatar } = useAvatarContext();
   /* la modale est alimentée par le state itemSelected */
   const [playerChoice, setPlayerChoice] = useState(null);
   const [showExcessAlert, setShowExcessAlert] = useState(false);
@@ -47,7 +50,11 @@ export default function TradeQuantityModal({
               className="button-confirm"
               onClick={(e) => {
                 e.preventDefault();
-                if (playerChoice === "" || playerChoice === "0") {
+                if (
+                  playerChoice === "" ||
+                  playerChoice === null ||
+                  playerChoice === "0"
+                ) {
                   setShowVoidAlert(true);
                   setTimeout(() => setShowVoidAlert(false), 2000);
                 } else if (onlyDigits(playerChoice) === false) {
@@ -59,6 +66,7 @@ export default function TradeQuantityModal({
                 } else {
                   setShowQuantityModal(false);
                   setItemQuantity(playerChoice);
+                  setIsItemSelected(true);
                 }
               }}
             >
@@ -79,7 +87,10 @@ export default function TradeQuantityModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Not enough <br /> items !
@@ -88,7 +99,10 @@ export default function TradeQuantityModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -97,10 +111,13 @@ export default function TradeQuantityModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img src="src\assets\avatar-default.png" alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
-            You must only <br /> use digits
+            You must only <br /> use digits.
           </h4>
         </div>
       ) : null}
@@ -117,4 +134,5 @@ TradeQuantityModal.propTypes = {
   }).isRequired,
   setShowQuantityModal: PropTypes.func.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
+  setIsItemSelected: PropTypes.func.isRequired,
 };

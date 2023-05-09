@@ -1,0 +1,75 @@
+.EndModalbackground {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 6;
+}
+
+.EndModalheader {
+    width: 100%;
+    height: 25%;
+    max-width: 800px;
+    background-color: var( --nav-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    top: 0;
+  }
+
+  .EndModalheader p {
+    font-family: var(--text-font);
+    font-size: calc(0.5em + 2vh);
+  }
+
+  .gachascreen {
+    width: 100%;
+    height: 50%;
+    max-width: 800px;
+    background-color: #fbaf4c;
+  }
+
+  .gacha {
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .EndModalfooter {
+    width: 100%;
+    height: 25%;
+    max-width: 800px;
+    background-color: var( --nav-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .EndModalfooter p {
+    font-family: var(--text-font);
+    font-size: calc(0.5em + 2vh);
+    text-align: center;
+  }
+
+  .buttonclose {
+    font-family: var(--button-font);
+    font-size: 1.3em;
+    padding: 10px 20px;
+    background-color: var(--trade-third-color);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.4em;
+    width: 10.5ch;
+  }
+
+
+  

@@ -5,11 +5,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-block: 5%;
+    padding-block: 10px 20px;
 }
 
 .bargain div:first-child {
-    position: static;
+  position: static;
 }
 
 .bargain h6 {

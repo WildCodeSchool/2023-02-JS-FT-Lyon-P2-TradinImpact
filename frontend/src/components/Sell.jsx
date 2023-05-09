@@ -40,12 +40,12 @@ export default function Sell({
   setBuyOrSell,
   itemQuantity,
   setItemQuantity,
+  playerBet,
+  setPlayerBet,
 }) {
   const [isItemSelected, setIsItemSelected] = useState(false);
   const [showQuantityModal, setShowQuantityModal] = useState(false);
-  /*  Cet état permet de stocker la mise proposée par le joueur pour l'achat ou la vente
-  par le biais du formulaire dans la BargainModal */
-  const [playerBet, setPlayerBet] = useState(null);
+  const [showEndModal, setShowEndModal] = useState(false);
 
   let randomMerchant = null;
   const randomizeMerchant = () => {
@@ -85,110 +85,121 @@ export default function Sell({
 
   /* Le composant Sell affiche par défaut l'écran d'inventaire. Si un item est sélectionné dans l'inventaire, le state "isItemSelected" passe à true  et l'écran Sell affiche le menu de vente */
   /* Si le bouton Sell est cliqué dans le tradeMenu, la modale de confirmation s'affiche */
-  return isItemSelected ? (
-    <div className={styles.display}>
-      {showBargainModal ? (
-        <BargainModal
+  if (isItemSelected) {
+    return (
+      <div className={styles.display}>
+        {showBargainModal ? (
+          <BargainModal
+            tradeScreen={tradeScreen}
+            setTradeScreen={setTradeScreen}
+            setShowBargainModal={setShowBargainModal}
+            showBargainFailure={showBargainFailure}
+            setShowBargainFailure={setShowBargainFailure}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            setShowRecap={setShowRecap}
+            itemPrice={itemPrice}
+            setItemPrice={setItemPrice}
+            inventory={inventory}
+            setInventory={setInventory}
+            moraCount={moraCount}
+            setMoraCount={setMoraCount}
+            random={random}
+            randomizeMerchant={randomizeMerchant}
+            itemQuantity={itemQuantity}
+            playerBet={playerBet}
+            setPlayerBet={setPlayerBet}
+          />
+        ) : null}
+        {showModal ? (
+          <ConfirmationModal
+            inventory={inventory}
+            setInventory={setInventory}
+            setTradeScreen={setTradeScreen}
+            tradeScreen={tradeScreen}
+            setShowModal={setShowModal}
+            setShowRecap={setShowRecap}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            itemPrice={itemPrice}
+            moraCount={moraCount}
+            setMoraCount={setMoraCount}
+            itemQuantity={itemQuantity}
+          />
+        ) : null}
+        {showRecap ? (
+          <Recap
+            itemPrice={itemPrice}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
+            tradeScreen={tradeScreen}
+            setTradeScreen={setTradeScreen}
+            setShowRecap={setShowRecap}
+            itemQuantity={itemQuantity}
+            setItemQuantity={setItemQuantity}
+            playerBet={playerBet}
+            setPlayerBet={setPlayerBet}
+            showEndModal={showEndModal}
+            setShowEndModal={setShowEndModal}
+            moraCount={moraCount}
+          />
+        ) : null}
+        {showBargainFailure ? (
+          <BargainFailure
+            showBargainFailure={showBargainFailure}
+            setShowBargainFailure={setShowBargainFailure}
+            tradeScreen={tradeScreen}
+            setTradeScreen={setTradeScreen}
+            merchantName={merchantName}
+            setBuyOrSell={setBuyOrSell}
+          />
+        ) : null}
+        <TradeMerchantText
           tradeScreen={tradeScreen}
-          setTradeScreen={setTradeScreen}
-          setShowBargainModal={setShowBargainModal}
-          showBargainFailure={showBargainFailure}
-          setShowBargainFailure={setShowBargainFailure}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
-          setShowRecap={setShowRecap}
           itemPrice={itemPrice}
-          setItemPrice={setItemPrice}
-          inventory={inventory}
-          setInventory={setInventory}
-          moraCount={moraCount}
-          setMoraCount={setMoraCount}
-          random={random}
-          randomizeMerchant={randomizeMerchant}
+          selectedItem={selectedItem}
           itemQuantity={itemQuantity}
-          playerBet={playerBet}
-          setPlayerBet={setPlayerBet}
         />
-      ) : null}
-      {showModal ? (
-        <ConfirmationModal
-          inventory={inventory}
-          setInventory={setInventory}
-          setTradeScreen={setTradeScreen}
+        <TradeItemDisplay
           tradeScreen={tradeScreen}
+          selectedItem={selectedItem}
+          itemQuantity={itemQuantity}
+        />
+        <Merchant portrait={portrait} />
+        <TradeMenu
+          setSelectedItem={setSelectedItem}
+          tradeScreen={tradeScreen}
+          setTradeScreen={setTradeScreen}
           setShowModal={setShowModal}
-          setShowRecap={setShowRecap}
+          showBargainModal={showBargainModal}
+          setShowBargainModal={setShowBargainModal}
+        />
+      </div>
+    );
+  }
+  if (isItemSelected === false) {
+    return (
+      <div className={styles.display}>
+        <TradeInventory
+          setIsItemSelected={setIsItemSelected}
+          inventory={inventory}
+          setInventory={setInventory}
+          setTradeScreen={setTradeScreen}
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
-          itemPrice={itemPrice}
-          moraCount={moraCount}
-          setMoraCount={setMoraCount}
-          itemQuantity={itemQuantity}
-        />
-      ) : null}
-      {showRecap ? (
-        <Recap
-          itemPrice={itemPrice}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
-          tradeScreen={tradeScreen}
-          setTradeScreen={setTradeScreen}
-          setShowRecap={setShowRecap}
-          itemQuantity={itemQuantity}
-          setItemQuantity={setItemQuantity}
-          playerBet={playerBet}
-          setPlayerBet={setPlayerBet}
-        />
-      ) : null}
-      {showBargainFailure ? (
-        <BargainFailure
-          showBargainFailure={showBargainFailure}
-          setShowBargainFailure={setShowBargainFailure}
-          tradeScreen={tradeScreen}
-          setTradeScreen={setTradeScreen}
-          merchantName={merchantName}
-          setBuyOrSell={setBuyOrSell}
-        />
-      ) : null}
-      <TradeMerchantText
-        tradeScreen={tradeScreen}
-        itemPrice={itemPrice}
-        selectedItem={selectedItem}
-        itemQuantity={itemQuantity}
-      />
-      <TradeItemDisplay
-        tradeScreen={tradeScreen}
-        selectedItem={selectedItem}
-        itemQuantity={itemQuantity}
-      />
-      <Merchant portrait={portrait} />
-      <TradeMenu
-        setSelectedItem={setSelectedItem}
-        tradeScreen={tradeScreen}
-        setTradeScreen={setTradeScreen}
-        setShowModal={setShowModal}
-        showBargainModal={showBargainModal}
-        setShowBargainModal={setShowBargainModal}
-      />
-      {showQuantityModal ? (
-        <TradeQuantityModal
           setShowQuantityModal={setShowQuantityModal}
-          setItemQuantity={setItemQuantity}
-          selectedItem={selectedItem}
         />
-      ) : null}
-    </div>
-  ) : (
-    <TradeInventory
-      setIsItemSelected={setIsItemSelected}
-      inventory={inventory}
-      setInventory={setInventory}
-      setTradeScreen={setTradeScreen}
-      selectedItem={selectedItem}
-      setSelectedItem={setSelectedItem}
-      setShowQuantityModal={setShowQuantityModal}
-    />
-  );
+        {showQuantityModal ? (
+          <TradeQuantityModal
+            setShowQuantityModal={setShowQuantityModal}
+            setItemQuantity={setItemQuantity}
+            selectedItem={selectedItem}
+            setIsItemSelected={setIsItemSelected}
+          />
+        ) : null}
+      </div>
+    );
+  }
 }
 
 Sell.propTypes = {
@@ -219,4 +230,6 @@ Sell.propTypes = {
   setBuyOrSell: PropTypes.func.isRequired,
   itemQuantity: PropTypes.string.isRequired,
   setItemQuantity: PropTypes.func.isRequired,
+  playerBet: PropTypes.string.isRequired,
+  setPlayerBet: PropTypes.func.isRequired,
 };
