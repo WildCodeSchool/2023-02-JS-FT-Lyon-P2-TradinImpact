@@ -16,7 +16,7 @@ export default function EndModal({ setUncompleted, setShowEncyclopedia }) {
   };
 
   return (
-    <div className={styles.background}>
+    <div className={styles.EndModalbackground}>
       <div className={styles.EndModalheader}>
         <p> Congratulations! </p>
         <p> You managed to reach your goal! </p>

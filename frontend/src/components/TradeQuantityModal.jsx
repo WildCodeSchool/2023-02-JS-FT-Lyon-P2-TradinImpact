@@ -50,7 +50,11 @@ export default function TradeQuantityModal({
               className="button-confirm"
               onClick={(e) => {
                 e.preventDefault();
-                if (playerChoice === "" || playerChoice === "0") {
+                if (
+                  playerChoice === "" ||
+                  playerChoice === null ||
+                  playerChoice === "0"
+                ) {
                   setShowVoidAlert(true);
                   setTimeout(() => setShowVoidAlert(false), 2000);
                 } else if (onlyDigits(playerChoice) === false) {

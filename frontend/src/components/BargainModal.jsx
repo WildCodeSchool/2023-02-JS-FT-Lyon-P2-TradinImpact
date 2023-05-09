@@ -93,7 +93,7 @@ export default function BargainModal({
                 e.preventDefault();
                 const selection = selectedItem;
                 if (tradeScreen === "sell") {
-                  if (playerBet === "") {
+                  if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
@@ -121,7 +121,6 @@ export default function BargainModal({
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                     selection.possessed -= itemQuantity;
-                    // setItemPrice(playerBet);
                     setMoraCount(moraCount + Math.floor(playerBet));
                     setShowRecap(true);
                     setShowBargainModal(false);
@@ -133,7 +132,7 @@ export default function BargainModal({
                   if (playerBet > moraCount) {
                     setShowExcessAlert(true);
                     setTimeout(() => setShowExcessAlert(false), 2000);
-                  } else if (playerBet === "") {
+                  } else if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
