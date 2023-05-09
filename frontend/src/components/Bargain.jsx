@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Bargain.module.css";
 import JanKenPon from "./JanKenPon";
 import Merchant from "./Merchant";
@@ -24,11 +24,7 @@ export default function Bargain({
   setInventory,
   playerBet,
 }) {
-  const { enemyChoice, result } = useCombatContext();
-
-  /* Sert à stocker la valeur du résultat du match car avec le state result initial,
-  la valeur est reset au bout de 2sec */
-  const [bargainResult, setBargainResult] = useState("");
+  const { enemyChoice, result, bargainResult } = useCombatContext();
 
   const selection = selectedItem;
   let itemGot = false;
@@ -37,8 +33,6 @@ export default function Bargain({
   au joueur de voir le résultat à l'écran, et défini le prix final de ou des objets */
   useEffect(() => {
     if (result === "win" || result === "lose") {
-      // Stock le résultat du combat afin de pouvoir le réutiliser pour l'affichage du récap
-      setBargainResult(result);
       setTimeout(() => {
         /* Met à jour le solde de mora en fonction de l'issue du combat et du fait que l'on 
         cherche à vendre ou acheter un objet */

@@ -11,6 +11,7 @@ export default function JanKenPon() {
     setEnemyChoice,
     setResult,
     ouch,
+    setBargainResult,
   } = useCombatContext();
 
   // Fonction permettant de générer le choix de jeu de l'ennemi
@@ -44,6 +45,7 @@ export default function JanKenPon() {
       (enemyChoice === "rock" && playerChoice === "paper")
     ) {
       setResult("win");
+      setBargainResult("win");
       reset();
     } else if (
       (enemyChoice === "rock" && playerChoice === "scissors") ||
@@ -51,6 +53,7 @@ export default function JanKenPon() {
       (enemyChoice === "paper" && playerChoice === "rock")
     ) {
       setResult("lose");
+      setBargainResult("lose");
       reset();
     } else if (
       (enemyChoice === "rock" && playerChoice === "rock") ||
