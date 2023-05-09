@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import styles from "./Bargain.module.css";
 import JanKenPon from "./JanKenPon";
-import Merchant from "./Merchant";
 import { useCombatContext } from "../contexts/CombatContext";
 import Recap from "./Recap";
 
@@ -79,8 +78,8 @@ export default function Bargain({
 
   return (
     <div className={styles.bargain}>
-      <div className={styles.merchant}>
-        <Merchant portrait={portrait} />
+      <div>
+        <img className={styles.merchant} src={portrait} alt="Merchant" />
         <h6>"Let's settle this in one round"</h6>
         {enemyChoice !== "" && (
           <div className={styles.enemyChoice}>
