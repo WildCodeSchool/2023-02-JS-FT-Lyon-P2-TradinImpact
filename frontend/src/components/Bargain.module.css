@@ -17,33 +17,6 @@
     font-size: 1.3rem;
 }
 
-/* .bargain div:nth-child(2) {
-  position: static;
-  z-index: 2;
-}  */
-
-/* .infosBargain {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-} */
-
-/* .infosBargain div {
-  position: fixed;
-  left: 45%;
-  top: 35%;
-  max-width: 50%;
-  max-height: 50%;
-  border-radius: 50px;
-  font-family: var(--button-font);
-  background-color: var(--trade-third-color);
-  padding: 20px;
-} */
-
 .enemyChoice {
     width: 75px;
     height: 75px;

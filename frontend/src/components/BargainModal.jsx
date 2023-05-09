@@ -260,7 +260,10 @@ export default function BargainModal({
       ) : null}
       {showTooLowAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Too <br /> Low!
@@ -269,7 +272,10 @@ export default function BargainModal({
       ) : null}
       {showTooHighAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Too <br /> High!
