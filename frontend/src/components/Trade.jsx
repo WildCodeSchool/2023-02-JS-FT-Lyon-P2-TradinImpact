@@ -111,6 +111,8 @@ export default function Trade({
         setShowBargainFailure={setShowBargainFailure}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
+        itemQuantity={itemQuantity}
+        setItemQuantity={setItemQuantity}
         moraCount={moraCount}
         setMoraCount={setMoraCount}
         portrait={portrait}

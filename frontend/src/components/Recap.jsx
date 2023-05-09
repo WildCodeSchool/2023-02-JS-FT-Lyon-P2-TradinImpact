@@ -54,7 +54,10 @@ export default function Recap({
             <div className={styles.moraBalance}>
               <img src="src\assets\mora-coin.png" alt="mora coin" />
               <h4>
-                + {playerBet !== null ? playerBet : itemPrice * itemQuantity}{" "}
+                +{" "}
+                {playerBet !== null && playerBet !== ""
+                  ? playerBet
+                  : itemPrice * itemQuantity}{" "}
                 moras
               </h4>
             </div>
