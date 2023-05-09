@@ -7,7 +7,7 @@ export default AvatarContext;
 
 export function AvatarContextProvider({ children }) {
   const [avatar, setAvatar] = useState(null);
-  const avatars = ["gorou", "fischl", "eula", "chongyun", "ayato", "aloy"];
+  const avatars = ["aloy", "razor", "xinyan", "ayato", "fischl", "zhongli"];
 
   const value = useMemo(
     () => ({

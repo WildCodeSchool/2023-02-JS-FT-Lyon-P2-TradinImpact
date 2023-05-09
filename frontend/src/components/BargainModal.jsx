@@ -65,8 +65,8 @@ export default function BargainModal({
           How much would you like to {tradeScreen === "buy" ? "buy" : "sell"}{" "}
           {itemQuantity > 1 ? "these" : "this"} ?{" "}
           {tradeScreen === "buy"
-            ? ` min : ${Math.ceil(itemPrice * 0.75)} mora`
-            : ` max : ${Math.floor(itemPrice * itemQuantity * 1.25)} mora`}
+            ? ` min : ${Math.ceil(itemPrice * 0.75)} moras`
+            : ` max : ${Math.floor(itemPrice * itemQuantity * 1.25)} moras`}
         </h3>
         <div>
           <form>
@@ -93,12 +93,12 @@ export default function BargainModal({
                 e.preventDefault();
                 const selection = selectedItem;
                 if (tradeScreen === "sell") {
-                  if (playerBet === "") {
+                  if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
                     setShowCheatAlert(true);
-                    setMoraCount(1000);
+                    setMoraCount(999);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);
@@ -121,7 +121,6 @@ export default function BargainModal({
                     /*       On vérifie ici si le bargain est accepté ou non en fonction de l'état du booléen */
                     /* si on se trouve dans le menu Sell, cliquer sur le bouton Confirmer enlève un élément de l'item sélectionné de l'inventaire */
                     selection.possessed -= itemQuantity;
-                    // setItemPrice(playerBet);
                     setMoraCount(moraCount + Math.floor(playerBet));
                     setShowRecap(true);
                     setShowBargainModal(false);
@@ -133,12 +132,12 @@ export default function BargainModal({
                   if (playerBet > moraCount) {
                     setShowExcessAlert(true);
                     setTimeout(() => setShowExcessAlert(false), 2000);
-                  } else if (playerBet === "") {
+                  } else if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
                   } else if (playerBet === "IAmACheater") {
                     setShowCheatAlert(true);
-                    setMoraCount(1000);
+                    setMoraCount(999);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);

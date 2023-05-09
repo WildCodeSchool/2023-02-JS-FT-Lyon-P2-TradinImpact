@@ -10,6 +10,9 @@ export default function GameScreen({
   setInventory,
   moraCount,
   setMoraCount,
+  uncompleted,
+  setUncompleted,
+  setShowEncyclopedia,
 }) {
   /* simple fonction random réutilisable */
   const random = (min, max) => {
@@ -28,6 +31,9 @@ export default function GameScreen({
           moraCount={moraCount}
           setMoraCount={setMoraCount}
           random={random}
+          uncompleted={uncompleted}
+          setUncompleted={setUncompleted}
+          setShowEncyclopedia={setShowEncyclopedia}
         />
       </div>
     );
@@ -63,5 +69,8 @@ export default function GameScreen({
     setInventory: PropTypes.func.isRequired,
     moraCount: PropTypes.number.isRequired,
     setMoraCount: PropTypes.func.isRequired,
+    uncompleted: PropTypes.bool.isRequired,
+    setUncompleted: PropTypes.func.isRequired,
+    setShowEncyclopedia: PropTypes.func.isRequired,
   };
 }

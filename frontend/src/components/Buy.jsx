@@ -40,6 +40,8 @@ export default function Buy({
   setBuyOrSell,
   playerBet,
   setPlayerBet,
+  itemQuantity,
+  setItemQuantity,
 }) {
   const merchantItems = [
     "flour",
@@ -174,6 +176,8 @@ export default function Buy({
           setShowRecap={setShowRecap}
           playerBet={playerBet}
           setPlayerBet={setPlayerBet}
+          itemQuantity={itemQuantity}
+          setItemQuantity={setItemQuantity}
         />
       ) : null}
       {showBargainFailure ? (
@@ -240,4 +244,6 @@ Buy.propTypes = {
   setBuyOrSell: PropTypes.func.isRequired,
   playerBet: PropTypes.string.isRequired,
   setPlayerBet: PropTypes.func.isRequired,
+  itemQuantity: PropTypes.string.isRequired,
+  setItemQuantity: PropTypes.func.isRequired,
 };
