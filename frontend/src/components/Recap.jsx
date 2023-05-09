@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./Recap.module.css";
+import { useCombatContext } from "../contexts/CombatContext";
 
 export default function Recap({
   itemPrice,
@@ -16,6 +17,8 @@ export default function Recap({
   playerBet,
   setPlayerBet,
 }) {
+  const { setBargainResult } = useCombatContext();
+
   const handleClick = () => {
     setTradeScreen("presentation");
 
@@ -24,6 +27,7 @@ export default function Recap({
     setShowRecap(false);
     setItemQuantity(1);
     setPlayerBet(null);
+    setBargainResult("");
   };
 
   return (
