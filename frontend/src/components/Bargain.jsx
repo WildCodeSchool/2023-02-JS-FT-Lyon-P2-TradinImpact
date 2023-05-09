@@ -112,6 +112,7 @@ export default function Bargain({
           merchantName={merchantName}
           itemPrice={itemPrice}
           itemQuantity={itemQuantity}
+          playerBet={playerBet}
         />
       )}
     </div>

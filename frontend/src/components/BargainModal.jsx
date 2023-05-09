@@ -65,8 +65,8 @@ export default function BargainModal({
           How much would you like to {tradeScreen === "buy" ? "buy" : "sell"}{" "}
           {itemQuantity > 1 ? "these" : "this"} ?{" "}
           {tradeScreen === "buy"
-            ? ` min : ${Math.ceil(itemPrice * 0.75)} mora`
-            : ` max : ${Math.floor(itemPrice * itemQuantity * 1.25)} mora`}
+            ? ` min : ${Math.ceil(itemPrice * 0.75)} moras`
+            : ` max : ${Math.floor(itemPrice * itemQuantity * 1.25)} moras`}
         </h3>
         <div>
           <form>
@@ -259,7 +259,10 @@ export default function BargainModal({
       ) : null}
       {showTooLowAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Too <br /> Low!
@@ -268,7 +271,10 @@ export default function BargainModal({
       ) : null}
       {showTooHighAlert ? (
         <div className={styles.alertmodal}>
-          <img src={avatar.img} alt="avatar" />
+          <img
+            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+            alt="avatar"
+          />
           <h4>
             {" "}
             Too <br /> High!
