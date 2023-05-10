@@ -90,7 +90,7 @@ export default function Start({ playerName, setPlayerName }) {
             <button
               className={styles.startButton}
               type="submit"
-              disabled={playerName === ""}
+              disabled={playerName === "" || avatar === null}
               onSubmit={(e) => e.preventDefault()}
             >
               Start your journey

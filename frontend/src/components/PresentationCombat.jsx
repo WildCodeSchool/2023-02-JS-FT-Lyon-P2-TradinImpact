@@ -34,7 +34,7 @@ export default function PresentationCombat({ random }) {
   ];
 
   const showToastMessage = (error) => {
-    toast.success(
+    toast.error(
       `There's been a problem. Go back to the trade menu and try again later. (${error})`,
       {
         position: toast.POSITION.TOP_CENTER,

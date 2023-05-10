@@ -8,10 +8,9 @@
     padding-block: 10px 20px;
 }
 
-.bargain div:first-child {
-  position: static;
+.merchant {
+  height: 40vh;
 }
-
 .bargain h6 {
     font-family: var(--text-font);
     font-size: 1.3rem;
@@ -23,8 +22,8 @@
     background-color: #f97700aa;
     border-radius: 50%;
     position: absolute;
-    top: 30%;
-    right: 20%;
+    top: 22%; 
+    left: calc(50% + 120px); 
     display: flex;
     justify-content: center;
     align-items: center;
