@@ -47,16 +47,16 @@ export default function CombatResultModal({
 
   const handleClickRevenge = () => {
     setMatchWinner(null);
-    setEnemyHP(10);
-    setPlayerHP(10);
+    setEnemyHP(5);
+    setPlayerHP(5);
     setShowCombatResultModal(false);
   };
   const handleClickClose = () => {
     setCombatScreen("presentation");
     setMatchWinner(null);
     setShowCombatResultModal(false);
-    setEnemyHP(10);
-    setPlayerHP(10);
+    setEnemyHP(5);
+    setPlayerHP(5);
     // les lignes suivantes décrivent le processus d'ajout du loot dans l'inventaire en cas de victoire
     if (combatLoot) {
       let itemGot = false;

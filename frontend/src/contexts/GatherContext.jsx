@@ -5,7 +5,7 @@ const GatherContext = createContext();
 
 export default GatherContext;
 
-const defaultCooldownTime = 90;
+const defaultCooldownTime = 5;
 
 export function GatherContextProvider({ children }) {
   const [gatherScreen, setGatherScreen] = useState("presentation");

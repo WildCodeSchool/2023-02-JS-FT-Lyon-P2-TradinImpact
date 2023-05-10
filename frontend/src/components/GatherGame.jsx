@@ -10,7 +10,7 @@ export default function GatherGame({
   setGatherSatchel,
   setGatherScreen,
 }) {
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(10);
   const [popTimer, setPopTimer] = useState(null);
   const [trapTimer, setTrapTimer] = useState(null);
   const [itemToPop, setItemToPop] = useState({

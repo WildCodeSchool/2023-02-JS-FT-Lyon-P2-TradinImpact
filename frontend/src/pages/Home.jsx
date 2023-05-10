@@ -9,7 +9,7 @@ import Encyclopedia from "../components/Encyclopedia";
 export default function Home({ playerName, gameMode, setGameMode }) {
   // Trade
   // Création des states
-  const [moraCount, setMoraCount] = useState(20);
+  const [moraCount, setMoraCount] = useState(42);
   const [uncompleted, setUncompleted] = useState(true);
   const [inventory, setInventory] = useState([
     {

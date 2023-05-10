@@ -33,11 +33,11 @@ export default function BargainModal({
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire  */
-  const buyDeal = random(itemPrice * 0.25, itemPrice) < playerBet;
+  const buyDeal = random(itemPrice * 0.5, itemPrice) < playerBet;
   /*  Exemple : un joueur qui propose d'acheter un item 18 moras pour un prix affiché de 
   25 moras a 18 chances sur 25 de voir sa proposition acceptée. */
   const saleDeal =
-    random(itemPrice * itemQuantity * 0.25, itemPrice * itemQuantity) <
+    random(itemPrice * itemQuantity * 0.5, itemPrice * itemQuantity) <
     itemPrice * itemQuantity - (playerBet - itemPrice * itemQuantity);
   /* Exemple : un joueur qui propose de vendre un item 30 moras pour un prix affiché de 
   25 moras a 20 chances sur 25 de voir sa proposition acceptée.  */
@@ -96,9 +96,9 @@ export default function BargainModal({
                   if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
-                  } else if (playerBet === "IAmACheater") {
+                  } else if (playerBet === "GimmeCash") {
                     setShowCheatAlert(true);
-                    setMoraCount(999);
+                    setMoraCount(1000);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);
@@ -135,9 +135,9 @@ export default function BargainModal({
                   } else if (playerBet === "" || playerBet === null) {
                     setShowVoidAlert(true);
                     setTimeout(() => setShowVoidAlert(false), 2000);
-                  } else if (playerBet === "IAmACheater") {
+                  } else if (playerBet === "GimmeCash") {
                     setShowCheatAlert(true);
-                    setMoraCount(999);
+                    setMoraCount(1000);
                     setTimeout(() => setShowCheatAlert(false), 2000);
                   } else if (playerBet === "git gud") {
                     setShowFSAlert(true);

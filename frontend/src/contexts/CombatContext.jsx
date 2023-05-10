@@ -5,7 +5,7 @@ const CombatContext = createContext();
 
 export default CombatContext;
 
-const defaultCooldownTime = 90;
+const defaultCooldownTime = 5;
 
 export function CombatContextProvider({ children }) {
   // States du mode Combat
@@ -18,8 +18,8 @@ export function CombatContextProvider({ children }) {
   la valeur est reset au bout de 2sec */
   const [bargainResult, setBargainResult] = useState("");
   // Calcul des PV et désignation du vainqueur
-  const [enemyHP, setEnemyHP] = useState(10);
-  const [playerHP, setPlayerHP] = useState(10);
+  const [enemyHP, setEnemyHP] = useState(5);
+  const [playerHP, setPlayerHP] = useState(5);
   const [matchWinner, setMatchWinner] = useState(null);
   const [showCombatResultModal, setShowCombatResultModal] = useState(false);
   const [moraLoss, setMoraLoss] = useState(null);

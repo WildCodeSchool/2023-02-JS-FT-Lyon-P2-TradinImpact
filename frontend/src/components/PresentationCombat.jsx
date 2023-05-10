@@ -52,8 +52,8 @@ export default function PresentationCombat({ random }) {
       .then((response) => response.json())
       .then((data) => {
         setEnemy(data);
-        setPlayerHP(10);
-        setEnemyHP(10);
+        setPlayerHP(5);
+        setEnemyHP(5);
         setOuch(null);
       })
       .catch((error) => showToastMessage(error));
