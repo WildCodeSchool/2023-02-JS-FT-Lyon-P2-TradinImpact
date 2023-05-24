@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./Header.module.css";
+import defaultAvatar from "../assets/avatar-default.png";
+import mora from "../assets/mora-coin.png";
 
 export default function Header({
   moraCount,
@@ -36,15 +38,12 @@ export default function Header({
         className={avatarStyle}
         id="avatar"
       >
-        <img
-          src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-          alt="avatar"
-        />
+        <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
       </button>
       <div className={styles.playerName}>{playerName}</div>
       <div className={styles.moraCount}>
         <h3>{moraCount}</h3>
-        <img src="src\assets\mora-coin.png" alt="mora coin" />
+        <img src={mora} alt="mora coin" />
       </div>
     </div>
   );

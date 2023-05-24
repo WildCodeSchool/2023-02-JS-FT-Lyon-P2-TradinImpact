@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./BargainModal.module.css";
+import mora from "../assets/mora-coin.png";
+import defaultAvatar from "../assets/avatar-default.png";
 
 export default function BargainModal({
   inventory,
@@ -81,7 +83,7 @@ export default function BargainModal({
                 onChange={handleChange}
               />
               <img
-                src="src\assets\mora-coin.png"
+                src={mora}
                 alt="mora coin"
                 className={styles.bargainmoracoin}
               />
@@ -199,10 +201,7 @@ export default function BargainModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             Not enough <br /> moras !
@@ -211,10 +210,7 @@ export default function BargainModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -223,10 +219,7 @@ export default function BargainModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             You must only <br /> use digits
@@ -235,10 +228,7 @@ export default function BargainModal({
       ) : null}
       {showFSAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             Prepare <br /> to die!
@@ -247,10 +237,7 @@ export default function BargainModal({
       ) : null}
       {showCheatAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             You <br /> cheater!
@@ -259,10 +246,7 @@ export default function BargainModal({
       ) : null}
       {showTooLowAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             Too <br /> Low!
@@ -271,10 +255,7 @@ export default function BargainModal({
       ) : null}
       {showTooHighAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             Too <br /> High!

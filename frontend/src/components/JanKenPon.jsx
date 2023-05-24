@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./JanKenPon.module.css";
+import rock from "../assets/rock.png";
+import paper from "../assets/paper.png";
+import scissors from "../assets/scissors.png";
 
 export default function JanKenPon() {
   // Import des States depuis le Context
@@ -84,7 +87,7 @@ export default function JanKenPon() {
         }
         onClick={() => handleClickChoice("rock")}
       >
-        <img src="./src/assets/rock.png" alt="stones" />
+        <img src={rock} alt="stones" />
       </button>
       <button
         type="button"
@@ -96,7 +99,7 @@ export default function JanKenPon() {
         }
         onClick={() => handleClickChoice("paper")}
       >
-        <img src="./src/assets/paper.png" alt="leaves" />
+        <img src={paper} alt="leaves" />
       </button>
       <button
         type="button"
@@ -108,7 +111,7 @@ export default function JanKenPon() {
         }
         onClick={() => handleClickChoice("scissors")}
       >
-        <img src="./src/assets/scissors.png" alt="scissors" />
+        <img src={scissors} alt="scissors" />
       </button>
     </div>
   );
