@@ -4,6 +4,9 @@ import styles from "./Bargain.module.css";
 import JanKenPon from "./JanKenPon";
 import { useCombatContext } from "../contexts/CombatContext";
 import Recap from "./Recap";
+import rock from "../assets/rock.png";
+import paper from "../assets/paper.png";
+import scissors from "../assets/scissors.png";
 
 export default function Bargain({
   tradeScreen,
@@ -27,6 +30,15 @@ export default function Bargain({
 
   const selection = selectedItem;
   let itemGot = false;
+  let imageToDisplay = null;
+
+  if (enemyChoice === "rock") {
+    imageToDisplay = rock;
+  } else if (enemyChoice === "paper") {
+    imageToDisplay = paper;
+  } else if (enemyChoice === "scissors") {
+    imageToDisplay = scissors;
+  }
 
   /* Affiche le recap en cas de win ou de lose avec un délai de 2sec pour laisser le temps
   au joueur de voir le résultat à l'écran, et défini le prix final de ou des objets */
@@ -77,7 +89,7 @@ export default function Bargain({
         <h6>"Let's settle this in one round"</h6>
         {enemyChoice !== "" && (
           <div className={styles.enemyChoice}>
-            <img src={`./src/assets/${enemyChoice}.png`} alt={enemyChoice} />
+            <img src={imageToDisplay} alt={enemyChoice} />
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./TradeQuantityModal.module.css";
+import defaultAvatar from "../assets/avatar-default.png";
 
 export default function TradeQuantityModal({
   setShowQuantityModal,
@@ -87,10 +88,7 @@ export default function TradeQuantityModal({
       </div>
       {showExcessAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             Not enough <br /> items !
@@ -99,10 +97,7 @@ export default function TradeQuantityModal({
       ) : null}
       {showVoidAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             You proposed <br /> nothing !
@@ -111,10 +106,7 @@ export default function TradeQuantityModal({
       ) : null}
       {showNaNAlert ? (
         <div className={styles.alertmodal}>
-          <img
-            src={avatar ? avatar.img : "src/assets/avatar-default.png"}
-            alt="avatar"
-          />
+          <img src={avatar ? avatar.img : defaultAvatar} alt="avatar" />
           <h4>
             {" "}
             You must only <br /> use digits.

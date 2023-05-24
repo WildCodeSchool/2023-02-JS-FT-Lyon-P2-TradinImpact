@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "./Recap.module.css";
 import { useCombatContext } from "../contexts/CombatContext";
+import mora from "../assets/mora-coin.png";
 
 export default function Recap({
   itemPrice,
@@ -47,7 +48,7 @@ export default function Recap({
             </div>
             <br />
             <div className={styles.moraBalance}>
-              <img src="src\assets\mora-coin.png" alt="mora coin" />
+              <img src={mora} alt="mora coin" />
               <h4>- {itemPrice} moras</h4>
             </div>
           </div>
@@ -56,7 +57,7 @@ export default function Recap({
           <div>
             <h3>Successful Transaction !</h3>
             <div className={styles.moraBalance}>
-              <img src="src\assets\mora-coin.png" alt="mora coin" />
+              <img src={mora} alt="mora coin" />
               <h4>
                 +{" "}
                 {playerBet !== null && playerBet !== ""
@@ -114,7 +115,7 @@ export default function Recap({
             </div>
             <br />
             <div className={styles.moraBalance}>
-              <img src="src\assets\mora-coin.png" alt="mora coin" />
+              <img src={mora} alt="mora coin" />
               <h4>- {bargainResult === "win" ? playerBet : itemPrice} moras</h4>
             </div>
           </div>
@@ -133,7 +134,7 @@ export default function Recap({
                   } purchased your item at the initial price`}
             </h3>
             <div className={styles.moraBalance}>
-              <img src="src\assets\mora-coin.png" alt="mora coin" />
+              <img src={mora} alt="mora coin" />
               <h4>
                 +{" "}
                 {bargainResult === "win" ? playerBet : itemPrice * itemQuantity}{" "}

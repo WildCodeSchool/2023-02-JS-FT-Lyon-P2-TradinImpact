@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import { useGatherContext } from "../contexts/GatherContext";
 import { useCombatContext } from "../contexts/CombatContext";
 import styles from "./Footer.module.css";
+import basket from "../assets/basket.png";
+import purse from "../assets/bourse2.png";
+import sword from "../assets/sword-icon.png";
 
 export default function Footer({ gameMode, setGameMode }) {
   // Import du context de Gather pour afficher le cooldown
@@ -57,7 +60,7 @@ export default function Footer({ gameMode, setGameMode }) {
             <span>{cooldownGather.time}</span>
           </div>
         ) : null}
-        <img src="./src/assets/basket.png" alt="collect icon" />
+        <img src={basket} alt="collect icon" />
       </button>
       <button
         className={
@@ -69,7 +72,7 @@ export default function Footer({ gameMode, setGameMode }) {
         type="button"
         onClick={handleClickTrade}
       >
-        <img src="./src/assets/bourse2.png" alt="trade icon" />
+        <img src={purse} alt="trade icon" />
       </button>
       <button
         className={
@@ -86,7 +89,7 @@ export default function Footer({ gameMode, setGameMode }) {
             <span>{cooldownCombat.time}</span>
           </div>
         ) : null}
-        <img src="./src/assets/sword-icon.png" alt="combat icon" />
+        <img src={sword} alt="combat icon" />
       </button>
     </div>
   );

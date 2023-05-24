@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useAvatarContext } from "../contexts/AvatarContext";
 import styles from "./Start.module.css";
 import AvatarModal from "../components/AvatarModal";
+import defaultAvatar from "../assets/avatar-default.png";
+import mora from "../assets/mora-coin.png";
 
 export default function Start({ playerName, setPlayerName }) {
   const { avatar } = useAvatarContext();
@@ -33,7 +35,7 @@ export default function Start({ playerName, setPlayerName }) {
           className={clickMora === true ? styles.startAnim : null}
           onClick={handleClickStart}
         >
-          <img src="/src/assets/mora-coin.png" alt="mora coin start button" />
+          <img src={mora} alt="mora coin start button" />
         </button>
         <p>Tap the mora to play</p>
       </section>
@@ -53,11 +55,7 @@ export default function Start({ playerName, setPlayerName }) {
           <br />
           For that, you'll need to save 1000{" "}
           <span>
-            <img
-              className={styles.mora}
-              src="/src/assets/mora-coin.png"
-              alt="mora coin"
-            />
+            <img className={styles.mora} src={mora} alt="mora coin" />
           </span>
           , so you start collecting all the items lying around and selling them
           away to get yourself that home sweet home.
@@ -74,7 +72,7 @@ export default function Start({ playerName, setPlayerName }) {
             >
               <img
                 className={styles.avatar}
-                src={avatar ? avatar.img : "src/assets/avatar-default.png"}
+                src={avatar ? avatar.img : defaultAvatar}
                 alt="avatar"
               />
             </button>

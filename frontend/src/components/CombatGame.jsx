@@ -5,6 +5,9 @@ import styles from "./CombatGame.module.css";
 import CombatEnemy from "./CombatEnemy";
 import CombatResultModal from "./CombatResultModal";
 import JanKenPon from "./JanKenPon";
+import rock from "../assets/rock.png";
+import paper from "../assets/paper.png";
+import scissors from "../assets/scissors.png";
 
 export default function CombatGame({
   inventory,
@@ -26,6 +29,16 @@ export default function CombatGame({
     enemy,
     setOuch,
   } = useCombatContext();
+
+  let imageToDisplay = null;
+
+  if (enemyChoice === "rock") {
+    imageToDisplay = rock;
+  } else if (enemyChoice === "paper") {
+    imageToDisplay = paper;
+  } else if (enemyChoice === "scissors") {
+    imageToDisplay = scissors;
+  }
 
   const damage = random(3, 5);
 
@@ -71,7 +84,7 @@ export default function CombatGame({
         <CombatEnemy />
         {enemyChoice !== "" ? (
           <div className={styles.enemyChoice}>
-            <img src={`./src/assets/${enemyChoice}.png`} alt={enemyChoice} />
+            <img src={imageToDisplay} alt={enemyChoice} />
           </div>
         ) : null}
       </div>
