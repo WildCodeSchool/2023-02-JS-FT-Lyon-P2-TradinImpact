@@ -17,7 +17,7 @@ export default function Home({ playerName, gameMode, setGameMode }) {
       description:
         "A seed with a peculiar fragrance that gives food a refreshing taste.",
       sources: ["Sold by Second Life", "Sold by Ms. Bai"],
-      possessed: 1,
+      possessed: 5,
     },
   ]);
   const [showEncyclopedia, setShowEncyclopedia] = useState(null);

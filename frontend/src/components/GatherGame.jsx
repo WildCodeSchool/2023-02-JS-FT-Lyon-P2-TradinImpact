@@ -31,7 +31,7 @@ export default function GatherGame({
     setItemToPop(null);
     clicks = 0;
     if (isGameOn) {
-      setPopTimer(random(2, 3));
+      setPopTimer(3);
       const randomTrapItem = random(0, 10);
       // Il y a une chance sur 11 que l'objet qui apparaît soit un objet piège
       if (randomTrapItem === 5) {
@@ -49,7 +49,7 @@ export default function GatherGame({
             style={itemToSet.style}
             type="button"
             onClick={() => {
-              setTrapTimer(5);
+              setTrapTimer(2);
             }}
           >
             <p>✗</p>

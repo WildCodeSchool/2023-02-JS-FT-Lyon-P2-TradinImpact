@@ -15,7 +15,7 @@ export default function BargainModal({
   setItemPrice,
   moraCount,
   setMoraCount,
-  random,
+  // random,
   itemQuantity,
   playerBet,
   setPlayerBet,
@@ -33,12 +33,10 @@ export default function BargainModal({
 
   /*   Ces variables permettent de déterminer par un booléan si le joueur remporte le bargain
   ou non sur la base d'un chiffre aléatoire  */
-  const buyDeal = random(itemPrice * 0.5, itemPrice) < playerBet;
+  const buyDeal = false;
   /*  Exemple : un joueur qui propose d'acheter un item 18 moras pour un prix affiché de 
   25 moras a 18 chances sur 25 de voir sa proposition acceptée. */
-  const saleDeal =
-    random(itemPrice * itemQuantity * 0.5, itemPrice * itemQuantity) <
-    itemPrice * itemQuantity - (playerBet - itemPrice * itemQuantity);
+  const saleDeal = false;
   /* Exemple : un joueur qui propose de vendre un item 30 moras pour un prix affiché de 
   25 moras a 20 chances sur 25 de voir sa proposition acceptée.  */
 
@@ -297,7 +295,7 @@ BargainModal.propTypes = {
   setInventory: PropTypes.func.isRequired,
   moraCount: PropTypes.number.isRequired,
   setMoraCount: PropTypes.func.isRequired,
-  random: PropTypes.func.isRequired,
+  // random: PropTypes.func.isRequired,
   itemQuantity: PropTypes.string.isRequired,
   playerBet: PropTypes.string.isRequired,
   setPlayerBet: PropTypes.func.isRequired,

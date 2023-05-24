@@ -11,8 +11,7 @@
 }
 
 .popWindow {
-  margin: auto;
-  width: 80%;
+  width: 85%;
   height: 80%;
   display: grid;
   grid-template-columns: repeat(100, 1%);
